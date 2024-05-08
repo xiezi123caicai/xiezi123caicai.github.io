@@ -479,11 +479,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h3><h4 id="1-两数之和-✅"><a href="#1-两数之和-✅" class="headerlink" title="**1. 两数之和**✅"></a>**<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a>**✅</h4><p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em>  的那 <strong>两个</strong> 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。</p>
+                <h3 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h3><h4 id="1-两数之和✅"><a href="#1-两数之和✅" class="headerlink" title="1. 两数之和✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a>✅</h4><p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em>  的那 <strong>两个</strong> 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。</p>
 <p><strong>解析：</strong>用哈希表辅助判断。对于一个元素 <code>nums[i]</code>，你想知道有没有另一个元素 <code>nums[j]</code> 的值为 <code>target - nums[i]</code>，这很简单，我们用一个哈希表记录每个元素的值到索引的映射，这样就能快速判断数组中是否有一个值为 <code>target - nums[i]</code> 的元素了。</p>
 <p>简单说，<strong>数组其实可以理解为一个「索引 -&gt; 值」的哈希表映射，而我们又建立一个「值 -&gt; 索引」的映射即可完成此题</strong>。</p>
 <p><img src="/2024/05/08/hot100/1715147141098-1.png"></p>
-<h4 id="49-字母异位词分组-✅"><a href="#49-字母异位词分组-✅" class="headerlink" title="**49. 字母异位词分组**✅"></a>**<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/group-anagrams/">49. 字母异位词分组</a>**✅</h4><p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。<strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p>
+<h4 id="49-字母异位词分组✅"><a href="#49-字母异位词分组✅" class="headerlink" title="49. 字母异位词分组✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/group-anagrams/">49. 字母异位词分组</a>✅</h4><p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。<strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p>
 <p><strong>解析：</strong>异位词这类问题的关键在于，你如何迅速判断两个字符串是异位词，主要考察数据编码和哈希表的使用：更好的编码方案是利用每个字符的出现次数进行编码，也就是下面的解法代码。</p>
 <p><img src="/2024/05/08/hot100/1715147251901-4.png"></p>
 <h4 id="128-最长连续序列✅"><a href="#128-最长连续序列✅" class="headerlink" title="128. 最长连续序列✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-consecutive-sequence/">128. 最长连续序列</a>✅</h4><p>给定一个未排序的整数数组 <code>nums</code> ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。请你设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p>
@@ -571,6 +571,110 @@
 </ul>
 <p><strong>解析：如果向左移动，元素在减小，如果向下移动，元素在增大，这样的话我们就可以根据当前位置的元素和</strong> <strong><code>target</code></strong> <strong>的相对大小来判断应该往哪移动，不断接近从而找到</strong> <strong><code>target</code></strong> <strong>的位置。</strong></p>
 <p><img src="/2024/05/08/hot100/1715149978892-68.png"></p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><h4 id="160-相交链表✅"><a href="#160-相交链表✅" class="headerlink" title="160. 相交链表✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">160. 相交链表</a>✅</h4><p>给你两个单链表的头节点 <code>headA</code> 和 <code>headB</code> ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 <code>null</code> 。</p>
+<p><strong>解析：</strong>这题难点在于，由于两条链表的长度可能不同，两条链表之间的节点无法对应。</p>
+<p>如果用两个指针 <code>p1</code> 和 <code>p2</code> 分别在两条链表上前进，我们可以让 <code>p1</code> 遍历完链表 <code>A</code> 之后开始遍历链表 <code>B</code>，让 <code>p2</code> 遍历完链表 <code>B</code> 之后开始遍历链表 <code>A</code>，这样相当于「逻辑上」两条链表接在了一起。如果这样进行拼接，就可以让 <code>p1</code> 和 <code>p2</code> 同时进入公共部分，也就是同时到达相交节点 <code>c1</code>。</p>
+<p><img src="/2024/05/08/hot100/1715150312132-71.png"></p>
+<h4 id="206-反转链表💪"><a href="#206-反转链表💪" class="headerlink" title="206. 反转链表💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-linked-list/">206. 反转链表</a>💪</h4><p>给你单链表的头节点 <code>head</code> ，请你反转链表，并返回反转后的链表。</p>
+<p><strong>解析：</strong>首先定义一个<code>cur</code>指针，指向头结点，再定义一个<code>pre</code>指针，初始化为<code>null</code>。然后就要开始反转了，首先要把 <code>cur-&gt;next</code> 节点用<code>tmp</code>指针保存一下，也就是保存一下这个节点。为什么要保存一下这个节点呢，因为接下来要改变 <code>cur-&gt;next</code> 的指向了，将<code>cur-&gt;next</code> 指向<code>pre</code> ，此时已经反转了第一个节点了。接下来，就是循环走如下代码逻辑了，继续移动<code>pre</code>和<code>cur</code>指针。最后，<code>cur</code> 指针已经指向了<code>null</code>，循环结束，链表也反转完毕了。 此时我们<code>return pre</code>指针就可以了，<code>pre</code>指针就指向了新的头结点。</p>
+<p><img src="/2024/05/08/hot100/1715150350591-74.png"></p>
+<h4 id="234-回文链表✅"><a href="#234-回文链表✅" class="headerlink" title="234. 回文链表✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-linked-list/">234. 回文链表</a>✅</h4><p>给你一个单链表的头节点 <code>head</code> ，请你判断该链表是否为回文链表。如果是，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>解析：</strong></p>
+<ol>
+<li>先通过 <a target="_blank" rel="noopener" href="https://labuladong.github.io/article/fname.html?fname=%E9%93%BE%E8%A1%A8%E6%8A%80%E5%B7%A7">双指针技巧</a> 中的快慢指针来找到链表的中点：</li>
+<li>如果 <code>fast</code> 指针没有指向 <code>null</code>，说明链表长度为奇数，<code>slow</code> 还要再前进一步。</li>
+<li>从 <code>slow</code> 开始反转后面的链表，现在就可以开始比较回文串了。</li>
+</ol>
+<p><img src="/2024/05/08/hot100/1715150414911-77.png"></p>
+<p>reverse方法看206翻转链表。</p>
+<h4 id="141-环形链表✅"><a href="#141-环形链表✅" class="headerlink" title="141. 环形链表✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/">141. 环形链表</a>✅</h4><p>给你一个链表的头节点 <code>head</code> ，判断链表中是否有环。如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（索引从 0 开始）。<strong>注意：<code>pos</code>不作为参数进行传递</strong> 。仅仅是为了标识链表的实际情况。</p>
+<p><strong>解析：</strong>使用双指针技巧中的快慢指针，每当慢指针 <code>slow</code> 前进一步，快指针 <code>fast</code> 就前进两步。如果 <code>fast</code> 最终遇到空指针，说明链表中没有环；如果 <code>fast</code> 最终和 <code>slow</code> 相遇，那肯定是 <code>fast</code> 超过了 <code>slow</code> 一圈，说明链表中含有环。</p>
+<p><img src="/2024/05/08/hot100/1715150513842-80.png"></p>
+<h4 id="142-环形链表-II✅"><a href="#142-环形链表-II✅" class="headerlink" title="142. 环形链表 II✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142. 环形链表 II</a>✅</h4><p>给定一个链表的头节点  <code>head</code> ，返回链表开始入环的第一个节点。 <em>如果链表无环，则返回</em> <code>null</code>。如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（<strong>索引从 0 开始</strong>）。如果 <code>pos</code> 是 <code>-1</code>，则在该链表中没有环。<strong>注意：<code>pos</code> 不作为参数进行传递</strong>，仅仅是为了标识链表的实际情况。</p>
+<p><strong>解析：</strong>假设快慢指针相遇时，慢指针 <code>slow</code> 走了 <code>k</code> 步，那么快指针 <code>fast</code> 一定走了 <code>2k</code> 步：</p>
+<p><code>fast</code> 一定比 <code>slow</code> 多走了 <code>k</code> 步，这多走的 <code>k</code> 步其实就是 <code>fast</code> 指针在环里转圈圈，所以 <code>k</code> 的值就是环长度的「整数倍」。假设相遇点距环的起点的距离为 <code>m</code>，那么结合上图的 <code>slow</code> 指针，环的起点距头结点 <code>head</code> 的距离为 <code>k - m</code>，也就是说如果从 <code>head</code> 前进 <code>k - m</code> 步就能到达环起点。巧的是，如果从相遇点继续前进 <code>k - m</code> 步，也恰好到达环起点：</p>
+<p>所以，只要我们把快慢指针中的任一个重新指向 <code>head</code>，然后两个指针同速前进，<code>k - m</code> 步后一定会相遇，相遇之处就是环的起点了。</p>
+<p><img src="/2024/05/08/hot100/1715150562710-83.png"></p>
+<h4 id="21-合并两个有序链表💪"><a href="#21-合并两个有序链表💪" class="headerlink" title="21. 合并两个有序链表💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a>💪</h4><p>将两个升序链表合并为一个新的 <strong>升序</strong> 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
+<p><strong>解析：</strong>算法的逻辑类似于「拉拉链」，<code>l1, l2</code> 类似于拉链两侧的锯齿，指针 <code>p</code> 就好像拉链的拉索，将两个有序链表合并。<strong>代码中还用到一个链表的算法题中是很常见的「虚拟头结点」技巧，也就是</strong> <strong><code>dummy</code></strong> <strong>节点</strong>，它相当于是个占位符，可以避免处理空指针的情况，降低代码的复杂性。</p>
+<p><img src="/2024/05/08/hot100/1715150745498-86.png"></p>
+<h4 id="2-两数相加💪"><a href="#2-两数相加💪" class="headerlink" title="2. 两数相加💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/">2. 两数相加</a>💪</h4><p>给你两个 <strong>非空</strong> 的链表，表示两个非负的整数。它们每位数字都是按照 <strong>逆序</strong> 的方式存储的，并且每个节点只能存储 <strong>一位</strong> 数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<p><strong>解析：</strong>直接遍历链表就是从个位开始的，符合我们计算加法的习惯顺序。如果是正序存储，那倒要费点脑筋了，可能需要 <a target="_blank" rel="noopener" href="https://labuladong.github.io/article/fname.html?fname=%E9%80%92%E5%BD%92%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86">翻转链表</a> 或者使用栈来辅助。这道题主要考察 <a target="_blank" rel="noopener" href="https://labuladong.github.io/article/fname.html?fname=%E9%93%BE%E8%A1%A8%E6%8A%80%E5%B7%A7">链表双指针技巧</a> 和加法运算过程中对进位的处理。注意这个 <code>carry</code> 变量的处理，在我们手动模拟加法过程的时候会经常用到。<strong>代码中还用到一个链表的算法题中是很常见的「虚拟头结点」技巧，也就是</strong> <strong><code>dummy</code></strong> <strong>节点</strong>。你可以试试，如果不使用 <code>dummy</code> 虚拟节点，代码会稍显复杂，而有了 <code>dummy</code> 节点这个占位符，可以避免处理初始的空指针情况，降低代码的复杂性。</p>
+<p><img src="/2024/05/08/hot100/1715150837148-89.png"></p>
+<h4 id="19-删除链表的倒数第-N-个结点✅"><a href="#19-删除链表的倒数第-N-个结点✅" class="headerlink" title="19. 删除链表的倒数第 N 个结点✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/">19. 删除链表的倒数第 N 个结点</a>✅</h4><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
+<p><strong>解析：</strong>要删除倒数第 <code>n</code> 个节点，就得获得倒数第 <code>n + 1</code> 个节点的引用。获取单链表的倒数第 <code>k</code> 个节点，就是想考察 <a target="_blank" rel="noopener" href="https://labuladong.github.io/article/fname.html?fname=%E9%93%BE%E8%A1%A8%E6%8A%80%E5%B7%A7">双指针技巧</a> 中快慢指针的运用，一般都会要求你<strong>只遍历一次链表</strong>，就算出倒数第 <code>k</code> 个节点。</p>
+<ol>
+<li>我们先让一个指针 <code>p1</code> 指向链表的头节点 <code>head</code>，然后走 <code>k</code> 步</li>
+<li>用一个指针 <code>p2</code> 指向链表头节点 <code>head</code></li>
+<li>第三步，让 <code>p1</code> 和 <code>p2</code> 同时向前走，<code>p1</code> 走到链表末尾的空指针时走了 <code>n - k</code> 步，<code>p2</code> 也走了 <code>n - k</code> 步，也就是链表的倒数第 <code>k</code> 个节点。</li>
+</ol>
+<p>这样，只遍历了一次链表，就获得了倒数第 <code>k</code> 个节点 <code>p2</code>。</p>
+<p><img src="/2024/05/08/hot100/1715151002595-92.png"></p>
+<h4 id="24-两两交换链表中的节点💪"><a href="#24-两两交换链表中的节点💪" class="headerlink" title="24. 两两交换链表中的节点💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/">24. 两两交换链表中的节点</a>💪</h4><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。</p>
+<p><strong>解析：</strong>维护多个指针，遍历一遍链表顺便把每两个节点翻转。不过迭代的思路虽然直接，但细节问题会比较多，写起来麻烦。所以直接用递归的方式来写，只要搞明白递归函数的定义，然后利用这个定义就可以完成这道题。</p>
+<p><img src="/2024/05/08/hot100/1715151164803-95.png"></p>
+<h4 id="25-K-个一组翻转链表😤"><a href="#25-K-个一组翻转链表😤" class="headerlink" title="25. K 个一组翻转链表😤"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表</a>😤</h4><p>给你链表的头节点 <code>head</code> ，每 <code>k</code> 个节点一组进行翻转，请你返回修改后的链表。<code>k</code> 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 <code>k</code> 的整数倍，那么请将最后剩余的节点保持原有顺序。你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。</p>
+<p><strong>解析：</strong>输入 <code>head</code>，<code>reverseKGroup</code> 函数能够把以 <code>head</code> 为头的这条链表进行翻转。充分利用这个递归函数的定义，把原问题分解成规模更小的子问题进行求解。</p>
+<ol>
+<li>先反转以 <code>head</code> 开头的 <code>k</code> 个元素。</li>
+<li>将第 <code>k + 1</code> 个元素作为 <code>head</code> 递归调用 <code>reverseKGroup</code> 函数。</li>
+<li>将上述两个过程的结果连接起来。</li>
+</ol>
+<p><img src="/2024/05/08/hot100/1715151224859-98.png"></p>
+<h4 id="138-随机链表的复制😤"><a href="#138-随机链表的复制😤" class="headerlink" title="138. 随机链表的复制😤"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/">138. 随机链表的复制</a>😤</h4><p>给你一个长度为 <code>n</code> 的链表，每个节点包含一个额外增加的随机指针 <code>random</code> ，该指针可以指向链表中的任何节点或空节点。构造这个链表的 <strong><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B7%B1%E6%8B%B7%E8%B4%9D/22785317?fr=aladdin">深拷贝</a><strong>。 深拷贝应该正好由 <code>n</code> 个 <strong>全新</strong> 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 <code>next</code> 指针和 <code>random</code> 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。</strong>复制链表中的指针都不应指向原链表中的节点</strong> 。</p>
+<p><strong>解析：对于数据结构复制，甭管他怎么变，你就记住最简单的方式：一个哈希表 + 两次遍历</strong>。</p>
+<p>第一次遍历专门克隆节点，借助哈希表把原始节点和克隆节点的映射存储起来；第二次专门组装节点，照着原数据结构的样子，把克隆节点的指针组装起来。题目如果让你克隆带随机指针的二叉树，或者克隆图，都是一样的，只不过是遍历的方式从 for 循环迭代遍历变成 <code>traverse</code> 递归函数遍历罢了。</p>
+<p><img src="/2024/05/08/hot100/1715151312271-101.png"></p>
+<h4 id="148-排序链表😡"><a href="#148-排序链表😡" class="headerlink" title="148. 排序链表😡"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-list/">148. 排序链表</a>😡</h4><p>给你链表的头结点 <code>head</code> ，请将其按 <strong>升序</strong> 排列并返回 <strong>排序后的链表</strong> 。</p>
+<p><strong>解析：归并排序（递归法）</strong></p>
+<ul>
+<li>分割 <code>cut</code> 环节： 找到当前链表中点，并从 中点 将链表断开（以便在下次递归 <code>cut</code> 时，链表片段拥有正确边界）；</li>
+</ul>
+<ol>
+<li>我们使用 <code>fast,slow</code> 快慢双指针法，奇数个节点找到中点，偶数个节点找到中心左边的节点。</li>
+<li>找到中点 <code>slow</code> 后，执行 <code>slow.next = None</code> 将链表切断。</li>
+<li>递归分割时，输入当前链表左端点 <code>head</code> 和中心节点 <code>slow</code> 的下一个节点 <code>tmp</code>。</li>
+<li><code>cut</code> 递归终止条件： 当 <code>head.next == None</code> 时，说明只有一个节点了，直接返回此节点。</li>
+</ol>
+<ul>
+<li>合并 merge 环节： 将两个排序链表合并，转化为一个排序链表。</li>
+</ul>
+<ol>
+<li>双指针法合并，建立辅助 <code>ListNode h</code> 作为头部。</li>
+<li>设置两指针 <code>left, right</code> 分别指向两链表头部，比较两指针处节点值大小，由小到大加入合并链表头部，指针交替前进，直至添加完两个链表。</li>
+<li>返回辅助<code>ListNode h</code> 作为头部的下个节点 <code>h.next</code>。</li>
+</ol>
+<p> <img src="/2024/05/08/hot100/1715151366626-104.png"></p>
+<p><img src="/2024/05/08/hot100/1715151372102-107.png"></p>
+<h4 id="23-合并-K-个升序链表😡"><a href="#23-合并-K-个升序链表😡" class="headerlink" title="23. 合并 K 个升序链表😡"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-k-sorted-lists/">23. 合并 K 个升序链表</a>😡</h4><p>给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。</p>
+<p><strong>解析：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-sorted-lists">21. 合并两个有序链表</a> 的延伸，利用 <a target="_blank" rel="noopener" href="https://labuladong.github.io/article/fname.html?fname=%E4%BA%8C%E5%8F%89%E5%A0%86%E8%AF%A6%E8%A7%A3%E5%AE%9E%E7%8E%B0%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97">优先级队列（二叉堆）</a> 进行节点排序即可。</strong></p>
+<p><img src="/2024/05/08/hot100/1715151428869-110.png"></p>
+<h4 id="146-LRU-缓存😡"><a href="#146-LRU-缓存😡" class="headerlink" title="146. LRU 缓存😡"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/">146. LRU 缓存</a>😡</h4><p>请你设计并实现一个满足  <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/LRU">LRU (最近最少使用) 缓存</a> 约束的数据结构。</p>
+<p>实现 <code>LRUCache</code> 类：</p>
+<ul>
+<li><code>LRUCache(int capacity)</code> 以 <strong>正整数</strong> 作为容量 <code>capacity</code> 初始化 LRU 缓存</li>
+<li><code>int get(int key)</code> 如果关键字 <code>key</code> 存在于缓存中，则返回关键字的值，否则返回 <code>-1</code> 。</li>
+<li><code>void put(int key, int value)</code> 如果关键字 <code>key</code> 已经存在，则变更其数据值 <code>value</code> ；如果不存在，则向缓存中插入该组 <code>key-value</code> 。如果插入操作导致关键字数量超过 <code>capacity</code> ，则应该 <strong>逐出</strong> 最久未使用的关键字。</li>
+</ul>
+<p>函数 <code>get</code> 和 <code>put</code> 必须以 <code>O(1)</code> 的平均时间复杂度运行。</p>
+<p><strong>解析：</strong></p>
+<p>要让 <code>put</code> 和 <code>get</code> 方法的时间复杂度为 <code>O(1)</code>，我们可以总结出 <code>cache</code> 这个数据结构必要的条件：</p>
+<ol>
+<li>显然 <code>cache</code> 中的元素必须有时序，以区分最近使用的和久未使用的数据，当容量满了之后要删除最久未使用的那个元素腾位置。</li>
+<li>我们要在 <code>cache</code> 中快速找某个 <code>key</code> 是否已存在并得到对应的 <code>val</code>；</li>
+<li>每次访问 <code>cache</code> 中的某个 <code>key</code>，需要将这个元素变为最近使用的，也就是说 <code>cache</code> 要支持在任意位置快速插入和删除元素。</li>
+</ol>
+<p>哈希表查找快，但是数据无固定顺序；链表有顺序之分，插入删除快，但是查找慢，所以结合二者的长处，可以形成一种新的数据结构：哈希链表 <code>LinkedHashMap</code>：</p>
+<p><img src="/2024/05/08/hot100/1715151473035-113.png"></p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h4 id="94-二叉树的中序遍历✅"><a href="#94-二叉树的中序遍历✅" class="headerlink" title="94. 二叉树的中序遍历✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a>✅</h4><p>给定一个二叉树的根节点 <code>root</code> ，返回 <em>它的</em> <em><strong>中序</strong></em> <em>遍历</em> 。</p>
+<p><strong>解析：</strong>动态规划思路的核心在于明确并利用函数的定义分解问题，中序遍历结果的特点是 <code>root.val</code> 在中间，左右子树在两侧。回溯算法的核心很简单，就是 <code>traverse</code> 函数遍历二叉树。</p>
+<p><img src="/2024/05/08/hot100/1715152099604-116.png"></p>
+<h4 id="104-二叉树的最大深度✅"><a href="#104-二叉树的最大深度✅" class="headerlink" title="104. 二叉树的最大深度✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">104. 二叉树的最大深度</a>✅</h4><p>给定一个二叉树 <code>root</code> ，返回其最大深度。二叉树的 <strong>最大深度</strong> 是指从根节点到最远叶子节点的最长路径上的节点数。</p>
+<p><img src="/2024/05/08/hot100/1715152310679-119.png" alt="img"></p>
+<h4 id="226-翻转二叉树✅"><a href="#226-翻转二叉树✅" class="headerlink" title="226. 翻转二叉树✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">226. 翻转二叉树</a>✅</h4><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
+<p><img src="/2024/05/08/hot100/1715152364144-122.png"></p>
+<h4 id="101-对称二叉树✅"><a href="#101-对称二叉树✅" class="headerlink" title="101. 对称二叉树✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">101. 对称二叉树</a>✅</h4><p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p>
+<p><img src="/2024/05/08/hot100/1715152421655-125.png"></p>
 
                 
             </div>
