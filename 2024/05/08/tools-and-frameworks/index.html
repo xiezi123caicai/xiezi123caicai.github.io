@@ -1,0 +1,1620 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Tools-And-frameworks, Hexu&#39;s learn blog">
+    <meta name="description" content="study">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Tools-And-frameworks | Hexu&#39;s learn blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexu&#39;s learn blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexu&#39;s learn blog</div>
+        <div class="logo-desc">
+            
+            study
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Tools-And-frameworks</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                                <span class="chip bg-color">中间件</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B7%A5%E5%85%B7%E5%92%8C%E9%83%A8%E5%88%86%E6%A1%86%E6%9E%B6/" class="post-category">
+                                工具和部分框架
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-05-08
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h4 id="一．Maven"><a href="#一．Maven" class="headerlink" title="一．Maven"></a>一．Maven</h4><p><img src="/2024/05/08/tools-and-frameworks/clip_image002.jpg"></p>
+<p><strong>1.Maven介绍</strong></p>
+<p>Maven的本质是一个软件项目管理和理解工具。基于项目对象模型(Project Object Model，POM)的概念，Maven可以从一条中心信息管理项目的构建、报告和文档。</p>
+<p><strong>什么是POM</strong>？每一个Maven工程都有一个pom.xml文件，位于根目录中，包含项目构建生命周期的详细信息。通过pom.xml文件，可以定义项目的坐标、项目依赖、项目信息、插件信息等等配置。</p>
+<p>主要作用：</p>
+<ul>
+<li><strong>项目构建</strong>：提供标准的、跨平台的自动化项目构建方式。</li>
+<li><strong>依赖管理</strong>：方便快捷的管理项目依赖的资源（jar包），避免资源间的版本冲突问题。</li>
+<li><strong>统一开发结构</strong>：提供标准的、统一的项目结构。</li>
+</ul>
+<p><strong>Maven坐标</strong>：<strong>groupId</strong>（必须）：定义了当前Maven项目隶属的组织或公司。<strong>artifactId</strong>（必须）：定义了当前Maven项目的名称，项目的唯一的标识符，对应项目根目录的名称。<strong>version</strong>（必须）：定义了Maven项目当前所处版本。<strong>packaging</strong>（可选）：定义了项目的打包方式（比如jar，war…），默认使用jar。<strong>classifier</strong>（可选）：常用于区分从同一POM构建的具有不同内容的构件，可以是任意的字符串，附加在版本号之后。</p>
+<p><strong>Maven依赖</strong>：如果使用Maven构建产生的构件（例如Jar文件）被其他的项目引用，那么该构件就是其他项目的依赖。</p>
+<p><strong>2.Maven仓库</strong></p>
+<p>在Maven世界中，任何一个依赖、插件或者项目构建的输出，都可以称为<strong>构件</strong>。</p>
+<p>坐标和依赖是构件在Maven世界中的逻辑表示方式，构件的物理表示方式是文件，Maven通过仓库来统一管理这些文件。任何一个构件都有一组坐标唯一标识。有了仓库之后，无需手动引入构件，可以直接给定构件的坐标即可在Maven仓库中找到该构件。</p>
+<p>Maven仓库分为：（1）<strong>本地仓库</strong>：运行Maven的计算机上的一个目录。（2）<strong>远程仓库</strong>：官方或者其他组织维护的Maven仓库。</p>
+<p>Maven远程仓库可以分为：（1）<strong>中央仓库</strong>：这个仓库是由Maven社区来维护的。（2）<strong>私服</strong>：私服是一种特殊的远程Maven仓库，架设在局域网内的仓库服务，私服一般被配置为互联网远程仓库的镜像，供局域网内的Maven用户使用。（3）<strong>其他的公共仓库</strong>：有一些公共仓库是为了加速访问（如阿里云Maven镜像仓库）或者部分构件不存在于中央仓库中</p>
+<p><strong>3.Maven生命周期</strong></p>
+<p>Maven的生命周期就是为了对所有的构建过程进行抽象和统一，包含了项目的清理、初始化、编译、测试、打包、集成测试、验证、部署和站点生成等几乎所有构建步骤。</p>
+<p>Maven定义了3个生命周期META-INF/plexus/components.xml：default生命周期。clean生命周期。site生命周期</p>
+<p>这些生命周期是相互独立的，每个生命周期包含多个阶段。并且，这些阶段是有序的，也就是说，后面的阶段依赖于前面的阶段。当执行某个阶段的时候，会先执行它前面的阶段。</p>
+<p><strong>default生命周期：</strong>default生命周期是在没有任何关联插件的情况下定义的，是Maven的主要生命周期，用于构建应用程序，共包含23个阶段。</p>
+<p><strong>clean生命周期：</strong>clean生命周期的目的是清理项目，共包含3个阶段：1.pre-clean。2.clean。3.post-clean。</p>
+<p><strong>site生命周期：</strong>site生命周期的目的是建立和发布项目站点，共包含4个阶段：1.pre-site。2.site。3.post-site。4.site-deploy。</p>
+<p><strong>4.Maven多模块管理</strong></p>
+<p>将一个项目分为多个模块，每个模块只负责单一的功能实现。直观的表现就是一个 Maven 项目中不止有一个pom.xml文件，会在不同的目录中有多个pom.xml文件，进而实现多模块管理。</p>
+<p>多模块管理除了可以更加便于项目开发和管理，还有如下好处：（1）降低代码之间的耦合性（从类级别的耦合提升到jar包级别的耦合）；（2）减少重复，提升复用性；（3）每个模块都可以是自解释的（通过模块名或者模块文档）；（4）模块还规范了代码边界的划分，开发者很容易通过模块确定自己所负责的内容。</p>
+<p>多模块管理下，会有一个父模块，其他的都是子模块。父模块通常只有一个pom.xml，没有其他内容。父模块的pom.xml一般只定义了各个依赖的版本号、包含哪些子模块以及插件有哪些。</p>
+<h4 id="二．Docker"><a href="#二．Docker" class="headerlink" title="二．Docker"></a>二．Docker</h4><p><strong>1.认识容器</strong></p>
+<p>容器：容器就是将软件打包成标准化单元，以用于开发、交付和部署。</p>
+<ul>
+<li><strong>容器镜像是轻量的、可执行的独立软件包</strong>，包含软件运行所需的所有内容：代码、运行时环境、系统工具、系统库和设置。</li>
+<li><strong>容器化软件适用于基于</strong>Linux和Windows的应用，在任何环境中都能够始终如一地运行。</li>
+<li><strong>容器赋予了软件独立性</strong>，使其免受外在环境差异（例如，开发和预演环境的差异）的影响，从而有助于减少团队间在相同基础设施上运行不同软件时的冲突。</li>
+</ul>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image002.png" alt="认识容器"></p>
+<p>容器虚拟化的是操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。</p>
+<p><strong>2.Docker的一些概念</strong></p>
+<ul>
+<li>Docker使用Go语言进行开发实现，基于Linux内核提供的CGroup功能和namespace来实现的，以及AUFS类的UnionFS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。</li>
+<li>Docker能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。</li>
+<li>用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</li>
+</ul>
+<p><strong>Docker思想</strong>：集装箱。标准化：①运输方式②存储方式③API接口。隔离。</p>
+<p><strong>Docker容器的特点</strong>：<strong>轻量</strong>：在一台机器上运行的多个Docker容器可以共享这台机器的操作系统内核；它们能够迅速启动，只需占用很少的计算和内存资源。镜像是通过文件系统层进行构造的，并共享一些公共文件。这样就能尽量降低磁盘用量，并能更快地下载镜像。</p>
+<ul>
+<li><strong>标准</strong>：Docker容器基于开放式标准，能够在所有主流Linux版本等任何基础设施上运行。</li>
+<li><strong>安全</strong>：Docker赋予应用的隔离性不仅限于彼此隔离，还独立于底层的基础设施。Docker默认提供最强的隔离，因此应用出现问题，也只是单个容器的问题，而不会波及到整台机器。</li>
+</ul>
+<p><strong>为什么要用Docker?</strong></p>
+<ul>
+<li>Docker的镜像提供了除内核外完整的运行时环境，确保了应用运行环境一致性——一致的运行环境。</li>
+<li>可以做到秒级、甚至毫秒级的启动时间——更快速的启动时间。</li>
+<li>避免公用的服务器，资源会容易受到其他用户的影响——隔离性。</li>
+<li>善于处理集中爆发的服务器使用压力——弹性伸缩，快速扩展。</li>
+<li>可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上——迁移方便。</li>
+<li>使用Docker可以通过定制应用镜像来实现持续集成、持续交付、部署——持续交付和部署</li>
+</ul>
+<p><strong>3.容器VS虚拟机</strong></p>
+<p>容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。</p>
+<p>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。</p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image004.jpg"></p>
+<p><strong>容器与虚拟机总结：</strong></p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image006.jpg"></p>
+<ul>
+<li>容器是一个应用层抽象，用于将代码和依赖资源打包在一起。多个容器可以在同一台机器上运行，共享操作系统内核，但各自作为独立的进程在用户空间中运行。与虚拟机相比，容器占用的空间较少（容器镜像大小通常只有几十兆），瞬间就能完成启动。</li>
+<li>虚拟机(VM)是一个物理硬件层抽象，用于将一台服务器变成多台服务器。管理程序允许多个VM在一台机器上运行。每个VM都包含一整套操作系统、一个或多个应用、必要的二进制文件和库资源，因此占用大量空间。而且VM启动也十分缓慢。</li>
+</ul>
+<p><strong>虚拟机更擅长于彻底隔离整个运行环境</strong>。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而<strong>Docker通常用于隔离不同的应用</strong>，例如前端，后端以及数据库。</p>
+<p>容器与虚拟机两者是可以共存的</p>
+<p><strong>4.Docker基本概念</strong></p>
+<p>Docker中有非常重要的三个基本概念，就理解了Docker的整个生命周期：<strong>镜像</strong>（Image）。<strong>容器</strong>（Container）。<strong>仓库</strong>（Repository）。</p>
+<p>**镜像(Image)**：一个特殊的文件系统</p>
+<p><strong>操作系统分为内核和用户空间</strong>。对于Linux而言，内核启动后，会挂载root文件系统为其提供用户空间支持。而Docker镜像（Image），就相当于是一个root文件系统。</p>
+<p><strong>Docker</strong>镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<p>Docker设计时，就充分利用<strong>Union FS</strong>的技术，将其设计为<strong>分层存储的架构</strong>。镜像实际是由多层文件系统联合组成。<strong>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。</strong></p>
+<p>分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。</p>
+<p>**容器(Container)**：镜像运行时的实体</p>
+<p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，<strong>容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等</strong>。容器的实质是<strong>进程</strong>，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的命名空间。容器也是使用的是分层存储。</p>
+<p><strong>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。</strong></p>
+<p>按照Docker最佳实践的要求，<strong>容器不应该向其存储层内写入任何数据</strong>，容器存储层要保持无状态化。<strong>所有的文件写入操作，都应该使用数据卷（Volume</strong>）、或者绑定宿主目录<strong>，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。</strong>因此，使用数据卷后，容器可以随意删除、重新run，数据却不会丢失。</p>
+<p>**仓库(Repository)**：集中存放镜像文件的地方</p>
+<p>镜像构建完成后，可以很容易的在当前宿主上运行，但是，<strong>如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry就是这样的服务。</strong></p>
+<p>一个Docker Registry中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。所以说：<strong>镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。</strong></p>
+<p>通常，<strong>一个仓库会包含同一个软件不同版本的镜像</strong>，而<strong>标签就常用于对应该软件的各个版本</strong>。我们可以通过&lt;仓库名&gt;：&lt;标签&gt;的格式来指定具体是这个软件哪个版本的镜像。</p>
+<p><strong>5.常见命令</strong></p>
+<p><strong>基本命令</strong></p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image008.jpg"></p>
+<p><strong>拉取镜像</strong></p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image010.jpg"></p>
+<p><strong>删除镜像</strong></p>
+<p>通过docker rmi [image]（等价于docker image rm [image]）删除镜像之前首先要确保这个镜像没有被容器引用（可以通过标签名称或者镜像ID删除）。</p>
+<p><strong>6.Build Ship and Run</strong></p>
+<ul>
+<li><strong>Build（构建镜像）</strong>：镜像就像是集装箱包括文件以及运行环境等等资源。</li>
+<li><strong>Ship（运输镜像）</strong>：主机和仓库间运输，这里的仓库就像是超级码头一样。</li>
+<li><strong>Run（运行镜像）</strong>：运行的镜像就是一个容器，容器就是运行程序的地方。</li>
+</ul>
+<p>Docker运行过程也就是去仓库把镜像拉到本地，然后用一条命令把镜像运行起来变成容器。所以我们常常将Docker称为码头工人或码头装卸工。</p>
+<p><strong>7.Docker底层原理</strong></p>
+<p><strong>虚拟化技术</strong></p>
+<p>虚拟化技术是一种资源管理技术，是将计算机的各种<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A7%91%E5%AD%B8">实体资源</a>（<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/CPU">CPU</a>、<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98">内存</a>、<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4">磁盘空间</a>、<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E9%81%A9%E9%85%8D%E5%99%A8">网络适配器</a>等），予以抽象、转换后呈现出来并可供分割、组合为一个或多个电脑配置环境。由此，打破实体结构间的不可切割的障碍，使用户可以比原本的配置更好的方式来应用这些电脑硬件资源。</p>
+<p><strong>Docker基于LXC虚拟容器技术</strong></p>
+<p>LXC，其名称来自Linux软件容器（Linux Containers）的缩写，一种操作系统层虚拟化技术，为Linux内核容器功能的一个用户空间接口。它将应用软件系统打包成一个软件容器（Container），内含应用软件本身的代码，以及所需要的操作系统核心和库。通过统一的名字空间和共用API来分配不同软件容器的可用硬件资源，创造出应用程序的独立沙箱运行环境，使得Linux用户可以容易的创建和管理系统或应用容器。</p>
+<h4 id="三．Git"><a href="#三．Git" class="headerlink" title="三．Git"></a>三．Git</h4><p><strong>1.版本控制</strong></p>
+<p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
+<p>可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。</p>
+<p><strong>分布式版本控制系统：Git</strong></p>
+<p>客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
+<p><strong>2.认识Git</strong></p>
+<p><strong>Git采用的是直接记录快照的方式，而非差异比较。</strong></p>
+<p><strong>Git</strong>的三种状态：</p>
+<ul>
+<li><strong>已提交（committed）</strong>：数据已经安全的保存在本地数据库中。</li>
+<li><strong>已修改（modified）</strong>：已修改表示修改了文件，但还没保存到数据库中。</li>
+<li><strong>已暂存（staged）</strong>：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。</li>
+</ul>
+<p>引入Git项目的三个工作区域的概念：**Git仓库(.git directory)、工作目录(Working Directory)以及暂存区域(Staging Area)**。</p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image002-1715138847500-10.png"></p>
+<p>基本的Git工作流程如下：（1）在工作目录中修改文件。（2）暂存文件，将文件的快照放入暂存区域。（3）提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。</p>
+<p><strong>3.Git使用快速入门</strong></p>
+<p><strong>获取Git仓库：</strong>（1）在现有目录中初始化仓库：进入项目目录运行git init命令，该命令将创建一个名为.git的子目录。（2）从一个服务器克隆一个现有的Git仓库：git clone [url]自定义本地仓库的名字：git clone [url] directoryname</p>
+<p><strong>记录每次更新到仓库</strong>：1.检测当前文件状态：git status。2.提出更改（把它们添加到暂存区）：git add filename(针对特定文件)、git add *(所有文件)、git add *.txt（支持通配符，所有.txt文件）。3.忽略文件：.gitignore文件。4.提交更新：git commit -m“代码提交信息”（每次准备提交前，先用git status看下，是不是都已暂存起来了，然后再运行提交命令git commit）。5.跳过使用暂存区域更新的方式：git commit -a -m“代码提交信息”。git commit加上-a选项，Git就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过git add步骤。6.移除文件：git rm filename（从暂存区域移除，然后提交。）7.对文件重命名：git mv README.md README（这个命令相当于mv README.md README、git rm README.md、git add README这三条命令的集合）</p>
+<p><strong>查看提交历史：</strong>git log命令。git log会按提交时间列出所有的更新，最近的更新排在最上面。</p>
+<p><strong>分支：</strong>分支是用来将特性开发绝缘开来的。在创建仓库的时候，<em>master</em>是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。通常在开发新功能、修复一个紧急bug等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。</p>
+<h4 id="四．Spring"><a href="#四．Spring" class="headerlink" title="四．Spring"></a>四．Spring</h4><p><strong>1.Spring基础</strong></p>
+<p>Spring是一款开源的轻量级Java开发框架，旨在提高开发人员的开发效率以及系统的可维护性。</p>
+<p>Spring框架指的都是Spring Framework，它是很多模块的集合，使用这些模块可以很方便地协助我们进行开发，比如说Spring支持IoC（Inversion of Control：控制反转）和AOP（Aspect-Oriented Programming：面向切面编程）、可以很方便地对数据库进行访问、可以很方便地集成第三方组件（电子邮件，任务，调度，缓存等等）、对单元测试支持比较好、支持RESTful Java应用程序的开发。</p>
+<p>Spring提供的核心功能主要是<strong>IoC</strong>和<strong>AOP</strong>。</p>
+<p><strong>Spring,Spring MVC,Spring Boot之间什么关系?</strong></p>
+<p>Spring包含了多个功能模块（上面刚刚提到过），其中最重要的是Spring-Core（主要提供IoC依赖注入功能的支持）模块，Spring中的其他模块（比如Spring MVC）的功能实现基本都需要依赖于该模块。</p>
+<p>Spring MVC是Spring中的一个很重要的模块，主要赋予Spring快速构建MVC架构的Web程序的能力。MVC是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
+<p><strong>2.Spring IoC</strong></p>
+<p><strong>IoC（Inversion of Control:控制反转）</strong>是一种设计思想，而不是一个具体的技术实现。IoC的思想就是将原本在程序中手动创建对象的控制权，交由Spring框架来管理。</p>
+<p>为什么叫控制反转？<strong>控制</strong>：指的是对象创建（实例化、管理）的权力。<strong>反转</strong>：控制权交给外部环境（Spring框架、IoC容器）</p>
+<p>在Spring中，IoC容器是Spring用来实现IoC的载体，IoC容器实际上就是个Map（key，value），Map中存放的是各种对象。</p>
+<p><strong>什么是Spring Bean？</strong>Bean代指的就是那些被IoC容器所管理的对象。</p>
+<p><strong>将一个类声明为Bean的注解有哪些?</strong></p>
+<ul>
+<li>@Component：通用的注解，可标注任意类为Spring组件。如果一个Bean不知道属于哪个层，可以使用@Component注解标注。</li>
+<li>@Repository：对应持久层即Dao层，主要用于数据库相关操作。</li>
+<li>@Service：对应服务层，主要涉及一些复杂的逻辑，需要用到Dao层。</li>
+<li>@Controller：对应Spring MVC控制层，主要用于接受用户请求并调用Service层返回数据给前端页面。</li>
+</ul>
+<p><strong>@Component和@Bean的区别是什么？</strong></p>
+<ul>
+<li>@Component注解作用于类，而@Bean注解作用于方法。</li>
+<li>@Component通常是通过类路径扫描来自动侦测以及自动装配到Spring容器中（可以使用@ComponentScan注解定义要扫描的路径从中找出标识了需要装配的类自动装配到Spring的bean容器中）。@Bean注解通常是在标有该注解的方法中定义产生这个bean，@Bean告诉了Spring这是某个类的实例，当需要用它的时候还给我。</li>
+<li>@Bean注解比@Component注解的自定义性更强，而且很多地方只能通过@Bean注解来注册bean。比如引用第三方库的类需要装配到Spring容器时，只能通过@Bean来实现</li>
+</ul>
+<p><strong>注入Bean的注解有哪些？</strong></p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image002-1715139206329-12.jpg"></p>
+<p><strong>@Autowired和@Resource的区别是什么？</strong></p>
+<p>Autowired属于Spring内置的注解，默认的注入方式为byType（根据类型进行匹配），也就是说会优先根据接口类型去匹配并注入Bean（接口的实现类）。</p>
+<p><strong>这会有什么问题呢？</strong>当一个接口存在多个实现类的话，byType这种方式就无法正确注入对象了，因为这个时候Spring会同时找到多个满足条件的选择，默认情况下它自己不知道选择哪一个。这种情况下，注入方式会变为byName（根据名称进行匹配），这个名称通常就是类名（首字母小写）。</p>
+<p>@Resource属于JDK提供的注解，默认注入方式为byName。如果无法通过名称匹配到对应的Bean的话，注入方式会变为byType。</p>
+<ul>
+<li>@Autowired是Spring提供的注解，@Resource是JDK提供的注解。</li>
+<li>Autowired默认的注入方式为byType（根据类型进行匹配），@Resource默认注入方式为byName（根据名称进行匹配）。</li>
+<li>当一个接口存在多个实现类的情况下，@Autowired和@Resource都需要通过名称才能正确匹配到对应的Bean。Autowired可以通过@Qualifier注解来显式指定名称，@Resource可以通过name属性来显式指定名称。</li>
+<li>@Autowired支持在构造函数、方法、字段和参数上使用。@Resource主要用于字段和方法上的注入，不支持在构造函数或参数上使用。</li>
+</ul>
+<p><strong>Bean的作用域有哪些?</strong></p>
+<ul>
+<li><strong>Singleton</strong>：IoC容器中只有唯一的bean实例。Spring中的bean默认都是单例的，是对单例设计模式的应用。</li>
+<li><strong>prototype</strong>：每次获取都会创建一个新的bean实例。也就是说，连续getBean()两次，得到的是不同的Bean实例。</li>
+<li><strong>request</strong>（仅Web应用可用）：每一次HTTP请求都会产生一个新的bean（请求bean），该bean仅在当前HTTP request内有效。</li>
+<li><strong>Session</strong>（仅Web应用可用）：每一次来自新session的HTTP请求都会产生一个新的bean（会话bean），该bean仅在当前HTTP session内有效。</li>
+<li><strong>application/global-session</strong>（仅Web应用可用）：每个Web应用在启动时创建一个Bean（应用Bean），该bean仅在当前应用启动时间内有效。</li>
+<li><strong>websocket</strong>（仅Web应用可用）：每一次WebSocket会话产生一个新的bean。</li>
+</ul>
+<p><strong>Bean是线程安全的吗？</strong></p>
+<p>Spring框架中的Bean是否线程安全，取决于其作用域和状态。</p>
+<p>以最常用的两种作用域prototype和singleton为例介绍。几乎所有场景的Bean作用域都是使用默认的singleton，重点关注singleton作用域即可。</p>
+<p>prototype作用域下，每次获取都会创建一个新的bean实例，不存在资源竞争问题，所以不存在线程安全问题。singleton作用域下，IoC容器中只有唯一的bean实例，可能会存在资源竞争问题（取决于Bean是否有状态）。如果这个bean是有状态的话，那就存在线程安全问题（有状态Bean是指包含可变的成员变量的对象）。</p>
+<p>不过，大部分Bean实际都是无状态（没有定义可变的成员变量）的（比如 Dao、Service），这种情况下，Bean是线程安全的。</p>
+<p>对于有状态单例Bean的线程安全问题，常见的有两种解决办法：（1）在Bean中尽量避免定义可变的成员变量。（2）在类中定义一个ThreadLocal成员变量，将需要的可变成员变量保存在ThreadLocal中。</p>
+<p><strong>Bean的生命周期了解么?</strong></p>
+<ol>
+<li><strong>创建Bean的实例</strong>：Bean容器首先会找到配置文件中的Bean定义，然后使用Java反射API来创建Bean的实例。</li>
+<li><strong>Bean属性赋值/填充</strong>：为Bean设置相关属性和依赖，例如@Autowired等注解注入的对象、@Value注入的值、setter方法或构造函数注入依赖和值、@Resource注入的各种资源。</li>
+<li><strong>Bean初始化</strong></li>
+<li><strong>销毁Bean</strong>：销毁并不是说要立马把Bean给销毁掉，而是把Bean的销毁方法先记录下来，将来需要销毁Bean或者销毁容器的时候，就调用这些方法去释放Bean所持有的资源。</li>
+</ol>
+<ul>
+<li>整体上可以简单分为四步：实例化—&gt;属性赋值—&gt;初始化—&gt;销毁。</li>
+<li>初始化这一步涉及到的步骤比较多，包含Aware接口的依赖注入、BeanPostProcessor在初始化前后的处理以及InitializingBean和init-method的初始化操作。</li>
+<li>销毁这一步会注册相关销毁回调接口，最后通过DisposableBean和destory-method进行销毁。</li>
+</ul>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image004-1715139206329-15.jpg"></p>
+<p><strong>3.Spring AOP</strong></p>
+<p>AOP(Aspect-Oriented Programming：面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
+<p>Spring AOP就是基于<strong>动态代理</strong>的，如果要代理的对象，实现了某个接口，那么Spring AOP会使用<strong>JDK Proxy</strong>，去创建代理对象，而对于没有实现接口的对象，就无法使用JDK Proxy去进行代理了，这时候Spring AOP会使用<strong>Cglib</strong>生成一个被代理对象的子类来作为代理。</p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image006-1715139206329-14.jpg"></p>
+<p><strong>Spring AOP和AspectJ AOP有什么区别？</strong></p>
+<p>Spring AOP属于运行时增强，而AspectJ是编译时增强。Spring AOP基于代理(Proxying)，而AspectJ基于字节码操作(Bytecode Manipulation)。</p>
+<p>Spring AOP已经集成了AspectJ，AspectJ应该算的上是Java生态系统中最完整的AOP框架了。AspectJ相比于Spring AOP功能更加强大，但是Spring AOP相对来说更简单。</p>
+<p><strong>AspectJ定义的通知类型有哪些？</strong></p>
+<ul>
+<li><strong>Before</strong>（前置通知）：目标对象的方法调用之前触发。</li>
+<li><strong>After</strong>（后置通知）：目标对象的方法调用之后触发。</li>
+<li><strong>AfterReturning</strong>（返回通知）：目标对象的方法调用完成，在返回结果值之后触发。</li>
+<li><strong>AfterThrowing</strong>（异常通知）：目标对象的方法运行中抛出/触发异常后触发。AfterReturning和AfterThrowing两者互斥。如果方法调用成功无异常，则会有返回值；如果方法抛出了异常，则不会有返回值。</li>
+<li><strong>Around</strong>（环绕通知）：编程式控制目标对象的方法调用。环绕通知是所有通知类型中可操作范围最大的一种，因为它可以直接拿到目标对象，以及要执行的方法，所以环绕通知可以任意的在目标对象的方法调用前后搞事，甚至不调用目标对象的方法</li>
+</ul>
+<p><strong>多个切面的执行顺序如何控制？</strong></p>
+<ol>
+<li>通常使用@Order注解直接定义切面顺序。值越小优先级越高</li>
+<li>实现Ordered接口重写getOrder方法。</li>
+</ol>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image008-1715139206329-13.jpg"></p>
+<p><strong>4.Spring MVC</strong></p>
+<p>MVC是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image010-1715139206329-16.jpg"></p>
+<p>MVC是一种设计模式，Spring MVC是一款很优秀的MVC框架。Spring MVC可以帮助进行更简洁的Web层的开发，并且它天生与Spring框架集成。Spring MVC下一般把后端项目分为Service层（处理业务）、Dao层（数据库操作）、Entity层（实体类）、Controller层（控制层，返回数据给前台页面）。</p>
+<p><strong>Spring MVC的核心组件有哪些？</strong></p>
+<ul>
+<li>DispatcherServlet：<strong>核心的中央处理器</strong>，负责接收请求、分发，并给予客户端响应。</li>
+<li>HandlerMapping：<strong>处理器映射器</strong>，根据URL去匹配查找能处理的Handler，并会将请求涉及到的拦截器和Handler一起封装。</li>
+<li>HandlerAdapter：<strong>处理器适配器</strong>，根据HandlerMapping找到的Handler，适配执行对应的Handler；</li>
+<li>Handler：<strong>请求处理器</strong>，处理实际请求的处理器。</li>
+<li>ViewResolver：<strong>视图解析器</strong>，根据Handler返回的逻辑视图/视图，解析并渲染真正的视图，并传递给DispatcherServlet响应客户端</li>
+</ul>
+<p><strong>SpringMVC工作原理了解吗?</strong></p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image012.png"></p>
+<ol>
+<li>客户端（浏览器）发送请求，DispatcherServlet拦截请求。</li>
+<li>DispatcherServlet根据请求信息调用HandlerMapping。HandlerMapping根据URL去匹配查找能处理的Handler（也就是平常说的Controller控制器），并会将请求涉及到的拦截器和Handler一起封装。</li>
+<li>DispatcherServlet调用HandlerAdapter适配器执行Handler。</li>
+<li>Handler完成对用户请求的处理后，返回一个ModelAndView对象给DispatcherServlet，ModelAndView顾名思义，包含了数据模型以及相应的视图的信息。Model是返回的数据对象，View是个逻辑上的View。</li>
+<li>ViewResolver会根据逻辑View查找实际的View。</li>
+<li>DispaterServlet把返回的Model传给View（视图渲染）。</li>
+<li>把View返回给请求者（浏览器）。</li>
+</ol>
+<p><strong>统一异常处理怎么做？</strong></p>
+<p>推荐使用注解的方式统一异常处理，会使用到@ControllerAdvice+@ExceptionHandler这两个注解。</p>
+<p><strong>5.Spring框架用到了哪些设计模式？</strong></p>
+<p><strong>工厂设计模式</strong>：Spring使用工厂模式通过BeanFactory、ApplicationContext创建bean对象。</p>
+<p><strong>代理设计模式</strong>：Spring AOP功能的实现。</p>
+<p><strong>单例设计模式</strong>：Spring中的Bean默认都是单例的。</p>
+<p><strong>模板方法模式</strong>：Spring中jdbcTemplate、hibernateTemplate等以Template结尾的对数据库操作的类，它们就使用到了模板模式。</p>
+<p><strong>包装器设计模式</strong>：项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。</p>
+<p><strong>观察者模式</strong>：Spring事件驱动模型就是观察者模式很经典的一个应用。</p>
+<p><strong>适配器模式</strong>：Spring AOP的增强或通知(Advice)使用到了适配器模式、spring MVC中也是用到了适配器模式适配Controller。</p>
+<p><strong>6.Spring事务</strong></p>
+<p><strong>Spring管理事务的方式有几种？</strong></p>
+<ul>
+<li><strong>编程式事务</strong>：在代码中硬编码（在分布式系统中推荐使用）：通过TransactionTemplate或者TransactionManager手动管理事务，事务范围过大会出现事务未提交导致超时，因此事务要比锁的粒度更小。</li>
+<li><strong>声明式事务</strong>：在XML配置文件中配置或者直接基于注解（单体应用或者简单业务系统推荐使用）：实际是通过AOP实现（基于@Transactional的全注解方式使用最多）</li>
+</ul>
+<p><strong>Spring事务中哪几种事务传播行为?</strong></p>
+<p><strong>事务传播行为是为了解决业务层方法之间互相调用的事务问题</strong>。</p>
+<p>当事务方法被另一个事务方法调用时，必须指定事务应该如何传播。例如：方法可能继续在现有事务中运行，也可能开启一个新事务，并在自己的事务中运行。</p>
+<p><strong>Spring事务中的隔离级别有哪几种?</strong></p>
+<p>和事务传播行为这块一样，为了方便使用，Spring也相应地定义了一个枚举类：Isolation。</p>
+<ul>
+<li>TransactionDefinition.ISOLATION_DEFAULT：使用后端数据库默认的隔离级别，MySQL默认采用的REPEATABLE_READ隔离级别Oracle默认采用的READ_COMMITTED隔离级别。</li>
+<li>TransactionDefinition.ISOLATION_READ_UNCOMMITTED：最低的隔离级别，使用这个隔离级别很少，因为它允许读取尚未提交的数据变更，<strong>可能会导致脏读、幻读或不可重复读</strong></li>
+<li>TransactionDefinition.ISOLATION_READ_COMMITTED：允许读取并发事务已经提交的数据，<strong>可以阻止脏读，但是幻读或不可重复读仍有可能发生</strong></li>
+<li>TransactionDefinition.ISOLATION_REPEATABLE_READ：对同一字段的多次读取结果都是一致的，除非数据是被本身事务自己所修改，<strong>可以阻止脏读和不可重复读，但幻读仍有可能发生。</strong></li>
+<li>TransactionDefinition.ISOLATION_SERIALIZABLE：最高的隔离级别，完全服从ACID的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，<strong>该级别可以防止脏读、不可重复读以及幻读</strong>。但是这将严重影响程序的性能。通常情况下也不会用到该级别。</li>
+</ul>
+<p><strong>@Transactional(rollbackFor = Exception.class)注解了解吗？</strong></p>
+<p>Exception分为运行时异常RuntimeException和非运行时异常。事务管理对于企业应用来说是至关重要的，即使出现异常情况，它也可以保证数据的一致性。</p>
+<p>当@Transactional注解作用于类上时，该类的所有public方法将都具有该类型的事务属性，同时，我们也可以在方法级别使用该标注来覆盖类级别的定义。</p>
+<p>@Transactional注解默认回滚策略是只有在遇到RuntimeException(运行时异常)或者Error时才会回滚事务，而不会回滚Checked Exception（受检查异常）。这是因为Spring认为RuntimeException和Error是不可预期的错误，而受检异常是可预期的错误，可以通过业务逻辑来处理。</p>
+<h4 id="五．Spring-SpringBoot常用注解"><a href="#五．Spring-SpringBoot常用注解" class="headerlink" title="五．Spring&amp;SpringBoot常用注解"></a>五．Spring&amp;SpringBoot常用注解</h4><p><strong>1.@SpringBootApplication</strong></p>
+<p>这个注解是Spring Boot项目的基石，创建SpringBoot项目之后会默认在主类加上。可以把@SpringBootApplication看作是@Configuration、@EnableAutoConfiguration、@ComponentScan注解的集合。</p>
+<p>作用：·@EnableAutoConfiguration：启用SpringBoot的自动配置机制。·@ComponentScan：扫描被@Component (@Repository,@Service,@Controller)注解的bean，注解默认会扫描该类所在的包下所有的类。·@Configuration：允许在Spring上下文中注册额外的bean或导入其他配置类</p>
+<p><strong>2.Spring Bean相关</strong></p>
+<p>@Autowired</p>
+<p>自动导入对象到类中，被注入进的类同样要被Spring容器管理比如：Service类注入到Controller类中。</p>
+<p>@Component**,<strong>@Repository</strong>,<strong>@Service</strong>,**@Controller</p>
+<p>一般使用@Autowired注解让Spring容器帮我们自动装配bean。要想把类标识成可用于@Autowired注解自动装配的bean的类,可以采用以下注解实现：</p>
+<ul>
+<li>@Component：通用的注解，可标注任意类为Spring组件。如果一个Bean不知道属于哪个层，可以使用@Component注解标注。</li>
+<li>@Repository：对应持久层即Dao层，主要用于数据库相关操作。</li>
+<li>@Service：对应服务层，主要涉及一些复杂的逻辑，需要用到Dao层。</li>
+<li>@Controller：对应Spring MVC控制层，主要用于接受用户请求并调用Service层返回数据给前端页面。</li>
+</ul>
+<p>@RestController</p>
+<p>@RestController注解是@Controller和@ResponseBody的合集,表示这是个控制器bean,并且是将函数的返回值直接填入HTTP响应体中,是REST风格的控制器。</p>
+<p>单独使用@Controller不加@ResponseBody的话一般是用在要返回一个视图的情况。@Controller+@ResponseBody返回JSON或XML形式数据</p>
+<p>@Scope</p>
+<p>四种常见的Spring Bean的作用域：</p>
+<ul>
+<li>singleton：唯一bean实例，Spring中的bean默认都是单例的。</li>
+<li>prototype：每次请求都会创建一个新的bean实例。</li>
+<li>request：每一次HTTP请求都会产生一个新的bean，该bean仅在当前HTTP request内有效。</li>
+<li>session：每一个HTTP Session会产生一个新的bean，该bean仅在当前HTTP session内有效。</li>
+</ul>
+<p>@Configuration</p>
+<p>一般用来声明配置类，可以使用@Component注解替代，不过使用@Configuration注解声明配置类更加语义化。</p>
+<p><strong>3.处理常见的HTTP请求类型</strong></p>
+<p>5种常见的请求类型:</p>
+<ul>
+<li><strong>GET</strong>：请求从服务器获取特定资源。举个例子：GET/users（获取所有学生）</li>
+<li><strong>POST</strong>：在服务器上创建一个新的资源。举个例子：POST/users（创建学生）</li>
+<li><strong>PUT</strong>：更新服务器上的资源（客户端提供更新后的整个资源）。举个例子：PUT/users/12（更新编号为12的学生）</li>
+<li><strong>DELETE</strong>：从服务器删除特定的资源。举个例子：DELETE/users/12（删除编号为12的学生）</li>
+<li><strong>PATCH</strong>：更新服务器上的资源（客户端提供更改的属性，可以看做作是部分更新）</li>
+</ul>
+<p><strong>GET请求</strong></p>
+<p>@GetMapping(“users”)等价于@RequestMapping(value=”/users”,method=RequestMethod.GET)</p>
+<p><strong>POST请求</strong></p>
+<p>@PostMapping(“users”)等价@RequestMapping(value=”/users”,method=RequestMethod.POST)</p>
+<p><strong>PUT请求</strong></p>
+<p>@PutMapping(“/users/{userId}”)===@RequestMapping(value=”/users/{userId}”,method=RequestMethod.PUT)</p>
+<p><strong>DELETE请求</strong></p>
+<p>@DeleteMapping(“/users/{userId}”)===@RequestMapping(value=”/users/{userId}”,method=RequestMethod.DELETE)</p>
+<p><strong>PATCH请求</strong></p>
+<p>一般实际项目中，都是PUT不够用了之后才用PATCH请求去更新数据。</p>
+<p><strong>4.前后端传值</strong></p>
+<p>@PathVariable和@RequestParam</p>
+<p>@PathVariable用于获取路径参数，@RequestParam用于获取查询参数。</p>
+<p>如果我们请求的url是：/klasses/123456/teachers?type=web。那么我们服务获取到的数据就是：klassId=123456,type=web。</p>
+<p>@RequestBody</p>
+<p>用于读取Request请求（可能是POST,PUT,DELETE,GET请求）的body部分并且<strong>Content-Type为application/json</strong>格式的数据，接收到数据之后会自动将数据绑定到Java对象上去。系统会使用HttpMessageConverter或者自定义的HttpMessageConverter将请求的body中的json字符串转换为java对象。</p>
+<p><strong>5.读取配置信息</strong></p>
+<p><strong>@Value(常用)</strong></p>
+<p>使用@Value(“${property}”)读取比较简单的配置信息。</p>
+<p>@ConfigurationProperties**(常用)**</p>
+<p>通过@ConfigurationProperties读取配置信息并与bean绑定。可以像使用普通的Spring bean一样，将其注入到类中使用。</p>
+<p>@PropertySource<strong>（不常用）</strong></p>
+<p>@PropertySource读取指定properties文件</p>
+<p><strong>6.读取配置信息</strong></p>
+<p>即使在前端对数据进行校验的情况下，我们还是要对传入后端的数据再进行一遍校验，避免用户绕过浏览器直接通过一些HTTP工具直接向后端请求一些违法数据。JSR(Java Specification Requests）是一套JavaBean参数校验的标准，定义了很多常用的校验注解，可以直接将这些注解加在JavaBean的属性上面，这样就可以在需要校验的时候进行校验。</p>
+<p><strong>一些常用的字段验证的注解</strong></p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image002-1715139563575-25.jpg"></p>
+<p><strong>验证请求体(RequestBody)</strong></p>
+<p>在需要验证的参数上加上了@Valid注解，如果验证失败，它将抛出MethodArgumentNotValidException。</p>
+<p><strong>验证请求参数(Path Variables和Request Parameters)</strong></p>
+<p>不要忘记在类上加上@Validated注解了，这个参数可以告诉Spring去校验方法参数。</p>
+<p><strong>7.JPA相关</strong></p>
+<p><strong>创建表</strong></p>
+<p>@Entity声明一个类对应一个数据库实体。@Table设置表名。</p>
+<p><strong>创建主键</strong></p>
+<p>@Id：声明一个字段为主键。</p>
+<p>使用@Id声明之后，还需要定义主键的生成策略。可以使用@GeneratedValue指定主键生成策略。</p>
+<p><strong>设置字段类型</strong></p>
+<p>Column声明字段。</p>
+<p><strong>指定不持久化特定字段</strong></p>
+<p>@Transient：声明不需要与数据库映射的字段，在保存的时候不需要保存进数据库。</p>
+<p>如果我们想让secrect这个字段不被持久化，可以使用@Transient关键字声明。</p>
+<p><strong>声明大字段</strong></p>
+<p>@Lob：声明某个字段为大字段。</p>
+<p><strong>创建枚举类型的字段</strong></p>
+<p>可以使用枚举类型的字段，不过枚举字段要用@Enumerated注解修饰。</p>
+<p><strong>增加审计功能</strong></p>
+<p>只要继承了AbstractAuditBase的类都会默认加上下面四个字段。</p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image004-1715139563575-26.jpg"></p>
+<ul>
+<li>@CreatedDate：表示该字段为创建时间字段，在这个实体被insert的时候，会设置值</li>
+<li>@CreatedBy：表示该字段为创建人，在这个实体被insert的时候，会设置值</li>
+</ul>
+<p>@LastModifiedDate、@LastModifiedBy同理。</p>
+<p><strong>删除/修改数据</strong></p>
+<p>@Modifying注解提示JPA该操作是修改操作，注意还要配合@Transactional注解使用。</p>
+<p><strong>关联关系</strong></p>
+<p>·@OneToOne声明一对一关系 ·@OneToMany声明一对多关系</p>
+<p>·@ManyToOne声明多对一关系 ·@ManyToMany声明多对多关系</p>
+<p><strong>8.事务@Transactional</strong></p>
+<p>在要开启事务的方法上使用@Transactional注解即可!</p>
+<p>Exception分为运行时异常RuntimeException和非运行时异常。在@Transactional注解中如果不配置rollbackFor属性,那么事务只会在遇到RuntimeException的时候才会回滚，加上rollbackFor=Exception.class，可以让事务在遇到非运行时异常时也回滚。</p>
+<p>@Transactional注解一般可以作用在类或者方法上。</p>
+<ul>
+<li><strong>作用于类</strong>：当把@Transactional注解放在类上时，表示所有该类的public方法都配置相同的事务属性信息。</li>
+<li><strong>作用于方法</strong>：当类配置了@Transactional，方法也配置了@Transactional，方法的事务会覆盖类的事务配置信息。</li>
+</ul>
+<p><strong>9.json数据处理</strong></p>
+<p><strong>过滤json数据</strong></p>
+<p>@JsonIgnoreProperties作用在类上用于过滤掉特定字段不返回或者不解析。</p>
+<p>@JsonIgnore一般用于类的属性上，作用和@JsonIgnoreProperties一样。</p>
+<p><strong>格式化json数据</strong></p>
+<p>@JsonFormat一般用来格式化json数据。</p>
+<p><strong>扁平化对象</strong></p>
+<p>未扁平化之前：          使用@JsonUnwrapped扁平对象之后：</p>
+<p><img src="/2024/05/08/tools-and-frameworks/clip_image006-1715139563575-23.jpg">        <img src="/2024/05/08/tools-and-frameworks/clip_image008-1715139563575-24.jpg"></p>
+<p><strong>10.测试相关</strong></p>
+<p>@ActiveProfiles一般作用于测试类上，用于声明生效的Spring配置文件。</p>
+<p>@Test声明一个方法为测试方法</p>
+<p>@Transactional被声明的测试方法的数据会回滚，避免污染测试数据。</p>
+<p>@WithMockUser Spring Security提供的，用来模拟一个真实用户，并且可以赋予权限。</p>
+<h4 id="六．MyBatis常见面试总结"><a href="#六．MyBatis常见面试总结" class="headerlink" title="六．MyBatis常见面试总结"></a>六．MyBatis常见面试总结</h4><p><strong>问：#{}和${}的区别是什么？</strong></p>
+<ul>
+<li>${}是Properties文件中的变量占位符，它可以用于标签属性值和sql内部，属于原样文本替换，可以替换任意内容，比如${driver}会被原样替换为com.mysql.jdbc.Driver。</li>
+<li>#{}是sql的参数占位符，MyBatis会将sql中的#{}替换为?号，在sql执行前会使用PreparedStatement的参数设置方法，按序给sql的?号占位符设置参数值，比如ps.setInt(0, parameterValue)，#{item.name}的取值方式为使用反射从参数对象中获取item对象的name属性值，相当于param.getItem().getName()。</li>
+</ul>
+<p><strong>问：xml映射文件中，除了常见的select、insert、update、delete标签之外，还有哪些标签？</strong></p>
+<p>还有很多其他的标签，<resultmap>、<parametermap>、<sql>、<include>、<selectkey>，加上动态sql的9个标签，trim|where|set|foreach|if|choose|when|otherwise|bind等，其中<sql>为sql片段标签，通过<include>标签引入sql片段，<selectkey>为不支持自增的主键生成策略标签。</selectkey></include></sql></selectkey></include></sql></parametermap></resultmap></p>
+<p><strong>问：Dao接口的工作原理是什么？Dao接口里的方法，参数不同时，方法能重载吗？</strong></p>
+<p>最佳实践中，通常一个xml映射文件，都会写一个Dao接口与之对应。Dao接口就是人们常说的Mapper接口，接口的全限名，就是映射文件中的namespace的值，接口的方法名，就是映射文件中MappedStatement的id值，接口方法内的参数，就是传递给sql的参数。Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为key值，可唯一定位一个MappedStatement，例：com.mybatis3.mappers.StudentDao.findStudentById，可以唯一找到namespace为com.mybatis3.mappers.StudentDao下面id=findStudentById的MappedStatement。在MyBatis中，每一个<select>、、、标签，都会被解析为一个MappedStatement对象。</select></p>
+<p>Dao接口里的方法可以重载，但是Mybatis的xml里面的ID不允许重复。</p>
+<p>Mybatis的Dao接口可以有多个重载方法，但是多个接口对应的映射必须只有一个，否则启动会报错。</p>
+<p><strong>问：MyBatis是如何进行分页的？分页插件的原理是什么？</strong></p>
+<p>（1）MyBatis使用RowBounds对象进行分页，它是针对ResultSe 结果集执行的内存分页，而非物理分页；（2）可以在sql内直接书写带有物理分页的参数来完成物理分页功能，（3）也可以使用分页插件来完成物理分页。</p>
+<p>分页插件的基本原理是使用MyBatis提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的sql，然后重写sql，根据dialect方言，添加对应的物理分页语句和物理分页参数。</p>
+<p><strong>问：简述MyBatis的插件运行原理，以及如何编写一个插件</strong></p>
+<p>MyBatis仅可以编写针对ParameterHandler、ResultSetHandler、StatementHandler、Executor这4种接口的插件，MyBatis使用JDK的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4种接口对象的方法时，就会进入拦截方法，具体就是InvocationHandler的invoke()方法，当然，只会拦截那些你指定需要拦截的方法。</p>
+<p>实现MyBatis的Interceptor接口并复写intercept()方法，然后在给插件编写注解，指定要拦截哪一个接口的哪些方法即可，记住，别忘了在配置文件中配置你编写的插件。</p>
+<p><strong>问：MyBatis执行批量插入，能返回数据库主键列表吗？</strong></p>
+<p>能，JDBC都能，MyBatis当然也能。</p>
+<p><strong>问：MyBatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理不？</strong></p>
+<p>MyBatis动态sql可以让我们在xml映射文件内，以标签的形式编写动态sql，完成逻辑判断和动态拼接sql的功能。其执行原理为，使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能。</p>
+<p>MyBatis提供了9种动态sql标签:</p>
+<p>·<if></if>  ·<where></where>(trim,set)</p>
+<p>·<choose></choose>（when,otherwise）  ·<foreach></foreach>·<bind></bind></p>
+<p><strong>问：MyBatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？</strong></p>
+<p>第一种是使用<resultmap>标签，逐一定义列名和对象属性名之间的映射关系。</resultmap></p>
+<p>第二种是使用sql列的别名功能，将列别名书写为对象属性名，比如T_NAME AS NAME，对象属性名一般是name，小写，但是列名不区分大小写，MyBatis会忽略列名大小写，智能找到与之对应对象属性名。</p>
+<p>有了列名与属性名的映射关系后，MyBatis通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。</p>
+<p><strong>问：MyBatis能执行一对一、一对多的关联查询吗？都有哪些实现方式，以及它们之间的区别？</strong></p>
+<p>MyBatis不仅可以执行一对一、一对多的关联查询，还可以执行多对一，多对多的关联查询，多对一查询，其实就是一对一查询，只需要把selectOne()修改为selectList()即可；多对多查询，其实就是一对多查询，只需要把selectOne()修改为selectList()即可。</p>
+<p>关联对象查询，有两种实现方式，一种是单独发送一个sql去查询关联对象，赋给主对象，然后返回主对象。另一种是使用嵌套查询，嵌套查询的含义为使用join查询，一部分列是A对象的属性值，另外一部分列是关联对象B的属性值，好处是只发一个sql查询，就可以把主对象和其关联对象查出来。</p>
+<p><strong>问：MyBatis是否支持延迟加载？如果支持，它的实现原理是什么？</strong></p>
+<p>MyBatis仅支持association关联对象和collection关联集合对象的延迟加载，association指的就是一对一，collection指的就是一对多查询。在MyBatis配置文件中，可以配置是否启用延迟加载lazyLoadingEnabled=true|false。</p>
+<p>它的原理是，使用CGLIB创建目标对象的代理对象，当调用目标方法时，进入拦截器方法，比如调用a.getB().getName()，拦截器invoke()方法发现a.getB()是null值，那么就会单独发送事先保存好的查询关联B对象的sql，把B查询上来，然后调用a.setB(b)，于是a的对象b属性就有值了，接着完成a.getB().getName()方法的调用。</p>
+<p><strong>问：MyBatis的xml映射文件中，不同的xml映射文件，id是否可以重复？</strong></p>
+<p>不同的xml映射文件，如果配置了namespace，那么id可以重复；如果没有配置namespace，那么id不能重复；毕竟namespace不是必须的，只是最佳实践而已。</p>
+<p>原因就是namespace+id是作为Map&lt;String,MappedStatement&gt;的key使用的，如果没有namespace，就剩下id，那么，id重复会导致数据互相覆盖。有了namespace，自然id就可以重复，namespace不同，namespace+id自然也就不同。</p>
+<p><strong>问：MyBatis中如何执行批处理？</strong></p>
+<p>使用BatchExecutor完成批处理。</p>
+<p><strong>问：MyBatis都有哪些Executor执行器？它们之间的区别是什么？</strong></p>
+<p>MyBatis有三种基本的Executor执行器：</p>
+<ul>
+<li>SimpleExecutor<strong>：</strong>每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。</li>
+<li>ReuseExecutor<strong>：</strong>执行update或select，以sql作为key查找Statement对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于Map&lt;String,Statement&gt;内，供下一次使用。简言之，就是重复使用Statement对象。</li>
+<li>BatchExecutor：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理。与JDBC批处理相同。</li>
+</ul>
+<p>作用范围：Executor的这些特点，都严格限制在SqlSession生命周期范围内。</p>
+<p><strong>问：MyBatis中如何指定使用哪一种Executor执行器？</strong></p>
+<p>在MyBatis配置文件中，可以指定默认的ExecutorType执行器类型，也可以手动给DefaultSqlSessionFactory的创建SqlSession的方法传递ExecutorType类型参数。</p>
+<p><strong>问：MyBatis是否可以映射Enum枚举类？</strong></p>
+<p>MyBatis可以映射枚举类，不单可以映射枚举类，MyBatis可以映射任何对象到表的一列上。映射方式为自定义一个TypeHandler，实现TypeHandler的setParameter()和getResult()接口方法。TypeHandler有两个作用：</p>
+<ul>
+<li>一是完成从javaType至jdbcType的转换；</li>
+<li>二是完成jdbcType至javaType的转换，体现为setParameter()和getResult()两个方法，分别代表设置sql问号占位符参数和获取列查询结果。</li>
+</ul>
+<p><strong>问：MyBatis映射文件中，如果A标签通过include引用了B标签的内容，请问，B标签能否定义在A标签的后面，还是说必须定义在A标签的前面？</strong></p>
+<p>虽然MyBatis解析xml映射文件是按照顺序解析的，但是，被引用的B标签依然可以定义在任何地方，MyBatis都可以正确识别。</p>
+<p>原理是，MyBatis解析A标签，发现A标签引用了B标签，但是B标签尚未解析到，尚不存在，此时，MyBatis会将A标签标记为未解析状态，然后继续解析余下的标签，包含B标签，待所有标签解析完毕，MyBatis会重新解析那些被标记为未解析的标签，此时再解析A标签时，B标签已经存在，A标签也就可以正常解析完成了。</p>
+<p><strong>问：简述MyBatis的xml映射文件和MyBatis内部数据结构之间的映射关系？</strong></p>
+<p>MyBatis将所有xml配置信息都封装到All-In-One重量级对象Configuration内部。在xml映射文件中，<parametermap>标签会被解析为ParameterMap对象，其每个子元素会被解析为ParameterMapping对象。<resultmap>标签会被解析为ResultMap对象，其每个子元素会被解析为ResultMapping对象。每一个<select>、、、标签均会被解析为MappedStatemen对象，标签内的sql会被解析为BoundSql对象。</select></resultmap></parametermap></p>
+<p><strong>问：为什么说MyBatis是半自动ORM映射工具？它与全自动的区别在哪里？</strong></p>
+<p>Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取，所以它是全自动的。而MyBatis在查询关联对象或关联集合对象时，需要手动编写sql来完成，所以，称之为半自动ORM映射工具。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">He Xu</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://xiezi123caicai.github.io/2024/05/08/tools-and-frameworks/">https://xiezi123caicai.github.io/2024/05/08/tools-and-frameworks/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">He Xu</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                                    <span class="chip bg-color">中间件</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2024/05/08/tools-and-frameworks/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Tools-And-frameworks">
+                        
+                        <span class="card-title">Tools-And-frameworks</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7%E5%92%8C%E9%83%A8%E5%88%86%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    工具和部分框架
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                        <span class="chip bg-color">中间件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/05/08/rockermq/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="RockerMQ">
+                        
+                        <span class="card-title">RockerMQ</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-category">
+                                    消息队列
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                        <span class="chip bg-color">中间件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2024</span>
+            
+            <span id="year">2024</span>
+            <a href="/about" target="_blank">He Xu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/xiezi123caicai" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1024626253@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1024626253" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1024626253" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
