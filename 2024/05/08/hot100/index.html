@@ -479,8 +479,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h4><p><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a></strong></p>
-<p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em>  的那 <strong>两个</strong> 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。</p>
+                <h3 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h3><h4 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1. 两数之和"></a><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">1. 两数之和</a></strong></h4><p>给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em>  的那 <strong>两个</strong> 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。</p>
+<p><strong>解析：</strong>用哈希表辅助判断。对于一个元素 <code>nums[i]</code>，你想知道有没有另一个元素 <code>nums[j]</code> 的值为 <code>target - nums[i]</code>，这很简单，我们用一个哈希表记录每个元素的值到索引的映射，这样就能快速判断数组中是否有一个值为 <code>target - nums[i]</code> 的元素了。</p>
+<p>简单说，<strong>数组其实可以理解为一个「索引 -&gt; 值」的哈希表映射，而我们又建立一个「值 -&gt; 索引」的映射即可完成此题</strong>。</p>
+<p><img src="/2024/05/08/hot100/1715147141098-1.png"></p>
+<h4 id="49-字母异位词分组"><a href="#49-字母异位词分组" class="headerlink" title="49. 字母异位词分组"></a><strong><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/group-anagrams/">49. 字母异位词分组</a></strong></h4><p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。<strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p>
+<p><strong>解析：</strong>异位词这类问题的关键在于，你如何迅速判断两个字符串是异位词，主要考察数据编码和哈希表的使用：更好的编码方案是利用每个字符的出现次数进行编码，也就是下面的解法代码。</p>
+<p><img src="/2024/05/08/hot100/1715147251901-4.png"></p>
 
                 
             </div>
