@@ -479,9 +479,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="一．Maven"><a href="#一．Maven" class="headerlink" title="一．Maven"></a>一．Maven</h4><p><img src="/2024/05/08/tools-and-frameworks/clip_image002.jpg"></p>
-<p><strong>1.Maven介绍</strong></p>
-<p>Maven的本质是一个软件项目管理和理解工具。基于项目对象模型(Project Object Model，POM)的概念，Maven可以从一条中心信息管理项目的构建、报告和文档。</p>
+                <h3 id="一．Maven"><a href="#一．Maven" class="headerlink" title="一．Maven"></a>一．Maven</h3><p><img src="/2024/05/08/tools-and-frameworks/clip_image002.jpg"></p>
+<h4 id="1-Maven介绍"><a href="#1-Maven介绍" class="headerlink" title="1.Maven介绍"></a><strong>1.Maven介绍</strong></h4><p>Maven的本质是一个软件项目管理和理解工具。基于项目对象模型(Project Object Model，POM)的概念，Maven可以从一条中心信息管理项目的构建、报告和文档。</p>
 <p><strong>什么是POM</strong>？每一个Maven工程都有一个pom.xml文件，位于根目录中，包含项目构建生命周期的详细信息。通过pom.xml文件，可以定义项目的坐标、项目依赖、项目信息、插件信息等等配置。</p>
 <p>主要作用：</p>
 <ul>
@@ -491,24 +490,20 @@
 </ul>
 <p><strong>Maven坐标</strong>：<strong>groupId</strong>（必须）：定义了当前Maven项目隶属的组织或公司。<strong>artifactId</strong>（必须）：定义了当前Maven项目的名称，项目的唯一的标识符，对应项目根目录的名称。<strong>version</strong>（必须）：定义了Maven项目当前所处版本。<strong>packaging</strong>（可选）：定义了项目的打包方式（比如jar，war…），默认使用jar。<strong>classifier</strong>（可选）：常用于区分从同一POM构建的具有不同内容的构件，可以是任意的字符串，附加在版本号之后。</p>
 <p><strong>Maven依赖</strong>：如果使用Maven构建产生的构件（例如Jar文件）被其他的项目引用，那么该构件就是其他项目的依赖。</p>
-<p><strong>2.Maven仓库</strong></p>
-<p>在Maven世界中，任何一个依赖、插件或者项目构建的输出，都可以称为<strong>构件</strong>。</p>
+<h4 id="2-Maven仓库"><a href="#2-Maven仓库" class="headerlink" title="2.Maven仓库"></a><strong>2.Maven仓库</strong></h4><p>在Maven世界中，任何一个依赖、插件或者项目构建的输出，都可以称为<strong>构件</strong>。</p>
 <p>坐标和依赖是构件在Maven世界中的逻辑表示方式，构件的物理表示方式是文件，Maven通过仓库来统一管理这些文件。任何一个构件都有一组坐标唯一标识。有了仓库之后，无需手动引入构件，可以直接给定构件的坐标即可在Maven仓库中找到该构件。</p>
 <p>Maven仓库分为：（1）<strong>本地仓库</strong>：运行Maven的计算机上的一个目录。（2）<strong>远程仓库</strong>：官方或者其他组织维护的Maven仓库。</p>
 <p>Maven远程仓库可以分为：（1）<strong>中央仓库</strong>：这个仓库是由Maven社区来维护的。（2）<strong>私服</strong>：私服是一种特殊的远程Maven仓库，架设在局域网内的仓库服务，私服一般被配置为互联网远程仓库的镜像，供局域网内的Maven用户使用。（3）<strong>其他的公共仓库</strong>：有一些公共仓库是为了加速访问（如阿里云Maven镜像仓库）或者部分构件不存在于中央仓库中</p>
-<p><strong>3.Maven生命周期</strong></p>
-<p>Maven的生命周期就是为了对所有的构建过程进行抽象和统一，包含了项目的清理、初始化、编译、测试、打包、集成测试、验证、部署和站点生成等几乎所有构建步骤。</p>
+<h4 id="3-Maven生命周期"><a href="#3-Maven生命周期" class="headerlink" title="3.Maven生命周期"></a><strong>3.Maven生命周期</strong></h4><p>Maven的生命周期就是为了对所有的构建过程进行抽象和统一，包含了项目的清理、初始化、编译、测试、打包、集成测试、验证、部署和站点生成等几乎所有构建步骤。</p>
 <p>Maven定义了3个生命周期META-INF/plexus/components.xml：default生命周期。clean生命周期。site生命周期</p>
 <p>这些生命周期是相互独立的，每个生命周期包含多个阶段。并且，这些阶段是有序的，也就是说，后面的阶段依赖于前面的阶段。当执行某个阶段的时候，会先执行它前面的阶段。</p>
 <p><strong>default生命周期：</strong>default生命周期是在没有任何关联插件的情况下定义的，是Maven的主要生命周期，用于构建应用程序，共包含23个阶段。</p>
 <p><strong>clean生命周期：</strong>clean生命周期的目的是清理项目，共包含3个阶段：1.pre-clean。2.clean。3.post-clean。</p>
 <p><strong>site生命周期：</strong>site生命周期的目的是建立和发布项目站点，共包含4个阶段：1.pre-site。2.site。3.post-site。4.site-deploy。</p>
-<p><strong>4.Maven多模块管理</strong></p>
-<p>将一个项目分为多个模块，每个模块只负责单一的功能实现。直观的表现就是一个 Maven 项目中不止有一个pom.xml文件，会在不同的目录中有多个pom.xml文件，进而实现多模块管理。</p>
+<h4 id="4-Maven多模块管理"><a href="#4-Maven多模块管理" class="headerlink" title="4.Maven多模块管理"></a><strong>4.Maven多模块管理</strong></h4><p>将一个项目分为多个模块，每个模块只负责单一的功能实现。直观的表现就是一个 Maven 项目中不止有一个pom.xml文件，会在不同的目录中有多个pom.xml文件，进而实现多模块管理。</p>
 <p>多模块管理除了可以更加便于项目开发和管理，还有如下好处：（1）降低代码之间的耦合性（从类级别的耦合提升到jar包级别的耦合）；（2）减少重复，提升复用性；（3）每个模块都可以是自解释的（通过模块名或者模块文档）；（4）模块还规范了代码边界的划分，开发者很容易通过模块确定自己所负责的内容。</p>
 <p>多模块管理下，会有一个父模块，其他的都是子模块。父模块通常只有一个pom.xml，没有其他内容。父模块的pom.xml一般只定义了各个依赖的版本号、包含哪些子模块以及插件有哪些。</p>
-<h4 id="二．Docker"><a href="#二．Docker" class="headerlink" title="二．Docker"></a>二．Docker</h4><p><strong>1.认识容器</strong></p>
-<p>容器：容器就是将软件打包成标准化单元，以用于开发、交付和部署。</p>
+<h3 id="二．Docker"><a href="#二．Docker" class="headerlink" title="二．Docker"></a>二．Docker</h3><h4 id="1-认识容器"><a href="#1-认识容器" class="headerlink" title="1.认识容器"></a><strong>1.认识容器</strong></h4><p>容器：容器就是将软件打包成标准化单元，以用于开发、交付和部署。</p>
 <ul>
 <li><strong>容器镜像是轻量的、可执行的独立软件包</strong>，包含软件运行所需的所有内容：代码、运行时环境、系统工具、系统库和设置。</li>
 <li><strong>容器化软件适用于基于</strong>Linux和Windows的应用，在任何环境中都能够始终如一地运行。</li>
@@ -516,8 +511,7 @@
 </ul>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image002.png" alt="认识容器"></p>
 <p>容器虚拟化的是操作系统而不是硬件，容器之间是共享同一套操作系统资源的。虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统。因此容器的隔离级别会稍低一些。</p>
-<p><strong>2.Docker的一些概念</strong></p>
-<ul>
+<h4 id="2-Docker的一些概念"><a href="#2-Docker的一些概念" class="headerlink" title="2.Docker的一些概念"></a><strong>2.Docker的一些概念</strong></h4><ul>
 <li>Docker使用Go语言进行开发实现，基于Linux内核提供的CGroup功能和namespace来实现的，以及AUFS类的UnionFS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。</li>
 <li>Docker能够自动执行重复性任务，例如搭建和配置开发环境，从而解放了开发人员以便他们专注在真正重要的事情上：构建杰出的软件。</li>
 <li>用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</li>
@@ -537,8 +531,7 @@
 <li>可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上——迁移方便。</li>
 <li>使用Docker可以通过定制应用镜像来实现持续集成、持续交付、部署——持续交付和部署</li>
 </ul>
-<p><strong>3.容器VS虚拟机</strong></p>
-<p>容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。</p>
+<h4 id="3-容器VS虚拟机"><a href="#3-容器VS虚拟机" class="headerlink" title="3.容器VS虚拟机"></a><strong>3.容器VS虚拟机</strong></h4><p>容器和虚拟机具有相似的资源隔离和分配优势，但功能有所不同，因为容器虚拟化的是操作系统，而不是硬件，因此容器更容易移植，效率也更高。</p>
 <p>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便。</p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image004.jpg"></p>
 <p><strong>容器与虚拟机总结：</strong></p>
@@ -549,8 +542,7 @@
 </ul>
 <p><strong>虚拟机更擅长于彻底隔离整个运行环境</strong>。例如，云服务提供商通常采用虚拟机技术隔离不同的用户。而<strong>Docker通常用于隔离不同的应用</strong>，例如前端，后端以及数据库。</p>
 <p>容器与虚拟机两者是可以共存的</p>
-<p><strong>4.Docker基本概念</strong></p>
-<p>Docker中有非常重要的三个基本概念，就理解了Docker的整个生命周期：<strong>镜像</strong>（Image）。<strong>容器</strong>（Container）。<strong>仓库</strong>（Repository）。</p>
+<h4 id="4-Docker基本概念"><a href="#4-Docker基本概念" class="headerlink" title="4.Docker基本概念"></a><strong>4.Docker基本概念</strong></h4><p>Docker中有非常重要的三个基本概念，就理解了Docker的整个生命周期：<strong>镜像</strong>（Image）。<strong>容器</strong>（Container）。<strong>仓库</strong>（Repository）。</p>
 <p>**镜像(Image)**：一个特殊的文件系统</p>
 <p><strong>操作系统分为内核和用户空间</strong>。对于Linux而言，内核启动后，会挂载root文件系统为其提供用户空间支持。而Docker镜像（Image），就相当于是一个root文件系统。</p>
 <p><strong>Docker</strong>镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
@@ -564,32 +556,27 @@
 <p>镜像构建完成后，可以很容易的在当前宿主上运行，但是，<strong>如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry就是这样的服务。</strong></p>
 <p>一个Docker Registry中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；每个标签对应一个镜像。所以说：<strong>镜像仓库是Docker用来集中存放镜像文件的地方类似于我们之前常用的代码仓库。</strong></p>
 <p>通常，<strong>一个仓库会包含同一个软件不同版本的镜像</strong>，而<strong>标签就常用于对应该软件的各个版本</strong>。我们可以通过&lt;仓库名&gt;：&lt;标签&gt;的格式来指定具体是这个软件哪个版本的镜像。</p>
-<p><strong>5.常见命令</strong></p>
-<p><strong>基本命令</strong></p>
+<h4 id="5-常见命令"><a href="#5-常见命令" class="headerlink" title="5.常见命令"></a><strong>5.常见命令</strong></h4><p><strong>基本命令</strong></p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image008.jpg"></p>
 <p><strong>拉取镜像</strong></p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image010.jpg"></p>
 <p><strong>删除镜像</strong></p>
 <p>通过docker rmi [image]（等价于docker image rm [image]）删除镜像之前首先要确保这个镜像没有被容器引用（可以通过标签名称或者镜像ID删除）。</p>
-<p><strong>6.Build Ship and Run</strong></p>
-<ul>
+<h4 id="6-Build-Ship-and-Run"><a href="#6-Build-Ship-and-Run" class="headerlink" title="6.Build Ship and Run"></a><strong>6.Build Ship and Run</strong></h4><ul>
 <li><strong>Build（构建镜像）</strong>：镜像就像是集装箱包括文件以及运行环境等等资源。</li>
 <li><strong>Ship（运输镜像）</strong>：主机和仓库间运输，这里的仓库就像是超级码头一样。</li>
 <li><strong>Run（运行镜像）</strong>：运行的镜像就是一个容器，容器就是运行程序的地方。</li>
 </ul>
 <p>Docker运行过程也就是去仓库把镜像拉到本地，然后用一条命令把镜像运行起来变成容器。所以我们常常将Docker称为码头工人或码头装卸工。</p>
-<p><strong>7.Docker底层原理</strong></p>
-<p><strong>虚拟化技术</strong></p>
+<h4 id="7-Docker底层原理"><a href="#7-Docker底层原理" class="headerlink" title="7.Docker底层原理"></a><strong>7.Docker底层原理</strong></h4><p><strong>虚拟化技术</strong></p>
 <p>虚拟化技术是一种资源管理技术，是将计算机的各种<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A7%91%E5%AD%B8">实体资源</a>（<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/CPU">CPU</a>、<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98">内存</a>、<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4">磁盘空间</a>、<a href="https://gitee.com/link?target=https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E9%81%A9%E9%85%8D%E5%99%A8">网络适配器</a>等），予以抽象、转换后呈现出来并可供分割、组合为一个或多个电脑配置环境。由此，打破实体结构间的不可切割的障碍，使用户可以比原本的配置更好的方式来应用这些电脑硬件资源。</p>
 <p><strong>Docker基于LXC虚拟容器技术</strong></p>
 <p>LXC，其名称来自Linux软件容器（Linux Containers）的缩写，一种操作系统层虚拟化技术，为Linux内核容器功能的一个用户空间接口。它将应用软件系统打包成一个软件容器（Container），内含应用软件本身的代码，以及所需要的操作系统核心和库。通过统一的名字空间和共用API来分配不同软件容器的可用硬件资源，创造出应用程序的独立沙箱运行环境，使得Linux用户可以容易的创建和管理系统或应用容器。</p>
-<h4 id="三．Git"><a href="#三．Git" class="headerlink" title="三．Git"></a>三．Git</h4><p><strong>1.版本控制</strong></p>
-<p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
+<h3 id="三．Git"><a href="#三．Git" class="headerlink" title="三．Git"></a>三．Git</h3><h4 id="1-版本控制"><a href="#1-版本控制" class="headerlink" title="1.版本控制"></a><strong>1.版本控制</strong></h4><p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
 <p>可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。</p>
 <p><strong>分布式版本控制系统：Git</strong></p>
 <p>客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
-<p><strong>2.认识Git</strong></p>
-<p><strong>Git采用的是直接记录快照的方式，而非差异比较。</strong></p>
+<h4 id="2-认识Git"><a href="#2-认识Git" class="headerlink" title="2.认识Git"></a><strong>2.认识Git</strong></h4><p><strong>Git采用的是直接记录快照的方式，而非差异比较。</strong></p>
 <p><strong>Git</strong>的三种状态：</p>
 <ul>
 <li><strong>已提交（committed）</strong>：数据已经安全的保存在本地数据库中。</li>
@@ -599,20 +586,17 @@
 <p>引入Git项目的三个工作区域的概念：**Git仓库(.git directory)、工作目录(Working Directory)以及暂存区域(Staging Area)**。</p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image002-1715138847500-10.png"></p>
 <p>基本的Git工作流程如下：（1）在工作目录中修改文件。（2）暂存文件，将文件的快照放入暂存区域。（3）提交更新，找到暂存区域的文件，将快照永久性存储到Git仓库目录。</p>
-<p><strong>3.Git使用快速入门</strong></p>
-<p><strong>获取Git仓库：</strong>（1）在现有目录中初始化仓库：进入项目目录运行git init命令，该命令将创建一个名为.git的子目录。（2）从一个服务器克隆一个现有的Git仓库：git clone [url]自定义本地仓库的名字：git clone [url] directoryname</p>
+<h4 id="3-Git使用快速入门"><a href="#3-Git使用快速入门" class="headerlink" title="3.Git使用快速入门"></a><strong>3.Git使用快速入门</strong></h4><p><strong>获取Git仓库：</strong>（1）在现有目录中初始化仓库：进入项目目录运行git init命令，该命令将创建一个名为.git的子目录。（2）从一个服务器克隆一个现有的Git仓库：git clone [url]自定义本地仓库的名字：git clone [url] directoryname</p>
 <p><strong>记录每次更新到仓库</strong>：1.检测当前文件状态：git status。2.提出更改（把它们添加到暂存区）：git add filename(针对特定文件)、git add *(所有文件)、git add *.txt（支持通配符，所有.txt文件）。3.忽略文件：.gitignore文件。4.提交更新：git commit -m“代码提交信息”（每次准备提交前，先用git status看下，是不是都已暂存起来了，然后再运行提交命令git commit）。5.跳过使用暂存区域更新的方式：git commit -a -m“代码提交信息”。git commit加上-a选项，Git就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过git add步骤。6.移除文件：git rm filename（从暂存区域移除，然后提交。）7.对文件重命名：git mv README.md README（这个命令相当于mv README.md README、git rm README.md、git add README这三条命令的集合）</p>
 <p><strong>查看提交历史：</strong>git log命令。git log会按提交时间列出所有的更新，最近的更新排在最上面。</p>
 <p><strong>分支：</strong>分支是用来将特性开发绝缘开来的。在创建仓库的时候，<em>master</em>是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。通常在开发新功能、修复一个紧急bug等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。</p>
-<h4 id="四．Spring"><a href="#四．Spring" class="headerlink" title="四．Spring"></a>四．Spring</h4><p><strong>1.Spring基础</strong></p>
-<p>Spring是一款开源的轻量级Java开发框架，旨在提高开发人员的开发效率以及系统的可维护性。</p>
+<h3 id="四．Spring"><a href="#四．Spring" class="headerlink" title="四．Spring"></a>四．Spring</h3><h4 id="1-Spring基础"><a href="#1-Spring基础" class="headerlink" title="1.Spring基础"></a><strong>1.Spring基础</strong></h4><p>Spring是一款开源的轻量级Java开发框架，旨在提高开发人员的开发效率以及系统的可维护性。</p>
 <p>Spring框架指的都是Spring Framework，它是很多模块的集合，使用这些模块可以很方便地协助我们进行开发，比如说Spring支持IoC（Inversion of Control：控制反转）和AOP（Aspect-Oriented Programming：面向切面编程）、可以很方便地对数据库进行访问、可以很方便地集成第三方组件（电子邮件，任务，调度，缓存等等）、对单元测试支持比较好、支持RESTful Java应用程序的开发。</p>
 <p>Spring提供的核心功能主要是<strong>IoC</strong>和<strong>AOP</strong>。</p>
 <p><strong>Spring,Spring MVC,Spring Boot之间什么关系?</strong></p>
 <p>Spring包含了多个功能模块（上面刚刚提到过），其中最重要的是Spring-Core（主要提供IoC依赖注入功能的支持）模块，Spring中的其他模块（比如Spring MVC）的功能实现基本都需要依赖于该模块。</p>
 <p>Spring MVC是Spring中的一个很重要的模块，主要赋予Spring快速构建MVC架构的Web程序的能力。MVC是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
-<p><strong>2.Spring IoC</strong></p>
-<p><strong>IoC（Inversion of Control:控制反转）</strong>是一种设计思想，而不是一个具体的技术实现。IoC的思想就是将原本在程序中手动创建对象的控制权，交由Spring框架来管理。</p>
+<h4 id="2-Spring-IoC"><a href="#2-Spring-IoC" class="headerlink" title="2.Spring IoC"></a><strong>2.Spring IoC</strong></h4><p><strong>IoC（Inversion of Control:控制反转）</strong>是一种设计思想，而不是一个具体的技术实现。IoC的思想就是将原本在程序中手动创建对象的控制权，交由Spring框架来管理。</p>
 <p>为什么叫控制反转？<strong>控制</strong>：指的是对象创建（实例化、管理）的权力。<strong>反转</strong>：控制权交给外部环境（Spring框架、IoC容器）</p>
 <p>在Spring中，IoC容器是Spring用来实现IoC的载体，IoC容器实际上就是个Map（key，value），Map中存放的是各种对象。</p>
 <p><strong>什么是Spring Bean？</strong>Bean代指的就是那些被IoC容器所管理的对象。</p>
@@ -669,8 +653,7 @@
 <li>销毁这一步会注册相关销毁回调接口，最后通过DisposableBean和destory-method进行销毁。</li>
 </ul>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image004-1715139206329-15.jpg"></p>
-<p><strong>3.Spring AOP</strong></p>
-<p>AOP(Aspect-Oriented Programming：面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
+<h4 id="3-Spring-AOP"><a href="#3-Spring-AOP" class="headerlink" title="3.Spring AOP"></a><strong>3.Spring AOP</strong></h4><p>AOP(Aspect-Oriented Programming：面向切面编程)能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
 <p>Spring AOP就是基于<strong>动态代理</strong>的，如果要代理的对象，实现了某个接口，那么Spring AOP会使用<strong>JDK Proxy</strong>，去创建代理对象，而对于没有实现接口的对象，就无法使用JDK Proxy去进行代理了，这时候Spring AOP会使用<strong>Cglib</strong>生成一个被代理对象的子类来作为代理。</p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image006-1715139206329-14.jpg"></p>
 <p><strong>Spring AOP和AspectJ AOP有什么区别？</strong></p>
@@ -690,8 +673,7 @@
 <li>实现Ordered接口重写getOrder方法。</li>
 </ol>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image008-1715139206329-13.jpg"></p>
-<p><strong>4.Spring MVC</strong></p>
-<p>MVC是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
+<h4 id="4-Spring-MVC"><a href="#4-Spring-MVC" class="headerlink" title="4.Spring MVC"></a><strong>4.Spring MVC</strong></h4><p>MVC是模型(Model)、视图(View)、控制器(Controller)的简写，其核心思想是通过将业务逻辑、数据、显示分离来组织代码。</p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image010-1715139206329-16.jpg"></p>
 <p>MVC是一种设计模式，Spring MVC是一款很优秀的MVC框架。Spring MVC可以帮助进行更简洁的Web层的开发，并且它天生与Spring框架集成。Spring MVC下一般把后端项目分为Service层（处理业务）、Dao层（数据库操作）、Entity层（实体类）、Controller层（控制层，返回数据给前台页面）。</p>
 <p><strong>Spring MVC的核心组件有哪些？</strong></p>
@@ -715,16 +697,14 @@
 </ol>
 <p><strong>统一异常处理怎么做？</strong></p>
 <p>推荐使用注解的方式统一异常处理，会使用到@ControllerAdvice+@ExceptionHandler这两个注解。</p>
-<p><strong>5.Spring框架用到了哪些设计模式？</strong></p>
-<p><strong>工厂设计模式</strong>：Spring使用工厂模式通过BeanFactory、ApplicationContext创建bean对象。</p>
+<h4 id="5-Spring框架用到了哪些设计模式？"><a href="#5-Spring框架用到了哪些设计模式？" class="headerlink" title="5.Spring框架用到了哪些设计模式？"></a><strong>5.Spring框架用到了哪些设计模式？</strong></h4><p><strong>工厂设计模式</strong>：Spring使用工厂模式通过BeanFactory、ApplicationContext创建bean对象。</p>
 <p><strong>代理设计模式</strong>：Spring AOP功能的实现。</p>
 <p><strong>单例设计模式</strong>：Spring中的Bean默认都是单例的。</p>
 <p><strong>模板方法模式</strong>：Spring中jdbcTemplate、hibernateTemplate等以Template结尾的对数据库操作的类，它们就使用到了模板模式。</p>
 <p><strong>包装器设计模式</strong>：项目需要连接多个数据库，而且不同的客户在每次访问中根据需要会去访问不同的数据库。这种模式让我们可以根据客户的需求能够动态切换不同的数据源。</p>
 <p><strong>观察者模式</strong>：Spring事件驱动模型就是观察者模式很经典的一个应用。</p>
 <p><strong>适配器模式</strong>：Spring AOP的增强或通知(Advice)使用到了适配器模式、spring MVC中也是用到了适配器模式适配Controller。</p>
-<p><strong>6.Spring事务</strong></p>
-<p><strong>Spring管理事务的方式有几种？</strong></p>
+<h4 id="6-Spring事务"><a href="#6-Spring事务" class="headerlink" title="6.Spring事务"></a><strong>6.Spring事务</strong></h4><p><strong>Spring管理事务的方式有几种？</strong></p>
 <ul>
 <li><strong>编程式事务</strong>：在代码中硬编码（在分布式系统中推荐使用）：通过TransactionTemplate或者TransactionManager手动管理事务，事务范围过大会出现事务未提交导致超时，因此事务要比锁的粒度更小。</li>
 <li><strong>声明式事务</strong>：在XML配置文件中配置或者直接基于注解（单体应用或者简单业务系统推荐使用）：实际是通过AOP实现（基于@Transactional的全注解方式使用最多）</li>
@@ -745,11 +725,9 @@
 <p>Exception分为运行时异常RuntimeException和非运行时异常。事务管理对于企业应用来说是至关重要的，即使出现异常情况，它也可以保证数据的一致性。</p>
 <p>当@Transactional注解作用于类上时，该类的所有public方法将都具有该类型的事务属性，同时，我们也可以在方法级别使用该标注来覆盖类级别的定义。</p>
 <p>@Transactional注解默认回滚策略是只有在遇到RuntimeException(运行时异常)或者Error时才会回滚事务，而不会回滚Checked Exception（受检查异常）。这是因为Spring认为RuntimeException和Error是不可预期的错误，而受检异常是可预期的错误，可以通过业务逻辑来处理。</p>
-<h4 id="五．Spring-SpringBoot常用注解"><a href="#五．Spring-SpringBoot常用注解" class="headerlink" title="五．Spring&amp;SpringBoot常用注解"></a>五．Spring&amp;SpringBoot常用注解</h4><p><strong>1.@SpringBootApplication</strong></p>
-<p>这个注解是Spring Boot项目的基石，创建SpringBoot项目之后会默认在主类加上。可以把@SpringBootApplication看作是@Configuration、@EnableAutoConfiguration、@ComponentScan注解的集合。</p>
+<h3 id="五．Spring-SpringBoot常用注解"><a href="#五．Spring-SpringBoot常用注解" class="headerlink" title="五．Spring&amp;SpringBoot常用注解"></a>五．Spring&amp;SpringBoot常用注解</h3><h4 id="1-SpringBootApplication"><a href="#1-SpringBootApplication" class="headerlink" title="1.@SpringBootApplication"></a><strong>1.@SpringBootApplication</strong></h4><p>这个注解是Spring Boot项目的基石，创建SpringBoot项目之后会默认在主类加上。可以把@SpringBootApplication看作是@Configuration、@EnableAutoConfiguration、@ComponentScan注解的集合。</p>
 <p>作用：·@EnableAutoConfiguration：启用SpringBoot的自动配置机制。·@ComponentScan：扫描被@Component (@Repository,@Service,@Controller)注解的bean，注解默认会扫描该类所在的包下所有的类。·@Configuration：允许在Spring上下文中注册额外的bean或导入其他配置类</p>
-<p><strong>2.Spring Bean相关</strong></p>
-<p>@Autowired</p>
+<h4 id="2-Spring-Bean相关"><a href="#2-Spring-Bean相关" class="headerlink" title="2.Spring Bean相关"></a><strong>2.Spring Bean相关</strong></h4><p>@Autowired</p>
 <p>自动导入对象到类中，被注入进的类同样要被Spring容器管理比如：Service类注入到Controller类中。</p>
 <p>@Component**,<strong>@Repository</strong>,<strong>@Service</strong>,**@Controller</p>
 <p>一般使用@Autowired注解让Spring容器帮我们自动装配bean。要想把类标识成可用于@Autowired注解自动装配的bean的类,可以采用以下注解实现：</p>
@@ -772,8 +750,7 @@
 </ul>
 <p>@Configuration</p>
 <p>一般用来声明配置类，可以使用@Component注解替代，不过使用@Configuration注解声明配置类更加语义化。</p>
-<p><strong>3.处理常见的HTTP请求类型</strong></p>
-<p>5种常见的请求类型:</p>
+<h4 id="3-处理常见的HTTP请求类型"><a href="#3-处理常见的HTTP请求类型" class="headerlink" title="3.处理常见的HTTP请求类型"></a><strong>3.处理常见的HTTP请求类型</strong></h4><p>5种常见的请求类型:</p>
 <ul>
 <li><strong>GET</strong>：请求从服务器获取特定资源。举个例子：GET/users（获取所有学生）</li>
 <li><strong>POST</strong>：在服务器上创建一个新的资源。举个例子：POST/users（创建学生）</li>
@@ -791,29 +768,25 @@
 <p>@DeleteMapping(“/users/{userId}”)===@RequestMapping(value=”/users/{userId}”,method=RequestMethod.DELETE)</p>
 <p><strong>PATCH请求</strong></p>
 <p>一般实际项目中，都是PUT不够用了之后才用PATCH请求去更新数据。</p>
-<p><strong>4.前后端传值</strong></p>
-<p>@PathVariable和@RequestParam</p>
+<h4 id="4-前后端传值"><a href="#4-前后端传值" class="headerlink" title="4.前后端传值"></a><strong>4.前后端传值</strong></h4><p>@PathVariable和@RequestParam</p>
 <p>@PathVariable用于获取路径参数，@RequestParam用于获取查询参数。</p>
 <p>如果我们请求的url是：/klasses/123456/teachers?type=web。那么我们服务获取到的数据就是：klassId=123456,type=web。</p>
 <p>@RequestBody</p>
 <p>用于读取Request请求（可能是POST,PUT,DELETE,GET请求）的body部分并且<strong>Content-Type为application/json</strong>格式的数据，接收到数据之后会自动将数据绑定到Java对象上去。系统会使用HttpMessageConverter或者自定义的HttpMessageConverter将请求的body中的json字符串转换为java对象。</p>
-<p><strong>5.读取配置信息</strong></p>
-<p><strong>@Value(常用)</strong></p>
+<h4 id="5-读取配置信息"><a href="#5-读取配置信息" class="headerlink" title="5.读取配置信息"></a><strong>5.读取配置信息</strong></h4><p><strong>@Value(常用)</strong></p>
 <p>使用@Value(“${property}”)读取比较简单的配置信息。</p>
 <p>@ConfigurationProperties**(常用)**</p>
 <p>通过@ConfigurationProperties读取配置信息并与bean绑定。可以像使用普通的Spring bean一样，将其注入到类中使用。</p>
 <p>@PropertySource<strong>（不常用）</strong></p>
 <p>@PropertySource读取指定properties文件</p>
-<p><strong>6.读取配置信息</strong></p>
-<p>即使在前端对数据进行校验的情况下，我们还是要对传入后端的数据再进行一遍校验，避免用户绕过浏览器直接通过一些HTTP工具直接向后端请求一些违法数据。JSR(Java Specification Requests）是一套JavaBean参数校验的标准，定义了很多常用的校验注解，可以直接将这些注解加在JavaBean的属性上面，这样就可以在需要校验的时候进行校验。</p>
+<h4 id="6-读取配置信息"><a href="#6-读取配置信息" class="headerlink" title="6.读取配置信息"></a><strong>6.读取配置信息</strong></h4><p>即使在前端对数据进行校验的情况下，我们还是要对传入后端的数据再进行一遍校验，避免用户绕过浏览器直接通过一些HTTP工具直接向后端请求一些违法数据。JSR(Java Specification Requests）是一套JavaBean参数校验的标准，定义了很多常用的校验注解，可以直接将这些注解加在JavaBean的属性上面，这样就可以在需要校验的时候进行校验。</p>
 <p><strong>一些常用的字段验证的注解</strong></p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image002-1715139563575-25.jpg"></p>
 <p><strong>验证请求体(RequestBody)</strong></p>
 <p>在需要验证的参数上加上了@Valid注解，如果验证失败，它将抛出MethodArgumentNotValidException。</p>
 <p><strong>验证请求参数(Path Variables和Request Parameters)</strong></p>
 <p>不要忘记在类上加上@Validated注解了，这个参数可以告诉Spring去校验方法参数。</p>
-<p><strong>7.JPA相关</strong></p>
-<p><strong>创建表</strong></p>
+<h4 id="7-JPA相关"><a href="#7-JPA相关" class="headerlink" title="7.JPA相关"></a><strong>7.JPA相关</strong></h4><p><strong>创建表</strong></p>
 <p>@Entity声明一个类对应一个数据库实体。@Table设置表名。</p>
 <p><strong>创建主键</strong></p>
 <p>@Id：声明一个字段为主键。</p>
@@ -840,16 +813,14 @@
 <p><strong>关联关系</strong></p>
 <p>·@OneToOne声明一对一关系 ·@OneToMany声明一对多关系</p>
 <p>·@ManyToOne声明多对一关系 ·@ManyToMany声明多对多关系</p>
-<p><strong>8.事务@Transactional</strong></p>
-<p>在要开启事务的方法上使用@Transactional注解即可!</p>
+<h4 id="8-事务-Transactional"><a href="#8-事务-Transactional" class="headerlink" title="8.事务@Transactional"></a><strong>8.事务@Transactional</strong></h4><p>在要开启事务的方法上使用@Transactional注解即可!</p>
 <p>Exception分为运行时异常RuntimeException和非运行时异常。在@Transactional注解中如果不配置rollbackFor属性,那么事务只会在遇到RuntimeException的时候才会回滚，加上rollbackFor=Exception.class，可以让事务在遇到非运行时异常时也回滚。</p>
 <p>@Transactional注解一般可以作用在类或者方法上。</p>
 <ul>
 <li><strong>作用于类</strong>：当把@Transactional注解放在类上时，表示所有该类的public方法都配置相同的事务属性信息。</li>
 <li><strong>作用于方法</strong>：当类配置了@Transactional，方法也配置了@Transactional，方法的事务会覆盖类的事务配置信息。</li>
 </ul>
-<p><strong>9.json数据处理</strong></p>
-<p><strong>过滤json数据</strong></p>
+<h4 id="9-json数据处理"><a href="#9-json数据处理" class="headerlink" title="9.json数据处理"></a><strong>9.json数据处理</strong></h4><p><strong>过滤json数据</strong></p>
 <p>@JsonIgnoreProperties作用在类上用于过滤掉特定字段不返回或者不解析。</p>
 <p>@JsonIgnore一般用于类的属性上，作用和@JsonIgnoreProperties一样。</p>
 <p><strong>格式化json数据</strong></p>
@@ -857,12 +828,11 @@
 <p><strong>扁平化对象</strong></p>
 <p>未扁平化之前：          使用@JsonUnwrapped扁平对象之后：</p>
 <p><img src="/2024/05/08/tools-and-frameworks/clip_image006-1715139563575-23.jpg">        <img src="/2024/05/08/tools-and-frameworks/clip_image008-1715139563575-24.jpg"></p>
-<p><strong>10.测试相关</strong></p>
-<p>@ActiveProfiles一般作用于测试类上，用于声明生效的Spring配置文件。</p>
+<h4 id="10-测试相关"><a href="#10-测试相关" class="headerlink" title="10.测试相关"></a><strong>10.测试相关</strong></h4><p>@ActiveProfiles一般作用于测试类上，用于声明生效的Spring配置文件。</p>
 <p>@Test声明一个方法为测试方法</p>
 <p>@Transactional被声明的测试方法的数据会回滚，避免污染测试数据。</p>
 <p>@WithMockUser Spring Security提供的，用来模拟一个真实用户，并且可以赋予权限。</p>
-<h4 id="六．MyBatis常见面试总结"><a href="#六．MyBatis常见面试总结" class="headerlink" title="六．MyBatis常见面试总结"></a>六．MyBatis常见面试总结</h4><p><strong>问：#{}和${}的区别是什么？</strong></p>
+<h3 id="六．MyBatis常见面试总结"><a href="#六．MyBatis常见面试总结" class="headerlink" title="六．MyBatis常见面试总结"></a>六．MyBatis常见面试总结</h3><p><strong>问：#{}和${}的区别是什么？</strong></p>
 <ul>
 <li>${}是Properties文件中的变量占位符，它可以用于标签属性值和sql内部，属于原样文本替换，可以替换任意内容，比如${driver}会被原样替换为com.mysql.jdbc.Driver。</li>
 <li>#{}是sql的参数占位符，MyBatis会将sql中的#{}替换为?号，在sql执行前会使用PreparedStatement的参数设置方法，按序给sql的?号占位符设置参数值，比如ps.setInt(0, parameterValue)，#{item.name}的取值方式为使用反射从参数对象中获取item对象的name属性值，相当于param.getItem().getName()。</li>
