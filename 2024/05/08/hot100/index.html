@@ -675,6 +675,79 @@
 <p><img src="/2024/05/08/hot100/1715152364144-122.png"></p>
 <h4 id="101-对称二叉树✅"><a href="#101-对称二叉树✅" class="headerlink" title="101. 对称二叉树✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">101. 对称二叉树</a>✅</h4><p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p>
 <p><img src="/2024/05/08/hot100/1715152421655-125.png"></p>
+<h4 id="543-二叉树的直径💪"><a href="#543-二叉树的直径💪" class="headerlink" title="543. 二叉树的直径💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/diameter-of-binary-tree/">543. 二叉树的直径</a>💪</h4><p>给你一棵二叉树的根节点，返回该树的 <strong>直径</strong> 。二叉树的 <strong>直径</strong> 是指树中任意两个节点之间最长路径的 <strong>长度</strong> 。这条路径可能经过也可能不经过根节点 <code>root</code> 。两节点之间路径的 <strong>长度</strong> 由它们之间边数表示。</p>
+<p><strong>解析：</strong>所谓二叉树的直径，就是左右子树的最大深度之和，那么直接的想法是对每个节点计算左右子树的最大高度，得出每个节点的直径，从而得出最大的那个直径。但是由于 <code>maxDepth</code> 也是递归函数，所以上述方式时间复杂度较高。这题类似 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-leaves-of-binary-tree">寻找二叉树的叶子节点</a>，需要灵活运用二叉树的后序遍历，在 <code>maxDepth</code> 的后序遍历位置顺便计算最大直径。</p>
+<p><img src="/2024/05/08/hot100/1715152947297-128.png"></p>
+<h4 id="102-二叉树的层序遍历💪"><a href="#102-二叉树的层序遍历💪" class="headerlink" title="102. 二叉树的层序遍历💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">102. 二叉树的层序遍历</a>💪</h4><p>给你二叉树的根节点 <code>root</code> ，返回其节点值的 <strong>层序遍历</strong> 。 （即逐层地，从左到右访问所有节点）。</p>
+<p><strong>解析：</strong>层序遍历的一般写法，通过一个 while 循环控制从上向下一层层遍历，for 循环控制每一层从左向右遍历。</p>
+<p><img src="/2024/05/08/hot100/1715153020021-131.png"></p>
+<h4 id="108-将有序数组转换为二叉搜索树✅"><a href="#108-将有序数组转换为二叉搜索树✅" class="headerlink" title="108. 将有序数组转换为二叉搜索树✅"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/">108. 将有序数组转换为二叉搜索树</a>✅</h4><p>给你一个整数数组 <code>nums</code> ，其中元素已经按 <strong>升序</strong> 排列，请你将其转换为一棵 平衡 二叉搜索树。<strong>平衡二叉树</strong> 是指该树所有节点的左右子树的深度相差不超过 1。</p>
+<p><strong>解析：</strong>选择中间位置左边的数字作为根节点，则根节点的下标为 <code>mid = left + ((right - left) &gt;&gt; 1)</code>。</p>
+<p><img src="/2024/05/08/hot100/1715153155187-134.png"></p>
+<h4 id="98-验证二叉搜索树💪"><a href="#98-验证二叉搜索树💪" class="headerlink" title="98. 验证二叉搜索树💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a>💪</h4><p>给你一个二叉树的根节点 <code>root</code> ，判断其是否是一个有效的二叉搜索树。</p>
+<p><strong>有效</strong> 二叉搜索树定义如下：</p>
+<ul>
+<li>节点的左子树只包含 <strong>小于</strong> 当前节点的数。</li>
+<li>节点的右子树只包含 <strong>大于</strong> 当前节点的数。</li>
+<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
+</ul>
+<p><strong>解析：误区：</strong>BST 不是左小右大么，那我只要检查 <code>root.val &gt; root.left.val</code> 且 <code>root.val &lt; root.right.val</code> 不就行了？</p>
+<p>这样是不对的，因为 BST 左小右大的特性是指 <code>root.val</code> 要比左子树的所有节点都更大，要比右子树的所有节点都小，你只检查左右两个子节点当然是不够的。</p>
+<p><img src="/2024/05/08/hot100/1715153190542-137.png"></p>
+<h4 id="230-二叉搜索树中第K小的元素💪"><a href="#230-二叉搜索树中第K小的元素💪" class="headerlink" title="230. 二叉搜索树中第K小的元素💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/">230. 二叉搜索树中第K小的元素</a>💪</h4><p>给定一个二叉搜索树的根节点 <code>root</code> ，和一个整数 <code>k</code> ，请你设计一个算法查找其中第 <code>k</code> 个最小元素（从 1 开始计数）。</p>
+<p><strong>解析：BST 的中序遍历结果是有序的（升序），所以用一个外部变量记录中序遍历结果第<code>k</code> 个元素即是第 <code>k</code> 小的元素。</strong></p>
+<p><img src="/2024/05/08/hot100/1715153221470-140.png"></p>
+<h4 id="199-二叉树的右视图💪"><a href="#199-二叉树的右视图💪" class="headerlink" title="199. 二叉树的右视图💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-right-side-view/">199. 二叉树的右视图</a>💪</h4><p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
+<p><strong>解析：</strong>层序遍历的时候，判断是否遍历到单层的最后面的元素，如果是，就放进result数组中，随后返回result就可以了。</p>
+<p><img src="/2024/05/08/hot100/1715153277576-143.png"></p>
+<h4 id="114-二叉树展开为链表💪"><a href="#114-二叉树展开为链表💪" class="headerlink" title="114. 二叉树展开为链表💪"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/">114. 二叉树展开为链表</a>💪</h4><p>给你二叉树的根结点 <code>root</code> ，请你将它展开为一个单链表：</p>
+<ul>
+<li>展开后的单链表应该同样使用 <code>TreeNode</code> ，其中 <code>right</code> 子指针指向链表中下一个结点，而左子指针始终为 <code>null</code> 。</li>
+<li>展开后的单链表应该与二叉树 <strong><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86/6442839?fr=aladdin">先序遍历</a></strong> 顺序相同。</li>
+</ul>
+<p><strong>解析：</strong>明确递归函数的定义，然后利用这个定义，这题就属于后者，<code>flatten</code> 函数的定义如下：<strong>给</strong> <strong><code>flatten</code> 函数输入一个节点 <code>root</code>，那么以<code>root</code>为根的二叉树就会被拉平为一条链表</strong>。如何利用这个定义来完成算法？你想想怎么把以 <code>root</code> 为根的二叉树拉平为一条链表？很简单，以下流程：</p>
+<ol>
+<li>将 <code>root</code> 的左子树和右子树拉平。</li>
+<li>将 <code>root</code> 的右子树接到左子树下方，然后将整个左子树作为右子树。</li>
+</ol>
+<p>至于如何把 <code>root</code> 的左右子树拉平，不用你操心，<code>flatten</code> 函数的定义就是这样，交给他做就行了。</p>
+<p><img src="/2024/05/08/hot100/1715153359230-146.png"></p>
+<h4 id="105-从前序与中序遍历序列构造二叉树😤"><a href="#105-从前序与中序遍历序列构造二叉树😤" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树😤"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a>😤</h4><p>给定两个整数数组 <code>preorder</code> 和 <code>inorder</code> ，其中 <code>preorder</code> 是二叉树的<strong>先序遍历</strong>， <code>inorder</code> 是同一棵树的<strong>中序遍历</strong>，请构造二叉树并返回其根节点。</p>
+<p><strong>解析：前序遍历结果第一个就是根节点的值，然后再根据中序遍历结果确定左右子树的节点。</strong></p>
+<p><img src="/2024/05/08/hot100/1715153443885-149.png" alt="img"></p>
+<h4 id="437-路径总和-III😤"><a href="#437-路径总和-III😤" class="headerlink" title="437. 路径总和 III😤"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum-iii/">437. 路径总和 III</a>😤</h4><p>给定一个二叉树的根节点 <code>root</code> ，和一个整数 <code>targetSum</code> ，求该二叉树里节点值之和等于 <code>targetSum</code> 的 <strong>路径</strong> 的数目。<strong>路径</strong> 不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。</p>
+<p><strong>解析：</strong>我们利用先序遍历二叉树，记录下根节点 <code>root</code> 到当前节点 <code>p</code> 的路径上除当前节点以外所有节点的前缀和，在已保存的路径前缀和中查找是否存在前缀和刚好等于当前节点到根节点的前缀和 <code>curr</code> 减去 <code>targetSum</code>。</p>
+<ul>
+<li>对于空路径我们也需要保存预先处理一下，此时因为空路径不经过任何节点，因此它的前缀和为 <code>0</code>。</li>
+<li>假设根节点为 <code>root</code>，我们当前刚好访问节点 <code>node</code>，则此时从根节点 <code>root</code> 到节点 <code>node</code> 的路径（无重复节点）刚好为 <code>root→p1→p2→…→pk→node</code>，此时我们可以已经保存了节点<code> p1,p2,p3,…,pk</code>的前缀和，并且计算出了节点 <code>node</code> 的前缀和。</li>
+<li>假设当前从根节点 <code>root</code> 到节点 <code>node</code> 的前缀和为 <code>curr</code>，则此时我们在已保存的前缀和查找是否存在前缀和刚好等于 <code>curr−targetSum</code>。假设从根节点 <code>root</code> 到节点 <code>node</code> 的路径中存在节点 <code>pi</code> 到根节点 <code>root</code> 的前缀和为 <code>curr−targetSum</code>，则节点 <code>pi+1</code>到 <code>node</code> 的路径上所有节点的和一定为 <code>targetSum</code>。</li>
+<li>我们利用深度搜索遍历树，当我们退出当前节点时，我们需要及时更新已经保存的前缀和。</li>
+</ul>
+<p><img src="/2024/05/08/hot100/1715153496446-152.png"></p>
+<h4 id="236-二叉树的最近公共祖先😤"><a href="#236-二叉树的最近公共祖先😤" class="headerlink" title="236. 二叉树的最近公共祖先😤"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a>😤</h4><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<p><strong>解析：</strong>先给出递归函数的定义：给该函数输入三个参数 <code>root</code>，<code>p</code>，<code>q</code>，它会返回一个节点：</p>
+<ul>
+<li>情况 1，如果 <code>p</code> 和 <code>q</code> 都在以 <code>root</code> 为根的树中，函数返回的即使 <code>p</code> 和 <code>q</code> 的最近公共祖先节点。</li>
+<li>情况 2，那如果 <code>p</code> 和 <code>q</code> 都不在以 <code>root</code> 为根的树中怎么办呢？函数理所当然地返回 <code>null</code> 呗。</li>
+<li>情况 3，那如果 <code>p</code> 和 <code>q</code> 只有一个存在于 <code>root</code> 为根的树中呢？函数就会返回那个节点。</li>
+</ul>
+<p>根据这个定义，分情况讨论：</p>
+<ul>
+<li>情况 1，如果 <code>p</code> 和 <code>q</code> 都在以 <code>root</code> 为根的树中，那么 <code>left</code> 和 <code>right</code> 一定分别是 <code>p</code> 和 <code>q</code>（从 base case 看出来的）。</li>
+<li>情况 2，如果 <code>p</code> 和 <code>q</code> 都不在以 <code>root</code> 为根的树中，直接返回 <code>null</code>。</li>
+<li>情况 3，如果 <code>p</code> 和 <code>q</code> 只有一个存在于 <code>root</code> 为根的树中，函数返回该节点。</li>
+</ul>
+<p><img src="/2024/05/08/hot100/1715153527762-155.png"></p>
+<h4 id="124-二叉树中的最大路径和😡"><a href="#124-二叉树中的最大路径和😡" class="headerlink" title="124. 二叉树中的最大路径和😡"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/">124. 二叉树中的最大路径和</a>😡</h4><p>二叉树中的 <strong>路径</strong> 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。同一个节点在一条路径序列中 <strong>至多出现一次</strong> 。该路径 <strong>至少包含一个</strong> 节点，且不一定经过根节点。<strong>路径和</strong> 是路径中各节点值的总和。给你一个二叉树的根节点 <code>root</code> ，返回其 <strong>最大路径和</strong> 。</p>
+<p><strong>解析：</strong>考虑实现一个简化的函数 <code>maxGain(node)</code>，该函数计算二叉树中的一个节点的最大贡献值，具体而言，就是在以该节点为根节点的子树中寻找以该节点为起点的一条路径，使得该路径上的节点值之和最大。</p>
+<p>具体而言，该函数的计算如下:</p>
+<ul>
+<li>空节点的最大贡献值等于 <code>0</code>。</li>
+<li>非空节点的最大贡献值等于节点值与其子节点中的最大贡献值之和（对于叶节点而言，最大贡献值等于节点值）。</li>
+</ul>
+<p>上述计算过程是递归的过程，因此，对根节点调用函数 <code>maxGain</code>，即可得到每个节点的最大贡献值。</p>
+<p>根据函数 <code>maxGain</code> 得到每个节点的最大贡献值之后，如何得到二叉树的最大路径和？对于二叉树中的一个节点，该节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值，如果子节点的最大贡献值为正，则计入该节点的最大路径和，否则不计入该节点的最大路径和。维护一个全局变量 <code>maxSum</code> 存储最大路径和，在递归过程中更新 <code>maxSum</code> 的值，最后得到的 <code>maxSum</code> 的值即为二叉树中的最大路径和。</p>
+<p><img src="/2024/05/08/hot100/1715153555321-158.png"></p>
 
                 
             </div>
