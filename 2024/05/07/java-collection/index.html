@@ -530,8 +530,9 @@
 <p><strong>底层操作机制源码分析</strong></p>
 <ol>
 <li><p>ArrayList中维护了一个Object类型的数组，// transient 表示瞬间，短暂的，表示该属性不会被序列化</p>
-<pre><code>elementData(transient Object[] elementData)
-</code></pre>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elementData(transient Object[] elementData)</span><br></pre></td></tr></tbody></table></figure>
+
+
 </li>
 <li><p>当创建ArrayList对象时，如果使用的是无参构造器，则初始elementData容量为0，第1次添加，则扩容elementData为10，如需要再次扩容，则扩容elementData为1.5倍。</p>
 </li>
@@ -552,8 +553,9 @@
 <p><img src="/2024/05/07/java-collection/clip_image028.jpg"></p>
 </li>
 <li><p>底层也是一个对象数组</p>
-<pre><code>peotected Object[] elementData
-</code></pre>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">peotected Object[] elementData</span><br></pre></td></tr></tbody></table></figure>
+
+
 </li>
 <li><p>是线程同步的，线程安全，操作方法带有synchronized</p>
 </li>
