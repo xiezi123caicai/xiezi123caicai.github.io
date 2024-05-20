@@ -497,7 +497,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><h4 id="1757-可回收且低脂的产品"><a href="#1757-可回收且低脂的产品" class="headerlink" title="1757. 可回收且低脂的产品"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/recyclable-and-low-fat-products/">1757. 可回收且低脂的产品</a></h4><p>表：<code>Products</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | product_id  | int     |
@@ -505,12 +505,12 @@
 | recyclable  | enum    |
 +-------------+---------+
 product_id 是该表的主键（具有唯一值的列）。
-low_fats 是枚举类型，取值为以下两种 ('Y', 'N')，其中 'Y' 表示该产品是低脂产品，'N' 表示不是低脂产品。
-recyclable 是枚举类型，取值为以下两种 ('Y', 'N')，其中 'Y' 表示该产品可回收，而 'N' 表示不可回收。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+low_fats 是枚举类型，取值为以下两种 <span class="token punctuation">(</span><span class="token string">'Y'</span><span class="token punctuation">,</span> <span class="token string">'N'</span><span class="token punctuation">)</span>，其中 <span class="token string">'Y'</span> 表示该产品是低脂产品，<span class="token string">'N'</span> 表示不是低脂产品。
+recyclable 是枚举类型，取值为以下两种 <span class="token punctuation">(</span><span class="token string">'Y'</span><span class="token punctuation">,</span> <span class="token string">'N'</span><span class="token punctuation">)</span>，其中 <span class="token string">'Y'</span> 表示该产品可回收，而 <span class="token string">'N'</span> 表示不可回收。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>编写解决方案找出既是低脂又是可回收的产品编号。返回结果 <strong>无顺序要求</strong> 。返回结果格式如下例所示：</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Products 表：
 +-------------+----------+------------+
 | product_id  | low_fats | recyclable |
@@ -531,11 +531,11 @@ Products 表：
 解释：
 只有产品 id 为 1 和 3 的产品，既是低脂又是可回收的产品。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT product_id FROM Products 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT product_id FROM Products 
 WHERE low_fats = "Y" AND recyclable = "Y";<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="584-寻找用户推荐人"><a href="#584-寻找用户推荐人" class="headerlink" title="584. 寻找用户推荐人"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-customer-referee/">584. 寻找用户推荐人</a></h4><p>表: <code>Customer</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -547,8 +547,8 @@ WHERE low_fats = "Y" AND recyclable = "Y";<span aria-hidden="true" class="line-n
 
 <p>找出那些 <strong>没有被</strong> <code>id = 2</code> 的客户 <strong>推荐</strong> 的客户的姓名。以 <strong>任意顺序</strong> 返回结果表。结果格式如下所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入： 
-Customer 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入： 
+Customer <span class="token property">表</span><span class="token punctuation">:</span>
 +----+------+------------+
 | id | name | referee_id |
 +----+------+------------+
@@ -570,11 +570,11 @@ Customer 表:
 +------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>MySQL 使用三值逻辑 —— TRUE, FALSE 和 UNKNOWN。任何与 NULL 值进行的比较都会与第三种值 UNKNOWN 做比较。这个“任何值”包括 NULL 本身！这就是为什么 MySQL 提供 IS NULL 和 IS NOT NULL 两种操作来对 NULL 特殊判断。</p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT name FROM Customer 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT name FROM Customer 
 WHERE referee_id &lt;&gt; 2 OR referee_id IS NULL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="595-大的国家"><a href="#595-大的国家" class="headerlink" title="595. 大的国家"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/big-countries/">595. 大的国家</a></h4><p><code>World</code> 表：</p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | name        | varchar |
@@ -593,7 +593,7 @@ name 是该表的主键（具有唯一值的列）。
 </ul>
 <p>编写解决方案找出 <strong>大国</strong> 的国家名称、人口和面积。按 <strong>任意顺序</strong> 返回结果表。返回结果格式如下例所示。</p>
 <p><strong>示例：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 World 表：
 +-------------+-----------+---------+------------+--------------+
 | name        | continent | area    | population | gdp          |
@@ -612,11 +612,11 @@ World 表：
 | Algeria     | 37100000   | 2381741 |
 +-------------+------------+---------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT name, population, area FROM World 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT name, population, area FROM World 
 WHERE area &gt;= 3000000 OR population &gt;= 25000000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="1148-文章浏览-I"><a href="#1148-文章浏览-I" class="headerlink" title="1148. 文章浏览 I"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/article-views-i/">1148. 文章浏览 I</a></h4><p><code>Views</code> 表：</p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | article_id    | int     |
@@ -630,7 +630,7 @@ WHERE area &gt;= 3000000 OR population &gt;= 25000000<span aria-hidden="true" cl
 
 <p>请查询出所有浏览过自己文章的作者结果按照 <code>id</code> 升序排列。查询结果的格式如下所示：</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Views 表：
 +------------+-----------+-----------+------------+
 | article_id | author_id | viewer_id | view_date  |
@@ -653,11 +653,11 @@ Views 表：
 +------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在 SELECT 语句中使用 <strong>DISTINCT</strong> 关键字来从表 Views 中检索唯一元素。达到去重作用。</p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT DISTINCT author_id id FROM Views
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT DISTINCT author_id id FROM Views
 WHERE author_id = viewer_id ORDER BY id;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="1683-无效的推文"><a href="#1683-无效的推文" class="headerlink" title="1683. 无效的推文"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/invalid-tweets/">1683. 无效的推文</a></h4><p>表：<code>Tweets</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+----------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+----------------+---------+
 | Column Name    | Type    |
 +----------------+---------+
 | tweet_id       | int     |
@@ -668,7 +668,7 @@ WHERE author_id = viewer_id ORDER BY id;<span aria-hidden="true" class="line-num
 
 <p> 查询所有无效推文的编号（ID）。当推文内容中的字符数<strong>严格大于</strong> <code>15</code> 时，该推文是无效的。以<strong>任意顺序</strong>返回结果表。查询结果格式如下所示：</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Tweets 表：
 +----------+----------------------------------+
 | tweet_id | content                          |
@@ -688,11 +688,11 @@ Tweets 表：
 推文 2 的长度 length = 32。该推文是无效的。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>用于计算字符串中字符数的最佳函数是 **<a href="https://leetcode.cn/link/?target=https://dev.mysql.com/doc/refman/5.7/en/string-functions.html%23function_char-length">CHAR_LENGTH(str)</a>**，它返回字符串 <code>str</code> 的长度。</p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT tweet_id FROM Tweets
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT tweet_id FROM Tweets
 WHERE CHAR_LENGTH(content) &gt; 15;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><h4 id="1378-使用唯一标识码替换员工ID"><a href="#1378-使用唯一标识码替换员工ID" class="headerlink" title="1378. 使用唯一标识码替换员工ID"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-employee-id-with-the-unique-identifier/">1378. 使用唯一标识码替换员工ID</a></h4><p><code>Employees</code> 表：</p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | id            | int     |
@@ -702,19 +702,19 @@ WHERE CHAR_LENGTH(content) &gt; 15;<span aria-hidden="true" class="line-numbers-
 这张表的每一行分别代表了某公司其中一位员工的名字和 ID 。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> <code>EmployeeUNI</code> 表：</p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | id            | int     |
 | unique_id     | int     |
 +---------------+---------+
-在 SQL 中，(id, unique_id) 是这张表的主键。
+在 SQL 中，<span class="token punctuation">(</span>id<span class="token punctuation">,</span> unique_id<span class="token punctuation">)</span> 是这张表的主键。
 这张表的每一行包含了该公司某位员工的 ID 和他的唯一标识码（unique ID）。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>展示每位用户的 <strong>唯一标识码（unique ID ）</strong>；如果某位员工没有唯一标识码，使用 null 填充即可。你可以以 <strong>任意</strong> 顺序返回结果表。返回结果的格式如下例所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Employees 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Employees <span class="token property">表</span><span class="token punctuation">:</span>
 +----+----------+
 | id | name     |
 +----+----------+
@@ -724,7 +724,7 @@ Employees 表:
 | 90 | Winston  |
 | 3  | Jonathan |
 +----+----------+
-EmployeeUNI 表:
+EmployeeUNI <span class="token property">表</span><span class="token punctuation">:</span>
 +----+-----------+
 | id | unique_id |
 +----+-----------+
@@ -743,17 +743,17 @@ EmployeeUNI 表:
 | 1         | Jonathan |
 +-----------+----------+
 解释：
-Alice and Bob 没有唯一标识码, 因此我们使用 null 替代。
+Alice and Bob 没有唯一标识码<span class="token punctuation">,</span> 因此我们使用 null 替代。
 Meir 的唯一标识码是 2 。
 Winston 的唯一标识码是 3 。
 Jonathan 唯一标识码是 1 。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>首先执行LEFT JOIN操作，将两个表的数据基于 id 列进行组合。同样，我们使用 LEFT JOIN 来确保将所有 Employees 表中的行都包含在结果中，即使在 EmployeeUNI 表中没有匹配的行。</p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT uni.unique_id, ees.name FROM Employees ees
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT uni.unique_id, ees.name FROM Employees ees
 LEFT JOIN EmployeeUNI uni ON ees.id = uni.id;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="1068-产品销售分析-I"><a href="#1068-产品销售分析-I" class="headerlink" title="1068. 产品销售分析 I"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/product-sales-analysis-i/">1068. 产品销售分析 I</a></h4><p>销售表 <code>Sales</code>：</p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+-------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+-------+
 | Column Name | Type  |
 +-------------+-------+
 | sale_id     | int   |
@@ -762,13 +762,13 @@ LEFT JOIN EmployeeUNI uni ON ees.id = uni.id;<span aria-hidden="true" class="lin
 | quantity    | int   |
 | price       | int   |
 +-------------+-------+
-(sale_id, year) 是销售表 Sales 的主键（具有唯一值的列的组合）。
+<span class="token punctuation">(</span>sale_id<span class="token punctuation">,</span> year<span class="token punctuation">)</span> 是销售表 Sales 的主键（具有唯一值的列的组合）。
 product_id 是关联到产品表 Product 的外键（reference 列）。
 该表的每一行显示 product_id 在某一年的销售情况。
-注意: price 表示每单位价格。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token property">注意</span><span class="token punctuation">:</span> price 表示每单位价格。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>产品表 <code>Product</code>：</p>
-<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | product_id   | int     |
@@ -779,7 +779,7 @@ product_id 是表的主键（具有唯一值的列）。
 
 <p> 编写解决方案，以获取 <code>Sales</code> 表中所有 <code>sale_id</code> 对应的 <code>product_name</code> 以及该产品的所有 <code>year</code> 和 <code>price</code> 。返回结果表 <strong>无顺序要求</strong> 。结果格式示例如下。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Sales 表：
 +---------+------------+------+----------+-------+
 | sale_id | product_id | year | quantity | price |
@@ -805,11 +805,11 @@ Product 表：
 | Apple        | 2011  | 9000  |
 +--------------+-------+-------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT p.product_name, s.year, s.price FROM Sales s
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT p.product_name, s.year, s.price FROM Sales s
 JOIN Product p ON s.product_id = p.product_id;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="1581-进店却未进行过交易的顾客"><a href="#1581-进店却未进行过交易的顾客" class="headerlink" title="1581. 进店却未进行过交易的顾客"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/customer-who-visited-but-did-not-make-any-transactions/">1581. 进店却未进行过交易的顾客</a></h4><p>表：<code>Visits</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | visit_id    | int     |
@@ -819,7 +819,7 @@ visit_id 是该表中具有唯一值的列。
 该表包含有关光临过购物中心的顾客的信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 表：<code>Transactions</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+----------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+----------------+---------+
 | Column Name    | Type    |
 +----------------+---------+
 | transaction_id | int     |
@@ -831,7 +831,7 @@ transaction_id 是该表中具有唯一值的列。
 
 <p>有一些顾客可能光顾了购物中心但没有进行交易。请你编写一个解决方案，来查找这些顾客的 ID ，以及他们只光顾不交易的次数。返回以 <strong>任何顺序</strong> 排序的结果表。返回结果格式如下例所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">输入</span><span class="token punctuation">:</span>
 Visits
 +----------+-------------+
 | visit_id | customer_id |
@@ -854,7 +854,7 @@ Transactions
 | 12             | 1        | 910    |
 | 13             | 2        | 970    |
 +----------------+----------+--------+
-输出:
+<span class="token property">输出</span><span class="token punctuation">:</span>
 +-------------+----------------+
 | customer_id | count_no_trans |
 +-------------+----------------+
@@ -862,7 +862,7 @@ Transactions
 | 30          | 1              |
 | 96          | 1              |
 +-------------+----------------+
-解释:
+<span class="token property">解释</span><span class="token punctuation">:</span>
 ID = 23 的顾客曾经逛过一次购物中心，并在 ID = 12 的访问期间进行了一笔交易。
 ID = 9 的顾客曾经逛过一次购物中心，并在 ID = 13 的访问期间进行了一笔交易。
 ID = 30 的顾客曾经去过购物中心，并且没有进行任何交易。
@@ -871,12 +871,12 @@ ID = 96 的顾客曾经去过购物中心，并且没有进行任何交易。
 如我们所见，ID 为 30 和 96 的顾客一次没有进行任何交易就去了购物中心。顾客 54 也两次访问了购物中心并且没有进行任何交易。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以Visits作为左表连Transactions， 没有只浏览光顾的的transaction_id是null</p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT v.customer_id, COUNT(v.customer_id) count_no_trans FROM Visits v
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT v.customer_id, COUNT(v.customer_id) count_no_trans FROM Visits v
 LEFT JOIN Transactions t ON v.visit_id = t.visit_id
 WHERE transaction_id IS NULL GROUP BY v.customer_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="197-上升的温度"><a href="#197-上升的温度" class="headerlink" title="197. 上升的温度"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rising-temperature/">197. 上升的温度</a></h4><p>表： <code>Weather</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | id            | int     |
@@ -889,7 +889,7 @@ id 是该表具有唯一值的列。
 
 <p>编写解决方案，找出与之前（昨天的）日期相比温度更高的所有日期的 <code>id</code> 。返回结果 <strong>无顺序要求</strong> 。结果格式如下例子所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Weather 表：
 +----+------------+-------------+
 | id | recordDate | Temperature |
@@ -915,12 +915,12 @@ Weather 表：
 <li>利用日期函数**datediff()**找到了昨天的日期</li>
 <li>比较日期的大小</li>
 </ol>
-<pre class="line-numbers language-none"><code class="language-none">SELECT w1.id FROM Weather w1, Weather w2
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT w1.id FROM Weather w1, Weather w2
 WHERE datediff(w1.recordDate, w2.recordDate) = 1
 AND w1.Temperature &gt; w2.Temperature;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1661-每台机器的进程平均运行时间"><a href="#1661-每台机器的进程平均运行时间" class="headerlink" title="1661. 每台机器的进程平均运行时间"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/average-time-of-process-per-machine/">1661. 每台机器的进程平均运行时间</a></h4><p>表: <code>Activity</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+----------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+----------------+---------+
 | Column Name    | Type    |
 +----------------+---------+
 | machine_id     | int     |
@@ -929,18 +929,18 @@ AND w1.Temperature &gt; w2.Temperature;<span aria-hidden="true" class="line-numb
 | timestamp      | float   |
 +----------------+---------+
 该表展示了一家工厂网站的用户活动。
-(machine_id, process_id, activity_type) 是当前表的主键（具有唯一值的列的组合）。
+<span class="token punctuation">(</span>machine_id<span class="token punctuation">,</span> process_id<span class="token punctuation">,</span> activity_type<span class="token punctuation">)</span> 是当前表的主键（具有唯一值的列的组合）。
 machine_id 是一台机器的ID号。
 process_id 是运行在各机器上的进程ID号。
-activity_type 是枚举类型 ('start', 'end')。
-timestamp 是浮点类型,代表当前时间(以秒为单位)。
-'start' 代表该进程在这台机器上的开始运行时间戳 , 'end' 代表该进程在这台机器上的终止运行时间戳。
+activity_type 是枚举类型 <span class="token punctuation">(</span><span class="token string">'start'</span><span class="token punctuation">,</span> <span class="token string">'end'</span><span class="token punctuation">)</span>。
+timestamp 是浮点类型<span class="token punctuation">,</span>代表当前时间<span class="token punctuation">(</span>以秒为单位<span class="token punctuation">)</span>。
+<span class="token string">'start'</span> 代表该进程在这台机器上的开始运行时间戳 <span class="token punctuation">,</span> <span class="token string">'end'</span> 代表该进程在这台机器上的终止运行时间戳。
 同一台机器，同一个进程都有一对开始时间戳和结束时间戳，而且开始时间戳永远在结束时间戳前面。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 现在有一个工厂网站由几台机器运行，每台机器上运行着 <strong>相同数量的进程</strong> 。编写解决方案，计算每台机器各自完成一个进程任务的平均耗时。完成一个进程任务的时间指进程的<code>'end' 时间戳</code> 减去 <code>'start' 时间戳</code>。平均耗时通过计算每台机器上所有进程任务的总耗费时间除以机器上的总进程数量获得。结果表必须包含<code>machine_id（机器ID）</code> 和对应的 <strong>average time（平均耗时）</strong> 别名 <code>processing_time</code>，且<strong>四舍五入保留3位小数。</strong>以 <strong>任意顺序</strong> 返回表。具体参考例子如下。</p>
 <p> <strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Activity table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Activity <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+------------+---------------+-----------+
 | machine_id | process_id | activity_type | timestamp |
 +------------+------------+---------------+-----------+
@@ -966,19 +966,19 @@ Activity table:
 | 2          | 1.456           |
 +------------+-----------------+
 解释：
-一共有3台机器,每台机器运行着两个进程.
-机器 0 的平均耗时: ((1.520 - 0.712) + (4.120 - 3.140)) / 2 = 0.894
-机器 1 的平均耗时: ((1.550 - 0.550) + (1.420 - 0.430)) / 2 = 0.995
-机器 2 的平均耗时: ((4.512 - 4.100) + (5.000 - 2.500)) / 2 = 1.456<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+一共有3台机器<span class="token punctuation">,</span>每台机器运行着两个进程.
+机器 0 <span class="token property">的平均耗时</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>1.520 - 0.712<span class="token punctuation">)</span> + <span class="token punctuation">(</span>4.120 - 3.140<span class="token punctuation">)</span><span class="token punctuation">)</span> / 2 = 0.894
+机器 1 <span class="token property">的平均耗时</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>1.550 - 0.550<span class="token punctuation">)</span> + <span class="token punctuation">(</span>1.420 - 0.430<span class="token punctuation">)</span><span class="token punctuation">)</span> / 2 = 0.995
+机器 2 <span class="token property">的平均耗时</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>4.512 - 4.100<span class="token punctuation">)</span> + <span class="token punctuation">(</span>5.000 - 2.500<span class="token punctuation">)</span><span class="token punctuation">)</span> / 2 = 1.456<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>CASE WHEN条件表达式函数：类似JAVA中的IF ELSE语句。</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT machine_id, ROUND(SUM(CASE WHEN activity_type = 'end' THEN timestamp ELSE -timestamp END) /
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT machine_id, ROUND(SUM(CASE WHEN activity_type = 'end' THEN timestamp ELSE -timestamp END) /
 COUNT(DISTINCT process_id), 3) AS processing_time
 FROM activity
 GROUP BY machine_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="577-员工奖金"><a href="#577-员工奖金" class="headerlink" title="577. 员工奖金"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/employee-bonus/">577. 员工奖金</a></h4><p>表：<code>Employee</code> </p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | empId       | int     |
@@ -990,20 +990,20 @@ empId 是该表中具有唯一值的列。
 该表的每一行都表示员工的姓名和 id，以及他们的工资和经理的 id。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>表：<code>Bonus</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+------+
 | Column Name | Type |
 +-------------+------+
 | empId       | int  |
 | bonus       | int  |
 +-------------+------+
 empId 是该表具有唯一值的列。
-empId 是 Employee 表中 empId 的外键(reference 列)。
+empId 是 Employee 表中 empId 的外键<span class="token punctuation">(</span>reference 列<span class="token punctuation">)</span>。
 该表的每一行都包含一个员工的 id 和他们各自的奖金。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>编写解决方案，报告每个奖金 <strong>少于</strong> <code>1000</code> 的员工的姓名和奖金数额。以 <strong>任意顺序</strong> 返回结果表。结果格式如下所示。 </p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Employee table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Employee <span class="token property">table</span><span class="token punctuation">:</span>
 +-------+--------+------------+--------+
 | empId | name   | supervisor | salary |
 +-------+--------+------------+--------+
@@ -1012,7 +1012,7 @@ Employee table:
 | 2     | Dan    | 3          | 2000   |
 | 4     | Thomas | 3          | 4000   |
 +-------+--------+------------+--------+
-Bonus table:
+Bonus <span class="token property">table</span><span class="token punctuation">:</span>
 +-------+-------+
 | empId | bonus |
 +-------+-------+
@@ -1028,12 +1028,12 @@ Bonus table:
 | Dan  | 500   |
 +------+-------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT e.name, b.bonus FROM Employee e 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT e.name, b.bonus FROM Employee e 
 LEFT JOIN Bonus b ON e.empId = b.empId
 WHERE bonus &lt; 1000 OR bonus IS NULL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1280-学生们参加各科测试的次数"><a href="#1280-学生们参加各科测试的次数" class="headerlink" title="1280. 学生们参加各科测试的次数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/students-and-examinations/">1280. 学生们参加各科测试的次数</a></h4><p>学生表: <code>Students</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | student_id    | int     |
@@ -1043,7 +1043,7 @@ WHERE bonus &lt; 1000 OR bonus IS NULL;<span aria-hidden="true" class="line-numb
 该表内的每一行都记录有学校一名学生的信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 科目表: <code>Subjects</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | subject_name | varchar |
@@ -1052,7 +1052,7 @@ WHERE bonus &lt; 1000 OR bonus IS NULL;<span aria-hidden="true" class="line-numb
 每一行记录学校的一门科目名称。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 考试表: <code>Examinations</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | student_id   | int     |
@@ -1064,8 +1064,8 @@ WHERE bonus &lt; 1000 OR bonus IS NULL;<span aria-hidden="true" class="line-numb
 
 <p> 查询出每个学生参加每一门科目测试的次数，结果按 <code>student_id</code> 和 <code>subject_name</code> 排序。查询结构格式如下所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Students table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Students <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+--------------+
 | student_id | student_name |
 +------------+--------------+
@@ -1074,7 +1074,7 @@ Students table:
 | 13         | John         |
 | 6          | Alex         |
 +------------+--------------+
-Subjects table:
+Subjects <span class="token property">table</span><span class="token punctuation">:</span>
 +--------------+
 | subject_name |
 +--------------+
@@ -1082,7 +1082,7 @@ Subjects table:
 | Physics      |
 | Programming  |
 +--------------+
-Examinations table:
+Examinations <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+--------------+
 | student_id | subject_name |
 +------------+--------------+
@@ -1117,8 +1117,8 @@ Examinations table:
 +------------+--------------+--------------+----------------+
 解释：
 结果表需包含所有学生和所有科目（即便测试次数为0）：
-Alice 参加了 3 次数学测试, 2 次物理测试，以及 1 次编程测试；
-Bob 参加了 1 次数学测试, 1 次编程测试，没有参加物理测试；
+Alice 参加了 3 次数学测试<span class="token punctuation">,</span> 2 次物理测试，以及 1 次编程测试；
+Bob 参加了 1 次数学测试<span class="token punctuation">,</span> 1 次编程测试，没有参加物理测试；
 Alex 啥测试都没参加；
 John  参加了数学、物理、编程测试各 1 次。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -1133,13 +1133,13 @@ John  参加了数学、物理、编程测试各 1 次。<span aria-hidden="true
 </li>
 </ol>
 <p><img src="/2024/05/09/sql50basic/1687917598-fVLFwZ-screenshot_20230628_095940.png"></p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT st.student_id, st.student_name, su.subject_name, COUNT(e.subject_name) attended_exams
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT st.student_id, st.student_name, su.subject_name, COUNT(e.subject_name) attended_exams
 FROM Students st JOIN Subjects su LEFT JOIN Examinations e 
 ON e.student_id = st.student_id AND e.subject_name = su.subject_name
 GROUP BY st.student_id, su.subject_name ORDER BY st.student_id, su.subject_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="570-至少有5名直接下属的经理"><a href="#570-至少有5名直接下属的经理" class="headerlink" title="570. 至少有5名直接下属的经理"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/managers-with-at-least-5-direct-reports/">570. 至少有5名直接下属的经理</a></h4><p>表: <code>Employee</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -1154,8 +1154,8 @@ id 是此表的主键（具有唯一值的列）。
 
 <p> 编写一个解决方案，找出至少有<strong>五个直接下属</strong>的经理。以 <strong>任意顺序</strong> 返回结果表。查询结果格式如下所示。</p>
 <p><strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入: 
-Employee 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">输入</span><span class="token punctuation">:</span> 
+Employee <span class="token property">表</span><span class="token punctuation">:</span>
 +-----+-------+------------+-----------+
 | id  | name  | department | managerId |
 +-----+-------+------------+-----------+
@@ -1166,7 +1166,7 @@ Employee 表:
 | 105 | Anne  | A          | 101       |
 | 106 | Ron   | B          | 101       |
 +-----+-------+------------+-----------+
-输出: 
+<span class="token property">输出</span><span class="token punctuation">:</span> 
 +------+
 | name |
 +------+
@@ -1174,12 +1174,12 @@ Employee 表:
 +------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>将两份 Employee 表用 join 操作连接。Manager 表代表经理，Report 表代表下属，每对 Manager.Id=Report.ManagerId 的情况代表此经理的一名下属。再根据 Manager.Id 分组，对 Report.Id 求和得到每个经理对应的下属数量。</p>
-<pre class="line-numbers language-none"><code class="language-none">SELECT Manager.name name FROM Employee Manager JOIN Employee Report
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT Manager.name name FROM Employee Manager JOIN Employee Report
 ON Manager.id = Report.managerId GROUP BY Manager.id
 HAVING COUNT(Report.id) &gt;= 5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1934-确认率"><a href="#1934-确认率" class="headerlink" title="1934. 确认率"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/confirmation-rate/">1934. 确认率</a></h4><p>表: <code>Signups</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+----------------+----------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+----------------+----------+
 | Column Name    | Type     |
 +----------------+----------+
 | user_id        | int      |
@@ -1189,43 +1189,43 @@ User_id是该表的主键。
 每一行都包含ID为user_id的用户的注册时间信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 表: <code>Confirmations</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+----------------+----------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+----------------+----------+
 | Column Name    | Type     |
 +----------------+----------+
 | user_id        | int      |
 | time_stamp     | datetime |
 | action         | ENUM     |
 +----------------+----------+
-(user_id, time_stamp)是该表的主键。
+<span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> time_stamp<span class="token punctuation">)</span>是该表的主键。
 user_id是一个引用到注册表的外键。
-action是类型为('confirmed'， 'timeout')的ENUM
-该表的每一行都表示ID为user_id的用户在time_stamp请求了一条确认消息，该确认消息要么被确认('confirmed')，要么被过期('timeout')。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+action是类型为<span class="token punctuation">(</span><span class="token string">'confirmed'</span>， <span class="token string">'timeout'</span><span class="token punctuation">)</span>的ENUM
+该表的每一行都表示ID为user_id的用户在time_stamp请求了一条确认消息，该确认消息要么被确认<span class="token punctuation">(</span><span class="token string">'confirmed'</span><span class="token punctuation">)</span>，要么被过期<span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span>。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 用户的 <strong>确认率</strong> 是 <code>'confirmed'</code> 消息的数量除以请求的确认消息的总数。没有请求任何确认消息的用户的确认率为 <code>0</code> 。确认率四舍五入到 <strong>小数点后两位</strong> 。编写一个SQL查询来查找每个用户的 确认率 。以 任意顺序 返回结果表。查询结果格式如下所示。</p>
 <p><strong>示例1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Signups 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Signups <span class="token property">表</span><span class="token punctuation">:</span>
 +---------+---------------------+
 | user_id | time_stamp          |
 +---------+---------------------+
-| 3       | 2020-03-21 10:16:13 |
-| 7       | 2020-01-04 13:57:59 |
-| 2       | 2020-07-29 23:09:44 |
-| 6       | 2020-12-09 10:39:37 |
+| 3       | 2020-03-21 10<span class="token punctuation">:</span>16<span class="token punctuation">:</span>13 |
+| 7       | 2020-01-04 13<span class="token punctuation">:</span>57<span class="token punctuation">:</span>59 |
+| 2       | 2020-07-29 23<span class="token punctuation">:</span>09<span class="token punctuation">:</span>44 |
+| 6       | 2020-12-09 10<span class="token punctuation">:</span>39<span class="token punctuation">:</span>37 |
 +---------+---------------------+
-Confirmations 表:
+Confirmations <span class="token property">表</span><span class="token punctuation">:</span>
 +---------+---------------------+-----------+
 | user_id | time_stamp          | action    |
 +---------+---------------------+-----------+
-| 3       | 2021-01-06 03:30:46 | timeout   |
-| 3       | 2021-07-14 14:00:00 | timeout   |
-| 7       | 2021-06-12 11:57:29 | confirmed |
-| 7       | 2021-06-13 12:58:28 | confirmed |
-| 7       | 2021-06-14 13:59:27 | confirmed |
-| 2       | 2021-01-22 00:00:00 | confirmed |
-| 2       | 2021-02-28 23:59:59 | timeout   |
+| 3       | 2021-01-06 03<span class="token punctuation">:</span>30<span class="token punctuation">:</span>46 | timeout   |
+| 3       | 2021-07-14 14<span class="token punctuation">:</span>00<span class="token punctuation">:</span>00 | timeout   |
+| 7       | 2021-06-12 11<span class="token punctuation">:</span>57<span class="token punctuation">:</span>29 | confirmed |
+| 7       | 2021-06-13 12<span class="token punctuation">:</span>58<span class="token punctuation">:</span>28 | confirmed |
+| 7       | 2021-06-14 13<span class="token punctuation">:</span>59<span class="token punctuation">:</span>27 | confirmed |
+| 2       | 2021-01-22 00<span class="token punctuation">:</span>00<span class="token punctuation">:</span>00 | confirmed |
+| 2       | 2021-02-28 23<span class="token punctuation">:</span>59<span class="token punctuation">:</span>59 | timeout   |
 +---------+---------------------+-----------+
-输出: 
+<span class="token property">输出</span><span class="token punctuation">:</span> 
 +---------+-------------------+
 | user_id | confirmation_rate |
 +---------+-------------------+
@@ -1234,7 +1234,7 @@ Confirmations 表:
 | 7       | 1.00              |
 | 2       | 0.50              |
 +---------+-------------------+
-解释:
+<span class="token property">解释</span><span class="token punctuation">:</span>
 用户 6 没有请求任何确认消息。确认率为 0。
 用户 3 进行了 2 次请求，都超时了。确认率为 0。
 用户 7 提出了 3 个请求，所有请求都得到了确认。确认率为 1。
@@ -1245,13 +1245,13 @@ Confirmations 表:
 <li>使用<code>IFNULL</code>把NULL值转换为0</li>
 <li>最后使用<code>ROUND</code>精确到小数点后两位</li>
 </ol>
-<pre class="line-numbers language-none"><code class="language-none">SELECT s.user_id, ROUND(IFNULL(AVG(c.action = "confirmed"), 0),2) confirmation_rate
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT s.user_id, ROUND(IFNULL(AVG(c.action = "confirmed"), 0),2) confirmation_rate
 FROM Signups s LEFT JOIN Confirmations c ON s.user_id = c.user_id
 GROUP BY s.user_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>或者sum(if(c.action = ‘confirmed’, 1, 0)) / count(*)</p>
 <h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><h4 id="620-有趣的电影"><a href="#620-有趣的电影" class="headerlink" title="620. 有趣的电影"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/not-boring-movies/">620. 有趣的电影</a></h4><p>表：<code>cinema</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+----------------+----------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+----------------+----------+
 | Column Name    | Type     |
 +----------------+----------+
 | id             | int      |
@@ -1259,13 +1259,13 @@ GROUP BY s.user_id<span aria-hidden="true" class="line-numbers-rows"><span></spa
 | description    | varchar  |
 | rating         | float    |
 +----------------+----------+
-id 是该表的主键(具有唯一值的列)。
+id 是该表的主键<span class="token punctuation">(</span>具有唯一值的列<span class="token punctuation">)</span>。
 每行包含有关电影名称、类型和评级的信息。
-评级为 [0,10] 范围内的小数点后 2 位浮点数。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+评级为 [0<span class="token punctuation">,</span>10] 范围内的小数点后 2 位浮点数。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 编写解决方案，找出所有影片描述为 <strong>非</strong> <code>boring</code> (不无聊) 的并且 <strong>id 为奇数</strong> 的影片。返回结果按 <code>rating</code> <strong>降序排列</strong>。结果格式如下示例。 </p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 +---------+-----------+--------------+-----------+
 |   id    | movie     |  description |  rating   |
 +---------+-----------+--------------+-----------+
@@ -1283,15 +1283,15 @@ id 是该表的主键(具有唯一值的列)。
 |   1     | War       |   great 3D   |   8.9     |
 +---------+-----------+--------------+-----------+
 解释：
-我们有三部电影，它们的 id 是奇数:1、3 和 5。id = 3 的电影是 boring 的，所以我们不把它包括在答案中。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+我们有三部电影，它们的 id <span class="token property">是奇数</span><span class="token punctuation">:</span>1、3 和 5。id = 3 的电影是 boring 的，所以我们不把它包括在答案中。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT id, movie, description, rating FROM cinema
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT id, movie, description, rating FROM cinema
 WHERE description != 'boring' AND id % 2 = 1
 ORDER BY rating DESC;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>也可以用使用 <code>MOD()</code> 函数 取模运算</p>
 <h4 id="1251-平均售价"><a href="#1251-平均售价" class="headerlink" title="1251. 平均售价"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/average-selling-price/">1251. 平均售价</a></h4><p>表：<code>Prices</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | product_id    | int     |
@@ -1299,12 +1299,12 @@ ORDER BY rating DESC;<span aria-hidden="true" class="line-numbers-rows"><span></
 | end_date      | date    |
 | price         | int     |
 +---------------+---------+
-(product_id，start_date，end_date) 是 prices 表的主键（具有唯一值的列的组合）。
+<span class="token punctuation">(</span>product_id，start_date，end_date<span class="token punctuation">)</span> 是 prices 表的主键（具有唯一值的列的组合）。
 prices 表的每一行表示的是某个产品在一段时期内的价格。
 每个产品的对应时间段是不会重叠的，这也意味着同一个产品的价格时段不会出现交叉。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 表：<code>UnitsSold</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | product_id    | int     |
@@ -1316,8 +1316,8 @@ prices 表的每一行表示的是某个产品在一段时期内的价格。
 
 <p> 编写解决方案以查找每种产品的平均售价。<code>average_price</code> 应该 <strong>四舍五入到小数点后两位</strong>。返回结果表 <strong>无顺序要求</strong> 。结果格式如下例所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Prices table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Prices <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+------------+------------+--------+
 | product_id | start_date | end_date   | price  |
 +------------+------------+------------+--------+
@@ -1326,7 +1326,7 @@ Prices table:
 | 2          | 2019-02-01 | 2019-02-20 | 15     |
 | 2          | 2019-02-21 | 2019-03-31 | 30     |
 +------------+------------+------------+--------+
-UnitsSold table:
+UnitsSold <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+---------------+-------+
 | product_id | purchase_date | units |
 +------------+---------------+-------+
@@ -1344,26 +1344,26 @@ UnitsSold table:
 +------------+---------------+
 解释：
 平均售价 = 产品总价 / 销售的产品数量。
-产品 1 的平均售价 = ((100 * 5)+(15 * 20) )/ 115 = 6.96
-产品 2 的平均售价 = ((200 * 15)+(30 * 30) )/ 230 = 16.96<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+产品 1 的平均售价 = <span class="token punctuation">(</span><span class="token punctuation">(</span>100 * 5<span class="token punctuation">)</span>+<span class="token punctuation">(</span>15 * 20<span class="token punctuation">)</span> <span class="token punctuation">)</span>/ 115 = 6.96
+产品 2 的平均售价 = <span class="token punctuation">(</span><span class="token punctuation">(</span>200 * 15<span class="token punctuation">)</span>+<span class="token punctuation">(</span>30 * 30<span class="token punctuation">)</span> <span class="token punctuation">)</span>/ 230 = 16.96<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT p.product_id, ROUND(SUM(price * units) / SUM(units), 2) average_price
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT p.product_id, ROUND(SUM(price * units) / SUM(units), 2) average_price
 FROM Prices p JOIN UnitsSold u ON p.product_id = u.product_id 
 AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1075-项目员工-I"><a href="#1075-项目员工-I" class="headerlink" title="1075. 项目员工 I"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/project-employees-i/">1075. 项目员工 I</a></h4><p>项目表 <code>Project</code>： </p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | project_id  | int     |
 | employee_id | int     |
 +-------------+---------+
-主键为 (project_id, employee_id)。
+主键为 <span class="token punctuation">(</span>project_id<span class="token punctuation">,</span> employee_id<span class="token punctuation">)</span>。
 employee_id 是员工表 Employee 表的外键。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>员工表 <code>Employee</code>：</p>
-<pre class="line-numbers language-none"><code class="language-none">+------------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+------------------+---------+
 | Column Name      | Type    |
 +------------------+---------+
 | employee_id      | int     |
@@ -1373,7 +1373,7 @@ employee_id 是员工表 Employee 表的外键。<span aria-hidden="true" class=
 主键是 employee_id。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 请写一个 SQL 语句，查询每一个项目中员工的 <strong>平均</strong> 工作年限，<strong>精确到小数点后两位</strong>。查询结果的格式如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">Project 表：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">Project 表：
 +-------------+-------------+
 | project_id  | employee_id |
 +-------------+-------------+
@@ -1401,36 +1401,36 @@ Result 表：
 | 1           | 2.00          |
 | 2           | 2.50          |
 +-------------+---------------+
-第一个项目中，员工的平均工作年限是 (3 + 2 + 1) / 3 = 2.00；第二个项目中，员工的平均工作年限是 (3 + 2) / 2 = 2.50<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+第一个项目中，员工的平均工作年限是 <span class="token punctuation">(</span>3 + 2 + 1<span class="token punctuation">)</span> / 3 = 2.00；第二个项目中，员工的平均工作年限是 <span class="token punctuation">(</span>3 + 2<span class="token punctuation">)</span> / 2 = 2.50<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT p.project_id, ROUND(SUM(e.experience_years) / COUNT(*), 2) AS average_years
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT p.project_id, ROUND(SUM(e.experience_years) / COUNT(*), 2) AS average_years
 FROM Project p JOIN Employee e ON p.employee_id  = e.employee_id
 GROUP BY project_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>也可以用(AVG函数)  AVG(e.experience_years),2)</p>
 <h4 id="1633-各赛事的用户注册率"><a href="#1633-各赛事的用户注册率" class="headerlink" title="1633. 各赛事的用户注册率"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/percentage-of-users-attended-a-contest/">1633. 各赛事的用户注册率</a></h4><p>用户表： <code>Users</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | user_id     | int     |
 | user_name   | varchar |
 +-------------+---------+
-user_id 是该表的主键(具有唯一值的列)。
+user_id 是该表的主键<span class="token punctuation">(</span>具有唯一值的列<span class="token punctuation">)</span>。
 该表中的每行包括用户 ID 和用户名。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 注册表： <code>Register</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | contest_id  | int     |
 | user_id     | int     |
 +-------------+---------+
-(contest_id, user_id) 是该表的主键(具有唯一值的列的组合)。
+<span class="token punctuation">(</span>contest_id<span class="token punctuation">,</span> user_id<span class="token punctuation">)</span> 是该表的主键<span class="token punctuation">(</span>具有唯一值的列的组合<span class="token punctuation">)</span>。
 该表中的每行包含用户的 ID 和他们注册的赛事。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 编写解决方案统计出各赛事的用户注册百分率，保留两位小数。返回的结果表按 <code>percentage</code> 的 <strong>降序</strong> 排序，若相同则按 <code>contest_id</code> 的 <strong>升序</strong> 排序。返回结果如下示例所示。</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Users 表：
 +---------+-----------+
 | user_id | user_name |
@@ -1469,15 +1469,15 @@ Register 表：
 +------------+------------+
 解释：
 所有用户都注册了 208、209 和 210 赛事，因此这些赛事的注册率为 100% ，我们按 contest_id 的降序排序加入结果表中。
-Alice 和 Alex 注册了 215 赛事，注册率为 ((2/3) * 100) = 66.67%
-Bob 注册了 207 赛事，注册率为 ((1/3) * 100) = 33.33%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Alice 和 Alex 注册了 215 赛事，注册率为 <span class="token punctuation">(</span><span class="token punctuation">(</span>2/3<span class="token punctuation">)</span> * 100<span class="token punctuation">)</span> = 66.67%
+Bob 注册了 207 赛事，注册率为 <span class="token punctuation">(</span><span class="token punctuation">(</span>1/3<span class="token punctuation">)</span> * 100<span class="token punctuation">)</span> = 33.33%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT r.contest_id, ROUND(COUNT(u.user_id) * 100 / (SELECT COUNT(*) FROM Users), 2) AS percentage
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT r.contest_id, ROUND(COUNT(u.user_id) * 100 / (SELECT COUNT(*) FROM Users), 2) AS percentage
 FROM Register r JOIN Users u ON r.user_id = u.user_id
 GROUP BY contest_id ORDER BY percentage DESC, contest_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1211-查询结果的质量和占比"><a href="#1211-查询结果的质量和占比" class="headerlink" title="1211. 查询结果的质量和占比"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/queries-quality-and-percentage/">1211. 查询结果的质量和占比</a></h4><p><code>Queries</code> 表： </p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | query_name  | varchar |
@@ -1500,8 +1500,8 @@ GROUP BY contest_id ORDER BY percentage DESC, contest_id<span aria-hidden="true"
 </blockquote>
 <p>编写解决方案，找出每次的 <code>query_name</code> 、 <code>quality</code> 和 <code>poor_query_percentage</code>。<code>quality</code> 和 <code>poor_query_percentage</code> 都应 <strong>四舍五入到小数点后两位</strong> 。以 <strong>任意顺序</strong> 返回结果表。结果格式如下所示：</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Queries table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Queries <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+-------------------+----------+--------+
 | query_name | result            | position | rating |
 +------------+-------------------+----------+--------+
@@ -1520,18 +1520,18 @@ Queries table:
 | Cat        | 0.66    | 33.33                 |
 +------------+---------+-----------------------+
 解释：
-Dog 查询结果的质量为 ((5 / 1) + (5 / 2) + (1 / 200)) / 3 = 2.50
-Dog 查询结果的劣质查询百分比为 (1 / 3) * 100 = 33.33
+Dog 查询结果的质量为 <span class="token punctuation">(</span><span class="token punctuation">(</span>5 / 1<span class="token punctuation">)</span> + <span class="token punctuation">(</span>5 / 2<span class="token punctuation">)</span> + <span class="token punctuation">(</span>1 / 200<span class="token punctuation">)</span><span class="token punctuation">)</span> / 3 = 2.50
+Dog 查询结果的劣质查询百分比为 <span class="token punctuation">(</span>1 / 3<span class="token punctuation">)</span> * 100 = 33.33
 
-Cat 查询结果的质量为 ((2 / 5) + (3 / 3) + (4 / 7)) / 3 = 0.66
-Cat 查询结果的劣质查询百分比为 (1 / 3) * 100 = 33.33<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Cat 查询结果的质量为 <span class="token punctuation">(</span><span class="token punctuation">(</span>2 / 5<span class="token punctuation">)</span> + <span class="token punctuation">(</span>3 / 3<span class="token punctuation">)</span> + <span class="token punctuation">(</span>4 / 7<span class="token punctuation">)</span><span class="token punctuation">)</span> / 3 = 0.66
+Cat 查询结果的劣质查询百分比为 <span class="token punctuation">(</span>1 / 3<span class="token punctuation">)</span> * 100 = 33.33<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT query_name, ROUND(SUM(rating / position) / COUNT(*), 2) AS quality,
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT query_name, ROUND(SUM(rating / position) / COUNT(*), 2) AS quality,
 ROUND(SUM(IF(rating &lt; 3, 1, 0)) * 100 / COUNT(*), 2) AS poor_query_percentage
 FROM Queries GROUP BY query_name HAVING query_name IS NOT NULL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1193-每月交易-I"><a href="#1193-每月交易-I" class="headerlink" title="1193. 每月交易 I"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/monthly-transactions-i/">1193. 每月交易 I</a></h4><p>表：<code>Transactions</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | id            | int     |
@@ -1542,12 +1542,12 @@ FROM Queries GROUP BY query_name HAVING query_name IS NOT NULL<span aria-hidden=
 +---------------+---------+
 id 是这个表的主键。
 该表包含有关传入事务的信息。
-state 列类型为 ["approved", "declined"] 之一。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+state 列类型为 [<span class="token string">"approved"</span><span class="token punctuation">,</span> <span class="token string">"declined"</span>] 之一。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 编写一个 sql 查询来查找每个月和每个国家/地区的事务数及其总金额、已批准的事务数及其总金额。以 <strong>任意顺序</strong> 返回结果表。查询结果格式如下所示。</p>
 <p> <strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Transactions table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Transactions <span class="token property">table</span><span class="token punctuation">:</span>
 +------+---------+----------+--------+------------+
 | id   | country | state    | amount | trans_date |
 +------+---------+----------+--------+------------+
@@ -1565,14 +1565,14 @@ Transactions table:
 | 2019-01  | DE      | 1           | 1              | 2000               | 2000                  |
 +----------+---------+-------------+----------------+--------------------+-----------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT DATE_FORMAT(trans_date, '%Y-%m') month, country, COUNT(*) trans_count,
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT DATE_FORMAT(trans_date, '%Y-%m') month, country, COUNT(*) trans_count,
 COUNT(IF(state = 'approved', 1, NULL)) approved_count, SUM(amount) trans_total_amount,
 SUM(IF(state = 'approved', amount, 0)) approved_total_amount
 FROM Transactions
 GROUP BY month, country<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1174-即时食物配送-II"><a href="#1174-即时食物配送-II" class="headerlink" title="1174. 即时食物配送 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/immediate-food-delivery-ii/">1174. 即时食物配送 II</a></h4><p>配送表: <code>Delivery</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-----------------------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-----------------------------+---------+
 | Column Name                 | Type    |
 +-----------------------------+---------+
 | delivery_id                 | int     |
@@ -1585,7 +1585,7 @@ delivery_id 是该表中具有唯一值的列。
 
 <p>如果顾客期望的配送日期和下单日期相同，则该订单称为 「<strong>即时订单</strong>」，否则称为「<strong>计划订单</strong>」。「<strong>首次订单</strong>」是顾客最早创建的订单。我们保证一个顾客只会有一个「首次订单」。编写解决方案以获取即时订单在所有用户的首次订单中的比例。<strong>保留两位小数。</strong>结果示例如下所示：</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Delivery 表：
 +-------------+-------------+------------+-----------------------------+
 | delivery_id | customer_id | order_date | customer_pref_delivery_date |
@@ -1611,12 +1611,12 @@ Delivery 表：
 4 号顾客的 7 号订单是首次订单，并且是即时订单。
 因此，一半顾客的首次订单是即时的。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT ROUND (SUM(order_date = customer_pref_delivery_date) * 100 / count(*), 2) as immediate_percentage
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT ROUND (SUM(order_date = customer_pref_delivery_date) * 100 / count(*), 2) as immediate_percentage
 FROM Delivery WHERE (customer_id, order_date) IN (
 SELECT customer_id, min(order_date) FROM delivery GROUP BY customer_id)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="550-游戏玩法分析-IV"><a href="#550-游戏玩法分析-IV" class="headerlink" title="550. 游戏玩法分析 IV"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/game-play-analysis-iv/">550. 游戏玩法分析 IV</a></h4><p>Table: <code>Activity</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | player_id    | int     |
@@ -1630,8 +1630,8 @@ SELECT customer_id, min(order_date) FROM delivery GROUP BY customer_id)<span ari
 
 <p> 编写解决方案，报告在首次登录的第二天再次登录的玩家的 <strong>比率</strong>，<strong>四舍五入到小数点后两位</strong>。换句话说，你需要计算从首次登录日期开始至少连续两天登录的玩家的数量，然后除以玩家总数。结果格式如下所示：</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Activity table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Activity <span class="token property">table</span><span class="token punctuation">:</span>
 +-----------+-----------+------------+--------------+
 | player_id | device_id | event_date | games_played |
 +-----------+-----------+------------+--------------+
@@ -1650,26 +1650,26 @@ Activity table:
 解释：
 只有 ID 为 1 的玩家在第一天登录后才重新登录，所以答案是 1/3 = 0.33<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT ROUND(AVG(a.event_date IS NOT NULL), 2) fraction FROM
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT ROUND(AVG(a.event_date IS NOT NULL), 2) fraction FROM
 (SELECT player_id, MIN(event_date) as login FROM activity
 GROUP BY player_id) p LEFT JOIN activity a
 ON p.player_id = a.player_id and DATEDIFF(a.event_date, p.login) = 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="排序和分组"><a href="#排序和分组" class="headerlink" title="排序和分组"></a>排序和分组</h3><h4 id="2356-每位教师所教授的科目种类的数量"><a href="#2356-每位教师所教授的科目种类的数量" class="headerlink" title="2356. 每位教师所教授的科目种类的数量"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-unique-subjects-taught-by-each-teacher/">2356. 每位教师所教授的科目种类的数量</a></h4><p>表: <code>Teacher</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+------+
 | Column Name | Type |
 +-------------+------+
 | teacher_id  | int  |
 | subject_id  | int  |
 | dept_id     | int  |
 +-------------+------+
-在 SQL 中，(subject_id, dept_id) 是该表的主键。
+在 SQL 中，<span class="token punctuation">(</span>subject_id<span class="token punctuation">,</span> dept_id<span class="token punctuation">)</span> 是该表的主键。
 该表中的每一行都表示带有 teacher_id 的教师在系 dept_id 中教授科目 subject_id。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 查询每位老师在大学里教授的科目种类的数量。以 <strong>任意顺序</strong> 返回结果表。查询结果格式示例如下。</p>
 <p> <strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入: 
-Teacher 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">输入</span><span class="token punctuation">:</span> 
+Teacher <span class="token property">表</span><span class="token punctuation">:</span>
 +------------+------------+---------+
 | teacher_id | subject_id | dept_id |
 +------------+------------+---------+
@@ -1681,28 +1681,28 @@ Teacher 表:
 | 2          | 3          | 1       |
 | 2          | 4          | 1       |
 +------------+------------+---------+
-输出:  
+<span class="token property">输出</span><span class="token punctuation">:</span>  
 +------------+-----+
 | teacher_id | cnt |
 +------------+-----+
 | 1          | 2   |
 | 2          | 4   |
 +------------+-----+
-解释: 
-教师 1:
+<span class="token property">解释</span><span class="token punctuation">:</span> 
+教师 1<span class="token punctuation">:</span>
   - 他在 3、4 系教科目 2。
   - 他在 3 系教科目 3。
-教师 2:
+教师 2<span class="token punctuation">:</span>
   - 他在 1 系教科目 1。
   - 他在 1 系教科目 2。
   - 他在 1 系教科目 3。
   - 他在 1 系教科目 4。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT teacher_id, COUNT(DISTINCT subject_id) cnt FROM Teacher
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT teacher_id, COUNT(DISTINCT subject_id) cnt FROM Teacher
 GROUP BY teacher_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="1141-查询近30天活跃用户数"><a href="#1141-查询近30天活跃用户数" class="headerlink" title="1141. 查询近30天活跃用户数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/user-activity-for-the-past-30-days-i/">1141. 查询近30天活跃用户数</a></h4><p>表：<code>Activity</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | user_id       | int     |
@@ -1711,14 +1711,14 @@ GROUP BY teacher_id<span aria-hidden="true" class="line-numbers-rows"><span></sp
 | activity_type | enum    |
 +---------------+---------+
 该表没有包含重复数据。
-activity_type 列是 ENUM(category) 类型， 从 ('open_session'， 'end_session'， 'scroll_down'， 'send_message') 取值。
+activity_type 列是 <span class="token function">ENUM</span><span class="token punctuation">(</span>category<span class="token punctuation">)</span> 类型， 从 <span class="token punctuation">(</span><span class="token string">'open_session'</span>， <span class="token string">'end_session'</span>， <span class="token string">'scroll_down'</span>， <span class="token string">'send_message'</span><span class="token punctuation">)</span> 取值。
 该表记录社交媒体网站的用户活动。
 注意，每个会话只属于一个用户。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 编写解决方案，统计截至 <code>2019-07-27</code>（包含2019-07-27），近 <code>30</code> 天的每日活跃用户数（当天只要有一条活动记录，即为活跃用户）。以 <strong>任意顺序</strong> 返回结果表。结果示例如下。</p>
 <p> <strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Activity table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Activity <span class="token property">table</span><span class="token punctuation">:</span>
 +---------+------------+---------------+---------------+
 | user_id | session_id | activity_date | activity_type |
 +---------+------------+---------------+---------------+
@@ -1743,12 +1743,12 @@ Activity table:
 +------------+--------------+ 
 解释：注意非活跃用户的记录不需要展示。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT activity_date day, COUNT(DISTINCT user_id) active_users
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT activity_date day, COUNT(DISTINCT user_id) active_users
 FROM Activity WHERE DATEDIFF("2019-07-27", activity_date) BETWEEN 0 AND 29
 GROUP BY activity_date<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1084-销售分析III"><a href="#1084-销售分析III" class="headerlink" title="1084. 销售分析III"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sales-analysis-iii/">1084. 销售分析III</a></h4><p>表： <code>Product</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | product_id   | int     |
@@ -1759,7 +1759,7 @@ product_id 是该表的主键（具有唯一值的列）。
 该表的每一行显示每个产品的名称和价格。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>表：<code>Sales</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | seller_id   | int     |
@@ -1775,8 +1775,8 @@ product_id 是 Product 表的外键（reference 列）。
 
 <p> 编写解决方案，报告<code>2019年春季</code>才售出的产品。即<strong>仅</strong>在<code>**2019-01-01**</code>至<code>**2019-03-31**</code>（含）之间出售的商品。以 <strong>任意顺序</strong> 返回结果表。结果格式如下所示。 </p>
 <p><strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Product table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Product <span class="token property">table</span><span class="token punctuation">:</span>
 +------------+--------------+------------+
 | product_id | product_name | unit_price |
 +------------+--------------+------------+
@@ -1784,7 +1784,7 @@ Product table:
 | 2          | G4           | 800        |
 | 3          | iPhone       | 1400       |
 +------------+--------------+------------+
-Sales table:
+Sales <span class="token property">table</span><span class="token punctuation">:</span>
 +-----------+------------+----------+------------+----------+-------+
 | seller_id | product_id | buyer_id | sale_date  | quantity | price |
 +-----------+------------+----------+------------+----------+-------+
@@ -1799,31 +1799,31 @@ Sales table:
 +-------------+--------------+
 | 1           | S8           |
 +-------------+--------------+
-解释:
+<span class="token property">解释</span><span class="token punctuation">:</span>
 id 为 1 的产品仅在 2019 年春季销售。
 id 为 2 的产品在 2019 年春季销售，但也在 2019 年春季之后销售。
 id 为 3 的产品在 2019 年春季之后销售。
 我们只返回 id 为 1 的产品，因为它是 2019 年春季才销售的产品。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT p.product_id, p.product_name FROM Product p
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT p.product_id, p.product_name FROM Product p
 JOIN Sales s ON p.product_id = s.product_id
 GROUP BY product_id
 HAVING max(sale_date)&lt;='2019-03-31' and min(sale_date)&gt;='2019-01-01'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="596-超过5名学生的课"><a href="#596-超过5名学生的课" class="headerlink" title="596. 超过5名学生的课"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/classes-more-than-5-students/">596. 超过5名学生的课</a></h4><p>表: <code>Courses</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | student     | varchar |
 | class       | varchar |
 +-------------+---------+
-在 SQL 中，(student, class)是该表的主键列。
+在 SQL 中，<span class="token punctuation">(</span>student<span class="token punctuation">,</span> class<span class="token punctuation">)</span>是该表的主键列。
 该表的每一行表示学生的名字和他们注册的班级。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 查询 <strong>至少有5个学生</strong> 的所有班级。以 <strong>任意顺序</strong> 返回结果表。查询结果格式如下所示。 </p>
 <p><strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入: 
-Courses table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">输入</span><span class="token punctuation">:</span> 
+Courses <span class="token property">table</span><span class="token punctuation">:</span>
 +---------+----------+
 | student | class    |
 +---------+----------+
@@ -1837,35 +1837,35 @@ Courses table:
 | H       | Math     |
 | I       | Math     |
 +---------+----------+
-输出: 
+<span class="token property">输出</span><span class="token punctuation">:</span> 
 +---------+ 
 | class   | 
 +---------+ 
 | Math    | 
 +---------+
-解释: 
+<span class="token property">解释</span><span class="token punctuation">:</span> 
 -数学课有6个学生，所以我们包括它。
 -英语课有1名学生，所以我们不包括它。
 -生物课有1名学生，所以我们不包括它。
 -计算机课有1个学生，所以我们不包括它。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT class FROM
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT class FROM
 (SELECT class, COUNT(*) stu FROM Courses GROUP BY class) c
 WHERE stu &gt;= 5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1729-求关注者的数量"><a href="#1729-求关注者的数量" class="headerlink" title="1729. 求关注者的数量"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-followers-count/">1729. 求关注者的数量</a></h4><p>表： <code>Followers</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+------+
 | Column Name | Type |
 +-------------+------+
 | user_id     | int  |
 | follower_id | int  |
 +-------------+------+
-(user_id, follower_id) 是这个表的主键（具有唯一值的列的组合）。
+<span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> follower_id<span class="token punctuation">)</span> 是这个表的主键（具有唯一值的列的组合）。
 该表包含一个关注关系中关注者和用户的编号，其中关注者关注用户。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 编写解决方案，对于每一个用户，返回该用户的关注者数量。按 <code>user_id</code> 的顺序返回结果表。查询结果的格式如下示例所示。</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">输入：
 Followers 表：
 +---------+-------------+
 | user_id | follower_id |
@@ -1884,15 +1884,15 @@ Followers 表：
 | 2       | 2              |
 +---------+----------------+
 解释：
-0 的关注者有 {1}
-1 的关注者有 {0}
-2 的关注者有 {0,1}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+0 的关注者有</span> <span class="token punctuation">{</span>1<span class="token punctuation">}</span>
+<span class="token selector">1 的关注者有</span> <span class="token punctuation">{</span>0<span class="token punctuation">}</span>
+<span class="token selector">2 的关注者有</span> <span class="token punctuation">{</span>0<span class="token punctuation">,</span>1<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT user_id, COUNT(follower_id) followers_count
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT user_id, COUNT(follower_id) followers_count
 FROM Followers GROUP BY user_id ORDER BY user_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="619-只出现一次的最大数字"><a href="#619-只出现一次的最大数字" class="headerlink" title="619. 只出现一次的最大数字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/biggest-single-number/">619. 只出现一次的最大数字</a></h4><p><code>MyNumbers</code> 表：</p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+------+
 | Column Name | Type |
 +-------------+------+
 | num         | int  |
@@ -1902,7 +1902,7 @@ FROM Followers GROUP BY user_id ORDER BY user_id<span aria-hidden="true" class="
 
 <p> <strong>单一数字</strong> 是在 <code>MyNumbers</code> 表中只出现一次的数字。找出最大的 <strong>单一数字</strong> 。如果不存在 <strong>单一数字</strong> ，则返回 <code>null</code> 。查询结果如下例所示。</p>
 <p><strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 MyNumbers 表：
 +-----+
 | num |
@@ -1925,12 +1925,12 @@ MyNumbers 表：
 解释：单一数字有 1、4、5 和 6 。
 6 是最大的单一数字，返回 6 。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT MAX(num) num FROM
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT MAX(num) num FROM
 (SELECT num, COUNT(num) len FROM MyNumbers GROUP BY num) c 
 WHERE len = 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1045-买下所有产品的客户"><a href="#1045-买下所有产品的客户" class="headerlink" title="1045. 买下所有产品的客户"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/customers-who-bought-all-products/">1045. 买下所有产品的客户</a></h4><p><code>Customer</code> 表：</p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | customer_id | int     |
@@ -1938,7 +1938,7 @@ WHERE len = 1<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 +-------------+---------+
 该表可能包含重复的行。
 customer_id 不为 NULL。
-product_key 是 Product 表的外键(reference 列)。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+product_key 是 Product 表的外键<span class="token punctuation">(</span>reference 列<span class="token punctuation">)</span>。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>Product</code> 表：</p>
 <pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
@@ -1950,7 +1950,7 @@ product_key 是这张表的主键（具有唯一值的列）。<span aria-hidden
 
 <p> 编写解决方案，报告 <code>Customer</code> 表中购买了 <code>Product</code> 表中所有产品的客户的 id。返回结果表 <strong>无顺序要求</strong> 。返回结果格式如下所示。</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Customer 表：
 +-------------+-------------+
 | customer_id | product_key |
@@ -1978,11 +1978,11 @@ Product 表：
 解释：
 购买了所有产品（5 和 6）的客户的 id 是 1 和 3 。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT customer_id FROM Customer GROUP BY customer_id
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT customer_id FROM Customer GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key) = (SELECT COUNT(*) FROM Product)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h3 id="高级查询和连接"><a href="#高级查询和连接" class="headerlink" title="高级查询和连接"></a>高级查询和连接</h3><h4 id="1731-每位经理的下属员工数量"><a href="#1731-每位经理的下属员工数量" class="headerlink" title="1731. 每位经理的下属员工数量"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/the-number-of-employees-which-report-to-each-employee/">1731. 每位经理的下属员工数量</a></h4><p>表：<code>Employees</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+----------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+----------+
 | Column Name | Type     |
 +-------------+----------+
 | employee_id | int      |
@@ -1995,7 +1995,7 @@ employee_id 是这个表中具有不同值的列。
 
 <p> 对于此问题，我们将至少有一个其他员工需要向他汇报的员工，视为一个经理。编写一个解决方案来返回需要听取汇报的所有经理的 ID、名称、直接向该经理汇报的员工人数，以及这些员工的平均年龄，其中该平均年龄需要四舍五入到最接近的整数。返回的结果集需要按照 <code>employee_id</code> 进行排序。结果的格式如下：</p>
 <p><strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Employees 表：
 +-------------+---------+------------+-----+
 | employee_id | name    | reports_to | age |
@@ -2012,30 +2012,30 @@ Employees 表：
 | 9           | Hercy | 2             | 39          |
 +-------------+-------+---------------+-------------+
 解释：
-Hercy 有两个需要向他汇报的员工, 他们是 Alice and Bob. 他们的平均年龄是 (41+36)/2 = 38.5, 四舍五入的结果是 39.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Hercy 有两个需要向他汇报的员工<span class="token punctuation">,</span> 他们是 Alice and Bob. 他们的平均年龄是 <span class="token punctuation">(</span>41+36<span class="token punctuation">)</span>/2 = 38.5<span class="token punctuation">,</span> 四舍五入的结果是 39.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT a.employee_id, a.name, COUNT(b.employee_id) reports_count,
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT a.employee_id, a.name, COUNT(b.employee_id) reports_count,
 ROUND(AVG(b.age), 0) average_age FROM Employees a
 JOIN Employees b ON a.employee_id = b.reports_to
 GROUP BY a.employee_id order by a.employee_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1789-员工的直属部门"><a href="#1789-员工的直属部门" class="headerlink" title="1789. 员工的直属部门"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/primary-department-for-each-employee/">1789. 员工的直属部门</a></h4><p>表：<code>Employee</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   |  Type   |
 +---------------+---------+
 | employee_id   | int     |
 | department_id | int     |
 | primary_flag  | varchar |
 +---------------+---------+
-这张表的主键为 employee_id, department_id (具有唯一值的列的组合)
+这张表的主键为 employee_id<span class="token punctuation">,</span> department_id <span class="token punctuation">(</span>具有唯一值的列的组合<span class="token punctuation">)</span>
 employee_id 是员工的ID
 department_id 是部门的ID，表示员工与该部门有关系
-primary_flag 是一个枚举类型，值分别为('Y', 'N'). 如果值为'Y',表示该部门是员工的直属部门。 如果值是'N',则否<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+primary_flag 是一个枚举类型，值分别为<span class="token punctuation">(</span><span class="token string">'Y'</span><span class="token punctuation">,</span> <span class="token string">'N'</span><span class="token punctuation">)</span>. 如果值为<span class="token string">'Y'</span><span class="token punctuation">,</span>表示该部门是员工的直属部门。 如果值是<span class="token string">'N'</span><span class="token punctuation">,</span>则否<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 一个员工可以属于多个部门。当一个员工加入<strong>超过一个部门</strong>的时候，他需要决定哪个部门是他的直属部门。请注意，当员工只加入一个部门的时候，那这个部门将默认为他的直属部门，虽然表记录的值为<code>'N'</code>.请编写解决方案，查出员工所属的直属部门。返回结果 <strong>没有顺序要求</strong> 。返回结果格式如下例子所示：</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Employee table:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Employee <span class="token property">table</span><span class="token punctuation">:</span>
 +-------------+---------------+--------------+
 | employee_id | department_id | primary_flag |
 +-------------+---------------+--------------+
@@ -2062,33 +2062,33 @@ Employee table:
 - 员工 3 的直属部门是 3
 - 员工 4 的直属部门是 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT employee_id, department_id FROM Employee
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT employee_id, department_id FROM Employee
 WHERE primary_flag = 'Y' or employee_id in
 (SELECT employee_id FROM Employee GROUP BY employee_id 
 HAVING COUNT(employee_id) = 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="610-判断三角形"><a href="#610-判断三角形" class="headerlink" title="610. 判断三角形"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/triangle-judgement/">610. 判断三角形</a></h4><p>表: <code>Triangle</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+------+
 | Column Name | Type |
 +-------------+------+
 | x           | int  |
 | y           | int  |
 | z           | int  |
 +-------------+------+
-在 SQL 中，(x, y, z)是该表的主键列。
+在 SQL 中，<span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">)</span>是该表的主键列。
 该表的每一行包含三个线段的长度。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>对每三个线段报告它们是否可以形成一个三角形。以 <strong>任意顺序</strong> 返回结果表。查询结果格式如下所示。</p>
 <p><strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入: 
-Triangle 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">输入</span><span class="token punctuation">:</span> 
+Triangle <span class="token property">表</span><span class="token punctuation">:</span>
 +----+----+----+
 | x  | y  | z  |
 +----+----+----+
 | 13 | 15 | 30 |
 | 10 | 20 | 15 |
 +----+----+----+
-输出: 
+<span class="token property">输出</span><span class="token punctuation">:</span> 
 +----+----+----+----------+
 | x  | y  | z  | triangle |
 +----+----+----+----------+
@@ -2096,11 +2096,11 @@ Triangle 表:
 | 10 | 20 | 15 | Yes      |
 +----+----+----+----------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT x, y, z, IF(x + y &gt; z AND x + z &gt; y AND 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT x, y, z, IF(x + y &gt; z AND x + z &gt; y AND 
 y + z &gt; x, 'Yes', 'No') triangle FROM Triangle<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h4 id="180-连续出现的数字"><a href="#180-连续出现的数字" class="headerlink" title="180. 连续出现的数字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/consecutive-numbers/">180. 连续出现的数字</a></h4><p>表：<code>Logs</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -2111,7 +2111,7 @@ id 是一个自增列。<span aria-hidden="true" class="line-numbers-rows"><span
 
 <p> 找出所有至少连续出现三次的数字。返回的结果表中的数据可以按 <strong>任意顺序</strong> 排列。结果格式如下面的例子所示：</p>
 <p> <strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Logs 表：
 +----+-----+
 | id | num |
@@ -2133,7 +2133,7 @@ Result 表：
 +-----------------+
 解释：1 是唯一连续出现至少三次的数字。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT DISTINCT Num ConsecutiveNums FROM (
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT DISTINCT Num ConsecutiveNums FROM (
 SELECT Num,COUNT(1) as SerialCount FROM 
 (SELECT Id,Num,
 row_number() over(order by id) -
@@ -2143,20 +2143,20 @@ GROUP BY Num,SerialNumberSubGroup HAVING COUNT(1) &gt;= 3) as Result<span aria-h
 
 <p>最新的一条用例通不过，如果同一个数id连续12，45出现，没法判断</p>
 <h4 id="1164-指定日期的产品价格"><a href="#1164-指定日期的产品价格" class="headerlink" title="1164. 指定日期的产品价格"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/product-price-at-a-given-date/">1164. 指定日期的产品价格</a></h4><p>产品数据表: <code>Products</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | product_id    | int     |
 | new_price     | int     |
 | change_date   | date    |
 +---------------+---------+
-(product_id, change_date) 是此表的主键（具有唯一值的列组合）。
+<span class="token punctuation">(</span>product_id<span class="token punctuation">,</span> change_date<span class="token punctuation">)</span> 是此表的主键（具有唯一值的列组合）。
 这张表的每一行分别记录了 某产品 在某个日期 更改后 的新价格。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p> 编写一个解决方案，找出在 <code>2019-08-16</code> 时全部产品的价格，假设所有产品在修改前的价格都是 <code>10</code> <strong>。</strong>以 <strong>任意顺序</strong> 返回结果表。结果格式如下例所示。</p>
 <p> <strong>示例 1:</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Products 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Products <span class="token property">表</span><span class="token punctuation">:</span>
 +------------+-----------+-------------+
 | product_id | new_price | change_date |
 +------------+-----------+-------------+
@@ -2176,7 +2176,7 @@ Products 表:
 | 3          | 10    |
 +------------+-------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT p1.product_id, IFNULL(p2.new_price, 10) price 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT p1.product_id, IFNULL(p2.new_price, 10) price 
 FROM (SELECT DISTINCT product_id FROM products) p1
 LEFT JOIN (SELECT product_id, new_price FROM products
 WHERE (product_id, change_date) IN (SELECT product_id,
@@ -2184,7 +2184,7 @@ Max(change_date) FROM products WHERE change_date &lt;= '2019-08-16'
 GROUP BY product_id)) p2 ON p1.product_id = p2.product_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1204-最后一个能进入巴士的人"><a href="#1204-最后一个能进入巴士的人" class="headerlink" title="1204. 最后一个能进入巴士的人"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/last-person-to-fit-in-the-bus/">1204. 最后一个能进入巴士的人</a></h4><p>表: <code>Queue</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | person_id   | int     |
@@ -2200,7 +2200,7 @@ weight 表示候车乘客的体重，以千克为单位。<span aria-hidden="tru
 
 <p> 有一队乘客在等着上巴士。然而，巴士有<code>1000</code> <strong>千克</strong> 的重量限制，所以其中一部分乘客可能无法上巴士。编写解决方案找出 <strong>最后一个</strong> 上巴士且不超过重量限制的乘客，并报告 <code>person_name</code> 。题目测试用例确保顺位第一的人可以上巴士且不会超重。返回结果格式如下所示。</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
 Queue 表
 +-----------+-------------+--------+------+
 | person_id | person_name | weight | turn |
@@ -2225,18 +2225,18 @@ Queue 表
 +------+----+-----------+--------+--------------+
 | 1    | 5  | Alice     | 250    | 250          |
 | 2    | 3  | Alex      | 350    | 600          |
-| 3    | 6  | John Cena | 400    | 1000         | (最后一个上巴士)
-| 4    | 2  | Marie     | 200    | 1200         | (无法上巴士)
+| 3    | 6  | John Cena | 400    | 1000         | <span class="token punctuation">(</span>最后一个上巴士<span class="token punctuation">)</span>
+| 4    | 2  | Marie     | 200    | 1200         | <span class="token punctuation">(</span>无法上巴士<span class="token punctuation">)</span>
 | 5    | 4  | Bob       | 175    | ___          |
 | 6    | 1  | Winston   | 500    | ___          |
 +------+----+-----------+--------+--------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT a.person_name FROM Queue a, Queue b 
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT a.person_name FROM Queue a, Queue b 
 WHERE a.turn &gt;= b.turn GROUP BY a.person_id
 HAVING SUM(b.weight) &lt;= 1000 ORDER BY a.turn DESC LIMIT 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="1907-按分类统计薪水"><a href="#1907-按分类统计薪水" class="headerlink" title="1907. 按分类统计薪水"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-salary-categories/">1907. 按分类统计薪水</a></h4><p>表: <code>Accounts</code></p>
-<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">+-------------+------+
 | 列名        | 类型  |
 +-------------+------+
 | account_id  | int  |
@@ -2253,8 +2253,8 @@ HAVING SUM(b.weight) &lt;= 1000 ORDER BY a.turn DESC LIMIT 1<span aria-hidden="t
 </ul>
 <p>结果表 <strong>必须</strong> 包含所有三个类别。 如果某个类别中没有帐户，则报告 <code>0</code> 。按 <strong>任意顺序</strong> 返回结果表。查询结果格式如下示例。</p>
 <p> <strong>示例 1：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">输入：
-Accounts 表:
+<pre class="line-numbers language-css" data-language="css"><code class="language-css">输入：
+Accounts <span class="token property">表</span><span class="token punctuation">:</span>
 +------------+--------+
 | account_id | income |
 +------------+--------+
@@ -2272,11 +2272,11 @@ Accounts 表:
 | High Salary    | 3              |
 +----------------+----------------+
 解释：
-低薪: 有一个账户 2.
-中等薪水: 没有.
-高薪: 有三个账户，他们是 3, 6和 8.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token property">低薪</span><span class="token punctuation">:</span> 有一个账户 2.
+<span class="token property">中等薪水</span><span class="token punctuation">:</span> 没有.
+<span class="token property">高薪</span><span class="token punctuation">:</span> 有三个账户，他们是 3<span class="token punctuation">,</span> 6和 8.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-none"><code class="language-none">SELECT 'Low Salary' category, COUNT(*) accounts_count
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT 'Low Salary' category, COUNT(*) accounts_count
 FROM Accounts WHERE income &lt; 20000
 union all
 SELECT 'Average Salary' category, COUNT(*) accounts_count
