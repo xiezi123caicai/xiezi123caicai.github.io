@@ -532,7 +532,7 @@
 <p><strong>底层操作机制源码分析</strong></p>
 <ol>
 <li><p>ArrayList中维护了一个Object类型的数组，// transient 表示瞬间，短暂的，表示该属性不会被序列化</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elementData(transient Object[] elementData)</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">elementData(transient Object[] elementData)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 </li>
@@ -555,7 +555,7 @@
 <p><img src="/2024/05/07/java-collection/clip_image028.jpg"></p>
 </li>
 <li><p>底层也是一个对象数组</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">peotected Object[] elementData</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">peotected Object[] elementData<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 </li>
