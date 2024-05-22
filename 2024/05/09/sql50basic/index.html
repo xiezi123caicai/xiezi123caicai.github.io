@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.3k
+                    15.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    44 分
+                    66 分
                 </div>
                 
 
@@ -2285,85 +2285,754 @@ union all
 SELECT 'High Salary' category, COUNT(*) accounts_count
 FROM Accounts WHERE income &gt; 50000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><h4 id="1978-上级经理已离职的公司员工"><a href="#1978-上级经理已离职的公司员工" class="headerlink" title="1978. 上级经理已离职的公司员工"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/employees-whose-manager-left-the-company/">1978. 上级经理已离职的公司员工</a></h4><p>表: <code>Employees</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+----------+
+| Column Name | Type     |
++-------------+----------+
+| employee_id | int      |
+| name        | varchar  |
+| manager_id  | int      |
+| salary      | int      |
++-------------+----------+
+在 SQL 中，employee_id 是这个表的主键。
+这个表包含了员工，他们的薪水和上级经理的id。
+有一些员工没有上级经理（其 manager_id 是空值）。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 查找这些员工的id，他们的薪水严格少于<code>$30000</code> 并且他们的上级经理已离职。当一个经理离开公司时，他们的信息需要从员工表中删除掉，但是表中的员工的<code>manager_id</code> 这一列还是设置的离职经理的id 。返回的结果按照<code>employee_id </code>从小到大排序。查询结果如下所示：</p>
+<p><strong>示例：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Employees table:
++-------------+-----------+------------+--------+
+| employee_id | name      | manager_id | salary |
++-------------+-----------+------------+--------+
+| 3           | Mila      | 9          | 60301  |
+| 12          | Antonella | null       | 31000  |
+| 13          | Emery     | null       | 67084  |
+| 1           | Kalel     | 11         | 21241  |
+| 9           | Mikaela   | null       | 50937  |
+| 11          | Joziah    | 6          | 28485  |
++-------------+-----------+------------+--------+
+输出：
++-------------+
+| employee_id |
++-------------+
+| 11          |
++-------------+
+解释：
+薪水少于 30000 美元的员工有 1 号(Kalel) 和 11号 (Joziah)。
+Kalel 的上级经理是 11 号员工，他还在公司上班(他是 Joziah )。
+Joziah 的上级经理是 6 号员工，他已经离职，因为员工表里面已经没有 6 号员工的信息了，它被删除了。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT employee_id FROM Employees
+WHERE salary &lt; 30000 AND manager_id NOT IN
+(SELECT employee_id FROM Employees) ORDER BY employee_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="626-换座位"><a href="#626-换座位" class="headerlink" title="626. 换座位"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/exchange-seats/">626. 换座位</a></h4><p>表: <code>Seat</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| student     | varchar |
++-------------+---------+
+id 是该表的主键（唯一值）列。
+该表的每一行都表示学生的姓名和 ID。
+id 是一个连续的增量。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>编写解决方案来交换每两个连续的学生的座位号。如果学生的数量是奇数，则最后一个学生的id不交换。按 <code>id</code> <strong>升序</strong> 返回结果表。查询结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入: 
+Seat 表:
++----+---------+
+| id | student |
++----+---------+
+| 1  | Abbot   |
+| 2  | Doris   |
+| 3  | Emerson |
+| 4  | Green   |
+| 5  | Jeames  |
++----+---------+
+输出: 
++----+---------+
+| id | student |
++----+---------+
+| 1  | Doris   |
+| 2  | Abbot   |
+| 3  | Green   |
+| 4  | Emerson |
+| 5  | Jeames  |
++----+---------+
+解释:
+请注意，如果学生人数为奇数，则不需要更换最后一名学生的座位。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>方法1：使用case</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT (CASE
+WHEN MOD(id, 2) != 0 AND counts != id THEN id + 1
+WHEN MOD(id, 2) != 0 AND counts = id THEN id
+ELSE id - 1 END) AS id, student FROM seat,
+(SELECT COUNT(*) AS counts FROM seat) AS seat_counts
+ORDER BY id ASC<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>方法2：使用位操作和COALESCE()</p>
+<p>COALESCE是一个函数， (expression_1, expression_2, …,expression_n)依次参考各参数表达式，遇到非null值即停止并返回该值。如果所有的表达式都是空值，最终将返回一个空值。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT s1.id, COALESCE(s2.student, s1.student) student
+FROM seat s1 LEFT JOIN seat s2 
+ON ((s1.id + 1) ^ 1) - 1 = s2.id ORDER BY s1.id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1341-电影评分"><a href="#1341-电影评分" class="headerlink" title="1341. 电影评分"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/movie-rating/">1341. 电影评分</a></h4><p>表：<code>Movies</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| movie_id      | int     |
+| title         | varchar |
++---------------+---------+
+movie_id 是这个表的主键(具有唯一值的列)。
+title 是电影的名字。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>表：<code>Users</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| user_id       | int     |
+| name          | varchar |
++---------------+---------+
+user_id 是表的主键(具有唯一值的列)。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>表：<code>MovieRating</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| movie_id      | int     |
+| user_id       | int     |
+| rating        | int     |
+| created_at    | date    |
++---------------+---------+
+(movie_id, user_id) 是这个表的主键(具有唯一值的列的组合)。
+这个表包含用户在其评论中对电影的评分 rating 。
+created_at 是用户的点评日期。 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>请你编写一个解决方案：</p>
+<ul>
+<li>查找评论电影数量最多的用户名。如果出现平局，返回字典序较小的用户名。</li>
+<li>查找在 <code>February 2020</code> <strong>平均评分最高</strong> 的电影名称。如果出现平局，返回字典序较小的电影名称。</li>
+</ul>
+<p><strong>字典序</strong> ，即按字母在字典中出现顺序对字符串排序，字典序较小则意味着排序靠前。返回结果格式如下例所示。</p>
+<p> <strong>示例 1：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Movies 表：
++-------------+--------------+
+| movie_id    |  title       |
++-------------+--------------+
+| 1           | Avengers     |
+| 2           | Frozen 2     |
+| 3           | Joker        |
++-------------+--------------+
+Users 表：
++-------------+--------------+
+| user_id     |  name        |
++-------------+--------------+
+| 1           | Daniel       |
+| 2           | Monica       |
+| 3           | Maria        |
+| 4           | James        |
++-------------+--------------+
+MovieRating 表：
++-------------+--------------+--------------+-------------+
+| movie_id    | user_id      | rating       | created_at  |
++-------------+--------------+--------------+-------------+
+| 1           | 1            | 3            | 2020-01-12  |
+| 1           | 2            | 4            | 2020-02-11  |
+| 1           | 3            | 2            | 2020-02-12  |
+| 1           | 4            | 1            | 2020-01-01  |
+| 2           | 1            | 5            | 2020-02-17  | 
+| 2           | 2            | 2            | 2020-02-01  | 
+| 2           | 3            | 2            | 2020-03-01  |
+| 3           | 1            | 3            | 2020-02-22  | 
+| 3           | 2            | 4            | 2020-02-25  | 
++-------------+--------------+--------------+-------------+
+输出：
+Result 表：
++--------------+
+| results      |
++--------------+
+| Daniel       |
+| Frozen 2     |
++--------------+
+解释：
+Daniel 和 Monica 都点评了 3 部电影（"Avengers", "Frozen 2" 和 "Joker"） 但是 Daniel 字典序比较小。
+Frozen 2 和 Joker 在 2 月的评分都是 3.5，但是 Frozen 2 的字典序比较小。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">(SELECT u.name AS results FROM Users u
+LEFT JOIN MovieRating mr ON u.user_id = mr.user_id
+GROUP BY u.user_id ORDER BY COUNT(*) DESC, name ASC LIMIT 1)
+UNION ALL
+(SELECT title AS results FROM Movies m
+LEFT JOIN MovieRating mr ON m.movie_id = mr.movie_id 
+AND YEAR(mr.created_at) = 2020 AND MONTH(mr.created_at) = 2
+GROUP BY mr.movie_id ORDER BY AVG(mr.rating) DESC, title LIMIT 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1321-餐馆营业额变化增长"><a href="#1321-餐馆营业额变化增长" class="headerlink" title="1321. 餐馆营业额变化增长"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/restaurant-growth/">1321. 餐馆营业额变化增长</a></h4><p>表: <code>Customer</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| customer_id   | int     |
+| name          | varchar |
+| visited_on    | date    |
+| amount        | int     |
++---------------+---------+
+在 SQL 中，(customer_id, visited_on) 是该表的主键。
+该表包含一家餐馆的顾客交易数据。
+visited_on 表示 (customer_id) 的顾客在 visited_on 那天访问了餐馆。
+amount 是一个顾客某一天的消费总额。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 你是餐馆的老板，现在你想分析一下可能的营业额变化增长（每天至少有一位顾客）。计算以 7 天（某日期 + 该日期前的 6 天）为一个时间段的顾客消费平均值。<code>average_amount</code> 要 <strong>保留两位小数。</strong>结果按 <code>visited_on</code> <strong>升序排序</strong>。返回结果格式的例子如下。 </p>
+<p><strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Customer 表:
++-------------+--------------+--------------+-------------+
+| customer_id | name         | visited_on   | amount      |
++-------------+--------------+--------------+-------------+
+| 1           | Jhon         | 2019-01-01   | 100         |
+| 2           | Daniel       | 2019-01-02   | 110         |
+| 3           | Jade         | 2019-01-03   | 120         |
+| 4           | Khaled       | 2019-01-04   | 130         |
+| 5           | Winston      | 2019-01-05   | 110         | 
+| 6           | Elvis        | 2019-01-06   | 140         | 
+| 7           | Anna         | 2019-01-07   | 150         |
+| 8           | Maria        | 2019-01-08   | 80          |
+| 9           | Jaze         | 2019-01-09   | 110         | 
+| 1           | Jhon         | 2019-01-10   | 130         | 
+| 3           | Jade         | 2019-01-10   | 150         | 
++-------------+--------------+--------------+-------------+
+输出：
++--------------+--------------+----------------+
+| visited_on   | amount       | average_amount |
++--------------+--------------+----------------+
+| 2019-01-07   | 860          | 122.86         |
+| 2019-01-08   | 840          | 120            |
+| 2019-01-09   | 840          | 120            |
+| 2019-01-10   | 1000         | 142.86         |
++--------------+--------------+----------------+
+解释：
+第一个七天消费平均值从 2019-01-01 到 2019-01-07 是restaurant-growth/restaurant-growth/ (100 + 110 + 120 + 130 + 110 + 140 + 150)/7 = 122.86
+第二个七天消费平均值从 2019-01-02 到 2019-01-08 是 (110 + 120 + 130 + 110 + 140 + 150 + 80)/7 = 120
+第三个七天消费平均值从 2019-01-03 到 2019-01-09 是 (120 + 130 + 110 + 140 + 150 + 80 + 110)/7 = 120
+第四个七天消费平均值从 2019-01-04 到 2019-01-10 是 (130 + 110 + 140 + 150 + 80 + 110 + 130 + 150)/7 = 142.86<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT a.visited_on, SUM(b.amount) amount, ROUND(SUM(b.amount)/7, 2) average_amount 
+FROM (SELECT DISTINCT visited_on FROM customer) a JOIN customer b
+ON DATEDIFF(a.visited_on, b.visited_on) BETWEEN 0 AND 6
+WHERE a.visited_on &gt;= (SELECT MIN(visited_on) FROM customer)+6
+GROUP BY a.visited_on ORDER BY a.visited_on<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="602-好友申请-II-：谁有最多的好友"><a href="#602-好友申请-II-：谁有最多的好友" class="headerlink" title="602. 好友申请 II ：谁有最多的好友"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/friend-requests-ii-who-has-the-most-friends/">602. 好友申请 II ：谁有最多的好友</a></h4><p><code>RequestAccepted</code> 表：</p>
+<pre class="line-numbers language-none"><code class="language-none">+----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| requester_id   | int     |
+| accepter_id    | int     |
+| accept_date    | date    |
++----------------+---------+
+(requester_id, accepter_id) 是这张表的主键(具有唯一值的列的组合)。
+这张表包含发送好友请求的人的 ID ，接收好友请求的人的 ID ，以及好友请求通过的日期。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 编写解决方案，找出拥有最多的好友的人和他拥有的好友数目。生成的测试用例保证拥有最多好友数目的只有 1 个人。查询结果格式如下例所示。 </p>
+<p><strong>示例 1：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+RequestAccepted 表：
++--------------+-------------+-------------+
+| requester_id | accepter_id | accept_date |
++--------------+-------------+-------------+
+| 1            | 2           | 2016/06/03  |
+| 1            | 3           | 2016/06/08  |
+| 2            | 3           | 2016/06/08  |
+| 3            | 4           | 2016/06/09  |
++--------------+-------------+-------------+
+输出：
++----+-----+
+| id | num |
++----+-----+
+| 3  | 3   |
++----+-----+
+解释：
+编号为 3 的人是编号为 1 ，2 和 4 的人的好友，所以他总共有 3 个好友，比其他人都多。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT ids id, cnt num FROM
+(SELECT ids, count(*) cnt FROM
+(SELECT requester_id ids FROM RequestAccepted
+UNION ALL
+SELECT accepter_id FROM RequestAccepted) tb1
+GROUP BY ids) tb2 ORDER BY num DESC LIMIT 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="585-2016年的投资"><a href="#585-2016年的投资" class="headerlink" title="585. 2016年的投资"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/investments-in-2016/">585. 2016年的投资</a></h4><p><code>Insurance</code> 表：</p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+-------+
+| Column Name | Type  |
++-------------+-------+
+| pid         | int   |
+| tiv_2015    | float |
+| tiv_2016    | float |
+| lat         | float |
+| lon         | float |
++-------------+-------+
+pid 是这张表的主键(具有唯一值的列)。
+表中的每一行都包含一条保险信息，其中：
+pid 是投保人的投保编号。
+tiv_2015 是该投保人在 2015 年的总投保金额，tiv_2016 是该投保人在 2016 年的总投保金额。
+lat 是投保人所在城市的纬度。题目数据确保 lat 不为空。
+lon 是投保人所在城市的经度。题目数据确保 lon 不为空。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 编写解决方案报告 2016 年 (<code>tiv_2016</code>) 所有满足下述条件的投保人的投保金额之和：</p>
+<ul>
+<li>他在 2015 年的投保额 (<code>tiv_2015</code>) 至少跟一个其他投保人在 2015 年的投保额相同。</li>
+<li>他所在的城市必须与其他投保人都不同（也就是说 (<code>lat, lon</code>) 不能跟其他任何一个投保人完全相同）。</li>
+</ul>
+<p><code>tiv_2016</code> 四舍五入的 <strong>两位小数</strong> 。查询结果格式如下例所示。</p>
+<p><strong>示例 1：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Insurance 表：
++-----+----------+----------+-----+-----+
+| pid | tiv_2015 | tiv_2016 | lat | lon |
++-----+----------+----------+-----+-----+
+| 1   | 10       | 5        | 10  | 10  |
+| 2   | 20       | 20       | 20  | 20  |
+| 3   | 10       | 30       | 20  | 20  |
+| 4   | 10       | 40       | 40  | 40  |
++-----+----------+----------+-----+-----+
+输出：
++----------+
+| tiv_2016 |
++----------+
+| 45.00    |
++----------+
+解释：
+表中的第一条记录和最后一条记录都满足两个条件。
+tiv_2015 值为 10 与第三条和第四条记录相同，且其位置是唯一的。
+
+第二条记录不符合任何一个条件。其 tiv_2015 与其他投保人不同，并且位置与第三条记录相同，这也导致了第三条记录不符合题目要求。
+因此，结果是第一条记录和最后一条记录的 tiv_2016 之和，即 45 。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT ROUND(SUM(tiv_2016), 2) tiv_2016 FROM
+(SELECT tiv_2016, COUNT(1) OVER(PARTITION BY tiv_2015) tiv_2015_count,
+COUNT(1) OVER(PARTITION BY lat, lon) location_count FROM Insurance) tmp
+WHERE tiv_2015_count &lt;&gt; 1 and location_count = 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="185-部门工资前三高的所有员工"><a href="#185-部门工资前三高的所有员工" class="headerlink" title="185. 部门工资前三高的所有员工"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/department-top-three-salaries/">185. 部门工资前三高的所有员工</a></h4><p>表: <code>Employee</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| id           | int     |
+| name         | varchar |
+| salary       | int     |
+| departmentId | int     |
++--------------+---------+
+id 是该表的主键列(具有唯一值的列)。
+departmentId 是 Department 表中 ID 的外键（reference 列）。
+该表的每一行都表示员工的ID、姓名和工资。它还包含了他们部门的ID。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>表: <code>Department</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
++-------------+---------+
+id 是该表的主键列(具有唯一值的列)。
+该表的每一行表示部门ID和部门名。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 公司的主管们感兴趣的是公司每个部门中谁赚的钱最多。一个部门的 <strong>高收入者</strong> 是指一个员工的工资在该部门的 <strong>不同</strong> 工资中 <strong>排名前三</strong> 。编写解决方案，找出每个部门中 <strong>收入高的员工</strong> 。以 <strong>任意顺序</strong> 返回结果表。返回结果格式如下所示。</p>
+<p><strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入: 
+Employee 表:
++----+-------+--------+--------------+
+| id | name  | salary | departmentId |
++----+-------+--------+--------------+
+| 1  | Joe   | 85000  | 1            |
+| 2  | Henry | 80000  | 2            |
+| 3  | Sam   | 60000  | 2            |
+| 4  | Max   | 90000  | 1            |
+| 5  | Janet | 69000  | 1            |
+| 6  | Randy | 85000  | 1            |
+| 7  | Will  | 70000  | 1            |
++----+-------+--------+--------------+
+Department  表:
++----+-------+
+| id | name  |
++----+-------+
+| 1  | IT    |
+| 2  | Sales |
++----+-------+
+输出: 
++------------+----------+--------+
+| Department | Employee | Salary |
++------------+----------+--------+
+| IT         | Max      | 90000  |
+| IT         | Joe      | 85000  |
+| IT         | Randy    | 85000  |
+| IT         | Will     | 70000  |
+| Sales      | Henry    | 80000  |
+| Sales      | Sam      | 60000  |
++------------+----------+--------+
+解释:
+在IT部门:
+- Max的工资最高
+- 兰迪和乔都赚取第二高的独特的薪水
+- 威尔的薪水是第三高的
+在销售部:
+- 亨利的工资最高
+- 山姆的薪水第二高
+- 没有第三高的工资，因为只有两名员工<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT d.name Department, e1.name Employee, e1.Salary
+FROM Employee e1 JOIN Department d ON e1.departmentId = d.Id
+WHERE 3 &gt;
+(SELECT COUNT(DISTINCT e2.Salary) FROM Employee e2
+WHERE e2.Salary &gt; e1.Salary AND e1.DepartmentId = e2.DepartmentId)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="高级字符串函数-正则表达式-子句"><a href="#高级字符串函数-正则表达式-子句" class="headerlink" title="高级字符串函数 / 正则表达式 / 子句"></a>高级字符串函数 / 正则表达式 / 子句</h3><h4 id="1667-修复表中的名字"><a href="#1667-修复表中的名字" class="headerlink" title="1667. 修复表中的名字"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fix-names-in-a-table/">1667. 修复表中的名字</a></h4><p>表： <code>Users</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| user_id        | int     |
+| name           | varchar |
++----------------+---------+
+user_id 是该表的主键(具有唯一值的列)。
+该表包含用户的 ID 和名字。名字仅由小写和大写字符组成。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 编写解决方案，修复名字，使得只有第一个字符是大写的，其余都是小写的。返回按 <code>user_id</code> 排序的结果表。返回结果格式示例如下。</p>
+<p><strong>示例 1：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Users table:
++---------+-------+
+| user_id | name  |
++---------+-------+
+| 1       | aLice |
+| 2       | bOB   |
++---------+-------+
+输出：
++---------+-------+
+| user_id | name  |
++---------+-------+
+| 1       | Alice |
+| 2       | Bob   |
++---------+-------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>CONCAT()可以将多个字符串拼接在一起</li>
+<li>LEFT(str, length)函数：从左开始截取字符串，length 是截取的长度。</li>
+<li>UPPER(str) 将字符串中所有字符转为大写，LOWER(str) 将字符串中所有字符转为小写</li>
+<li>SUBSTRING(str, begin, end) 截取字符串，end 不写默认为空。</li>
+</ul>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT user_id, CONCAT(UPPER(LEFT(name, 1)), LOWER(SUBSTRING(name, 2))) name 
+FROM Users ORDER BY user_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="1527-患某种疾病的患者"><a href="#1527-患某种疾病的患者" class="headerlink" title="1527. 患某种疾病的患者"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/patients-with-a-condition/">1527. 患某种疾病的患者</a></h4><p>患者信息表： <code>Patients</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| patient_id   | int     |
+| patient_name | varchar |
+| conditions   | varchar |
++--------------+---------+
+在 SQL 中，patient_id （患者 ID）是该表的主键。
+'conditions' （疾病）包含 0 个或以上的疾病代码，以空格分隔。
+这个表包含医院中患者的信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 查询患有 I 类糖尿病的患者 ID （patient_id）、患者姓名（patient_name）以及其患有的所有疾病代码（conditions）。I 类糖尿病的代码总是包含前缀 <code>DIAB1</code> 。按 <strong>任意顺序</strong> 返回结果表。查询结果格式如下示例所示。</p>
+<p> <strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Patients表：
++------------+--------------+--------------+
+| patient_id | patient_name | conditions   |
++------------+--------------+--------------+
+| 1          | Daniel       | YFEV COUGH   |
+| 2          | Alice        |              |
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 |
+| 5          | Alain        | DIAB201      |
++------------+--------------+--------------+
+输出：
++------------+--------------+--------------+
+| patient_id | patient_name | conditions   |
++------------+--------------+--------------+
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 | 
++------------+--------------+--------------+
+解释：Bob 和 George 都患有代码以 DIAB1 开头的疾病。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>使用正则表达式：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT patient_id, patient_name, conditions
+FROM Patients WHERE conditions REGEXP '\\bDIAB1.*'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>不适用正则：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT patient_id, patient_name, conditions FROM Patients
+WHERE conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="196-删除重复的电子邮箱"><a href="#196-删除重复的电子邮箱" class="headerlink" title="196. 删除重复的电子邮箱"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-duplicate-emails/">196. 删除重复的电子邮箱</a></h4><p>表: <code>Person</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| email       | varchar |
++-------------+---------+
+id 是该表的主键列(具有唯一值的列)。
+该表的每一行包含一封电子邮件。电子邮件将不包含大写字母。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 编写解决方案 <strong>删除</strong> 所有重复的电子邮件，只保留一个具有最小 <code>id</code> 的唯一电子邮件。</p>
+<p>（对于 SQL 用户，请注意你应该编写一个 <code>DELETE</code> 语句而不是 <code>SELECT</code> 语句。）</p>
+<p>（对于 Pandas 用户，请注意你应该直接修改 <code>Person</code> 表。）</p>
+<p>运行脚本后，显示的答案是 <code>Person</code> 表。驱动程序将首先编译并运行您的代码片段，然后再显示 <code>Person</code> 表。<code>Person</code> 表的最终顺序 <strong>无关紧要</strong> 。返回结果格式如下示例所示。</p>
+<p><strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入: 
+Person 表:
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
+| 3  | john@example.com |
++----+------------------+
+输出: 
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
++----+------------------+
+解释: john@example.com重复两次。我们保留最小的Id = 1。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">DELETE p1 FROM Person p1, Person p2
+WHERE p1.email = p2.email AND p1.id &gt; p2.id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="176-第二高的薪水"><a href="#176-第二高的薪水" class="headerlink" title="176. 第二高的薪水"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/second-highest-salary/">176. 第二高的薪水</a></h4><p><code>Employee</code> 表：</p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| salary      | int  |
++-------------+------+
+在 SQL 中，id 是这个表的主键。
+表的每一行包含员工的工资信息。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 查询并返回 <code>Employee</code> 表中第二高的薪水 。如果不存在第二高的薪水，查询应该返回 <code>null(Pandas 则返回 None)</code> 。查询结果如下例所示。</p>
+<p><strong>示例 1：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Employee 表：
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+输出：
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| 200                 |
++---------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>示例 2：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Employee 表：
++----+--------+
+| id | salary |
++----+--------+
+| 1  | 100    |
++----+--------+
+输出：
++---------------------+
+| SecondHighestSalary |
++---------------------+
+| null                |
++---------------------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">SELECT (SELECT DISTINCT salary 
+FROM Employee GROUP BY salary
+ORDER BY salary DESC LIMIT 1 OFFSET 1) SecondHighestSalary<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如果没有第 2 高的薪资，即表里可能只有一条记录，这个解答会被评测为 ‘Wrong Answer’ 。为了克服这个问题，我们可以将其作为临时表。</p>
+<h4 id="1484-按日期分组销售产品"><a href="#1484-按日期分组销售产品" class="headerlink" title="1484. 按日期分组销售产品"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/group-sold-products-by-the-date/">1484. 按日期分组销售产品</a></h4><p>表 <code>Activities</code>：</p>
+<pre class="line-numbers language-none"><code class="language-none">+-------------+---------+
+| 列名         | 类型    |
++-------------+---------+
+| sell_date   | date    |
+| product     | varchar |
++-------------+---------+
+该表没有主键(具有唯一值的列)。它可能包含重复项。
+此表的每一行都包含产品名称和在市场上销售的日期。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 编写解决方案找出每个日期、销售的不同产品的数量及其名称。每个日期的销售产品名称应按词典序排列。返回按 <code>sell_date</code> 排序的结果表。结果表结果格式如下例所示。 </p>
+<p><strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Activities 表：
++------------+-------------+
+| sell_date  | product     |
++------------+-------------+
+| 2020-05-30 | Headphone   |
+| 2020-06-01 | Pencil      |
+| 2020-06-02 | Mask        |
+| 2020-05-30 | Basketball  |
+| 2020-06-01 | Bible       |
+| 2020-06-02 | Mask        |
+| 2020-05-30 | T-Shirt     |
++------------+-------------+
+输出：
++------------+----------+------------------------------+
+| sell_date  | num_sold | products                     |
++------------+----------+------------------------------+
+| 2020-05-30 | 3        | Basketball,Headphone,T-shirt |
+| 2020-06-01 | 2        | Bible,Pencil                 |
+| 2020-06-02 | 1        | Mask                         |
++------------+----------+------------------------------+
+解释：
+对于2020-05-30，出售的物品是 (Headphone, Basketball, T-shirt)，按词典序排列，并用逗号 ',' 分隔。
+对于2020-06-01，出售的物品是 (Pencil, Bible)，按词典序排列，并用逗号分隔。
+对于2020-06-02，出售的物品是 (Mask)，只需返回该物品名。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>GROUP_CONCAT()</code> 将多行中的多个值组合成一个字符串。</p>
+<pre class="line-numbers language-none"><code class="language-none">GROUP_CONCAT(
+    DISTINCT expression1
+    ORDER BY expression2
+    SEPARATOR sep
+);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>关键词 DISTINCT 确保了 expression1 列中的每个名称在连接的字符串中只包含一次。请注意，我们需要对唯一的名称进行升序排序，这是默认的顺序，因此可以省略参数 expression2。</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT sell_date, COUNT(DISTINCT(product)) num_sold, 
+GROUP_CONCAT(DISTINCT product SEPARATOR ',') products 
+FROM Activities GROUP BY sell_date ORDER BY sell_date<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1327-列出指定时间段内所有的下单产品"><a href="#1327-列出指定时间段内所有的下单产品" class="headerlink" title="1327. 列出指定时间段内所有的下单产品"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/list-the-products-ordered-in-a-period/">1327. 列出指定时间段内所有的下单产品</a></h4><p>表: <code>Products</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+------------------+---------+
+| Column Name      | Type    |
++------------------+---------+
+| product_id       | int     |
+| product_name     | varchar |
+| product_category | varchar |
++------------------+---------+
+product_id 是该表主键(具有唯一值的列)。
+该表包含该公司产品的数据。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>表: <code>Orders</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| product_id    | int     |
+| order_date    | date    |
+| unit          | int     |
++---------------+---------+
+该表可能包含重复行。
+product_id 是表单 Products 的外键（reference 列）。
+unit 是在日期 order_date 内下单产品的数目。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>写一个解决方案，要求获取在 2020 年 2 月份下单的数量不少于 100 的产品的名字和数目。返回结果表单的 <strong>顺序无要求</strong> 。查询结果的格式如下。</p>
+<p><strong>示例 1:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Products 表:
++-------------+-----------------------+------------------+
+| product_id  | product_name          | product_category |
++-------------+-----------------------+------------------+
+| 1           | Leetcode Solutions    | Book             |
+| 2           | Jewels of Stringology | Book             |
+| 3           | HP                    | Laptop           |
+| 4           | Lenovo                | Laptop           |
+| 5           | Leetcode Kit          | T-shirt          |
++-------------+-----------------------+------------------+
+Orders 表:
++--------------+--------------+----------+
+| product_id   | order_date   | unit     |
++--------------+--------------+----------+
+| 1            | 2020-02-05   | 60       |
+| 1            | 2020-02-10   | 70       |
+| 2            | 2020-01-18   | 30       |
+| 2            | 2020-02-11   | 80       |
+| 3            | 2020-02-17   | 2        |
+| 3            | 2020-02-24   | 3        |
+| 4            | 2020-03-01   | 20       |
+| 4            | 2020-03-04   | 30       |
+| 4            | 2020-03-04   | 60       |
+| 5            | 2020-02-25   | 50       |
+| 5            | 2020-02-27   | 50       |
+| 5            | 2020-03-01   | 50       |
++--------------+--------------+----------+
+输出：
++--------------------+---------+
+| product_name       | unit    |
++--------------------+---------+
+| Leetcode Solutions | 130     |
+| Leetcode Kit       | 100     |
++--------------------+---------+
+解释：
+2020 年 2 月份下单 product_id = 1 的产品的数目总和为 (60 + 70) = 130 。
+2020 年 2 月份下单 product_id = 2 的产品的数目总和为 80 。
+2020 年 2 月份下单 product_id = 3 的产品的数目总和为 (2 + 3) = 5 。
+2020 年 2 月份 product_id = 4 的产品并没有下单。
+2020 年 2 月份下单 product_id = 5 的产品的数目总和为 (50 + 50) = 100 。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT p.product_name, SUM(o.unit) unit FROM Products p
+JOIN Orders o ON p.product_id = o.product_id
+WHERE order_date &gt;= '2020-02-01' and order_date &lt; '2020-03-01'
+GROUP BY p.product_name having unit &gt;= 100<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="1517-查找拥有有效邮箱的用户"><a href="#1517-查找拥有有效邮箱的用户" class="headerlink" title="1517. 查找拥有有效邮箱的用户"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-users-with-valid-e-mails/">1517. 查找拥有有效邮箱的用户</a></h4><p>表: <code>Users</code></p>
+<pre class="line-numbers language-none"><code class="language-none">+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| user_id       | int     |
+| name          | varchar |
+| mail          | varchar |
++---------------+---------+
+user_id 是该表的主键（具有唯一值的列）。
+该表包含了网站已注册用户的信息。有一些电子邮件是无效的。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>编写一个解决方案，以查找具有有效电子邮件的用户。一个有效的电子邮件具有前缀名称和域，其中：</p>
+<ol>
+<li><strong>前缀</strong> 名称是一个字符串，可以包含字母（大写或小写），数字，下划线 <code>'_'</code> ，点 <code>'.'</code> 和/或破折号 <code>'-'</code> 。前缀名称 <strong>必须</strong> 以字母开头。</li>
+<li><strong>域</strong> 为 <code>'@leetcode.com'</code> 。</li>
+</ol>
+<p>以任何顺序返回结果表。结果的格式如以下示例所示：</p>
+<p><strong>示例 1：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">输入：
+Users 表:
++---------+-----------+-------------------------+
+| user_id | name      | mail                    |
++---------+-----------+-------------------------+
+| 1       | Winston   | winston@leetcode.com    |
+| 2       | Jonathan  | jonathanisgreat         |
+| 3       | Annabelle | bella-@leetcode.com     |
+| 4       | Sally     | sally.come@leetcode.com |
+| 5       | Marwan    | quarz#2020@leetcode.com |
+| 6       | David     | david69@gmail.com       |
+| 7       | Shapiro   | .shapo@leetcode.com     |
++---------+-----------+-------------------------+
+输出：
++---------+-----------+-------------------------+
+| user_id | name      | mail                    |
++---------+-----------+-------------------------+
+| 1       | Winston   | winston@leetcode.com    |
+| 3       | Annabelle | bella-@leetcode.com     |
+| 4       | Sally     | sally.come@leetcode.com |
++---------+-----------+-------------------------+
+解释：
+用户 2 的电子邮件没有域。 
+用户 5 的电子邮件带有不允许的 '#' 符号。
+用户 6 的电子邮件没有 leetcode 域。 
+用户 7 的电子邮件以点开头。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><code>^</code>：表示一个字符串或行的开头</li>
+<li><code>[a-z]</code>：表示一个字符范围，匹配从 <code>a</code> 到 <code>z</code> 的任何字符。<ul>
+<li><code>[0-9]</code>：表示一个字符范围，匹配从 <code>0</code> 到 <code>9</code> 的任何字符。</li>
+<li>[a-zA-Z]：这个变量匹配从 a 到 z 或 A 到 Z 的任何字符。请注意，你可以在方括号内指定的字符范围的数量没有限制，您可以添加想要匹配的其他字符或范围。</li>
+<li><code>[^a-z]</code>：这个变量匹配不在 <code>a</code> 到 <code>z</code> 范围内的任何字符。请注意，字符 <code>^</code> 用来否定字符范围，它在方括号内的含义与它的方括号外表示开始的含义不同。</li>
+</ul>
+</li>
+<li><code>[a-z]*</code>：表示一个字符范围，匹配从 <code>a</code> 到 <code>z</code> 的任何字符 0 次或多次。</li>
+<li><code>[a-z]+</code>：表示一个字符范围，匹配从 <code>a</code> 到 <code>z</code> 的任何字符 1 次或多次。</li>
+<li><code>.</code>：匹配任意<strong>一个</strong>字符。</li>
+<li><code>\.</code>：表示句点字符。请注意，反斜杠用于转义句点字符，因为句点字符在正则表达式中具有特殊含义。还要注意，在许多语言中，你需要转义反斜杠本身，因此需要使用<code>\\.</code>。</li>
+<li><code>$</code>：表示一个字符串或行的结尾。</li>
+</ol>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SELECT * FROM Users WHERE mail 
+REGEXP '^[a-zA-Z][a-zA-Z0-9_.-]*\\@leetcode\\.com$'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
