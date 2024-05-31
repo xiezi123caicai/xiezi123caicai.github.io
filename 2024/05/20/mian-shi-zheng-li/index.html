@@ -1545,7 +1545,7 @@
 </ul>
 <h4 id="微服务中的CI-CD了解吗？"><a href="#微服务中的CI-CD了解吗？" class="headerlink" title="微服务中的CI/CD了解吗？"></a>微服务中的CI/CD了解吗？</h4><p>CI是持续集成，是一种软件开发实践，要求经常集成其变更，方式是变更合并到主干。</p>
 <p>CD是持续交付和持续部署，交付目的是在早期、快速、可靠地发布高质量软件，满足业务要求。部署是定期将新功能部署到生产环境的过程。</p>
-<h4 id="限流、降级、熔断有什么区别？"><a href="#限流、降级、熔断有什么区别？" class="headerlink" title="限流、降级、熔断有什么区别？"></a>限流、降级、熔断有什么区别？</h4><p><img src="/2024/05/20/mian-shi-zheng-li/1716888560856-1.png" alt="img"></p>
+<h4 id="限流、降级、熔断有什么区别？"><a href="#限流、降级、熔断有什么区别？" class="headerlink" title="限流、降级、熔断有什么区别？"></a>限流、降级、熔断有什么区别？</h4><p><img src="/2024/05/20/mian-shi-zheng-li/1716888560856-1.png"></p>
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="Tomcat的缺省端口是多少，怎么修改？"><a href="#Tomcat的缺省端口是多少，怎么修改？" class="headerlink" title="Tomcat的缺省端口是多少，怎么修改？"></a>Tomcat的缺省端口是多少，怎么修改？</h4><p>默认端口为 8080，可以通过在 tomcat 安装包 conf 目录下，service.xml 中的 Connector 元素的 port 属性来修改端口。</p>
 <h4 id="tomacat有哪几种Connector运行模式"><a href="#tomacat有哪几种Connector运行模式" class="headerlink" title="tomacat有哪几种Connector运行模式"></a>tomacat有哪几种Connector运行模式</h4><p>BIO：一个线程处理一个请求。缺点：并发量高时，线程数较多，浪费资源。</p>
 <p>NIO：利用 Java 的异步 IO 处理，可以通过少量的线程处理大量的请求。</p>
