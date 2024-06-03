@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    42k
+                    43.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    147 分
+                    150 分
                 </div>
                 
 
@@ -1214,12 +1214,12 @@
 </ul>
 <h4 id="有哪些方式可以把-Bean-注入-IOC-容器？"><a href="#有哪些方式可以把-Bean-注入-IOC-容器？" class="headerlink" title="有哪些方式可以把 Bean 注入 IOC 容器？"></a>有哪些方式可以把 Bean 注入 IOC 容器？</h4><ol>
 <li>使用 <strong>xml 的方式</strong>来声明 Bean 的定义，Spring 容器在启动的时候会加载并解析这个 xml，把 bean装载到 IOC 容器中。</li>
-<li>使用**@CompontScan 注解**来扫描声明了@Controller、@Service、@Repository、@Component注解的类。</li>
-<li>使用**@Configuration 注解声明配置类**，并使用@Bean 注解实现 Bean 的定义，这种方式其实是xml 配置方式的一种演变，是 Spring 迈入到无配置化时代的里程碑。</li>
-<li>使用**@Import 注解**，导入配置类或者普通的 Bean</li>
-<li>使用 <strong>FactoryBean 工厂 bean</strong>，动态构建一个 Bean 实例，Spring Cloud OpenFeign 里面的动态代理实例就是使用 FactoryBean 来实现的。</li>
+<li>使用**@CompontScan** 注解来扫描声明了@Controller、@Service、@Repository、@Component注解的类。</li>
+<li>使用**@Configuration** 注解声明配置类，并使用@Bean 注解实现 Bean 的定义，这种方式其实是xml 配置方式的一种演变，是 Spring 迈入到无配置化时代的里程碑。</li>
+<li>使用**@Import 注解**，导入配置类或者普通的 Bean。</li>
+<li>使用 <strong>FactoryBean工厂bean</strong>，动态构建一个 Bean 实例，Spring Cloud OpenFeign 里面的动态代理实例就是使用 FactoryBean 来实现的。</li>
 <li>实现 <strong>ImportBeanDefinitionRegistrar 接口</strong>，可以动态注入 Bean 实例。这个在 Spring Boot 里面的启动注解有用到。</li>
-<li>实现 ImportSelector 接口，动态批量注入配置类或者 Bean 对象，这个在 Spring Boot 里面的自动装配机制里面有用到。</li>
+<li>实现 <strong>ImportSelector 接口</strong>，动态批量注入配置类或者 Bean 对象，这个在 Spring Boot 里面的自动装配机制里面有用到。</li>
 </ol>
 <h4 id="Spring-中-BeanFactory-和-FactoryBean-的区别"><a href="#Spring-中-BeanFactory-和-FactoryBean-的区别" class="headerlink" title="Spring 中 BeanFactory 和 FactoryBean 的区别"></a>Spring 中 BeanFactory 和 FactoryBean 的区别</h4><p>Spring 里面的核心功能是 IOC 容器，所谓 IOC 容器呢，本质上就是一个 Bean 的容器或者是一个 Bean 的工厂。它能够根据 xml 里面声明的 Bean 配置进行 bean 的加载和初始化，然后 BeanFactory 来生产我们需要的各种各样的 Bean。</p>
 <ul>
@@ -1546,6 +1546,24 @@
 <h4 id="微服务中的CI-CD了解吗？"><a href="#微服务中的CI-CD了解吗？" class="headerlink" title="微服务中的CI/CD了解吗？"></a>微服务中的CI/CD了解吗？</h4><p>CI是持续集成，是一种软件开发实践，要求经常集成其变更，方式是变更合并到主干。</p>
 <p>CD是持续交付和持续部署，交付目的是在早期、快速、可靠地发布高质量软件，满足业务要求。部署是定期将新功能部署到生产环境的过程。</p>
 <h4 id="限流、降级、熔断有什么区别？"><a href="#限流、降级、熔断有什么区别？" class="headerlink" title="限流、降级、熔断有什么区别？"></a>限流、降级、熔断有什么区别？</h4><p><img src="/2024/05/20/mian-shi-zheng-li/1716888560856-1.png"></p>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><h4 id="Nginx是什么？"><a href="#Nginx是什么？" class="headerlink" title="Nginx是什么？"></a>Nginx是什么？</h4><p>Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是一款<strong>轻量级</strong>的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在BSD-like 协议下发行。其特点是<strong>占有内存少，并发能力强</strong></p>
+<h4 id="正向代理和反向代理"><a href="#正向代理和反向代理" class="headerlink" title="正向代理和反向代理"></a>正向代理和反向代理</h4><p><img src="/2024/05/20/mian-shi-zheng-li/image-11111.png"></p>
+<p><strong>正向代理</strong>： 我们平时需要访问国外的浏览器是不是很慢，比如我们要看推特，看GitHub等等。直接用国内的服务器无法访问国外的服务器，或者是访问很慢。所以我们需要在本地搭建一个服务器来帮助我们去访问。那这种就是正向代理。<strong>（浏览器中配置代理服务器）</strong></p>
+<p><strong>反向代理</strong>： 那什么是反向代理呢。比如：我们访问淘宝的时候，淘宝内部肯定不是只有一台服务器，它的内部有很多台服务器，那我们进行访问的时候，因为服务器中间session不共享，那我们是不是在服务器之间访问需要频繁登录，那这个时候淘宝搭建一个过渡服务器，对我们是没有任何影响的，我们是登录一次，但是访问所有，这种情况就是 反向代理。对我们来说，客户端对代理是无感知的，客户端不需要任何配置就可以访问，我们只需要把请求发送给反向代理服务器，由反向代理服务器去选择目标服务器获取数据后，再返回给客户端，此时反向代理服务器和目标服务器对外就是一个服务器，暴露的是代理服务器地址，隐藏了真实服务器的地址。<strong>（在服务器中配置代理服务器）</strong></p>
+<h4 id="Nginx的负载均衡"><a href="#Nginx的负载均衡" class="headerlink" title="Nginx的负载均衡"></a>Nginx的负载均衡</h4><p>负载均衡（Load Balance）其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。Nginx给出来三种关于负载均衡的方式：</p>
+<ol>
+<li><strong>轮询法（默认方法）</strong>：<br>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。<br>适合服务器配置相当，无状态且短平快的服务使用。也适用于图片服务器集群和纯静态页面服务器集群。</li>
+<li><strong>weight权重模式（加权轮询）</strong>：<br>指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。<br>这种方式比较灵活，当后端服务器性能存在差异的时候，通过配置权重，可以让服务器的性能得到充分发挥，有效利用资源。weight和访问比率成正比，用于后端服务器性能不均的情况。权重越高，在被访问的概率越大。</li>
+<li><strong>ip_hash</strong>：<br>上述方式存在一个问题就是说，在负载均衡系统中，假如用户在某台服务器上登录了，那么该用户第二次请求的时候，因为我们是负载均衡系统，每次请求都会重新定位到服务器集群中的某一个，那么已经登录某一个服务器的用户再重新定位到另一个服务器，其登录信息将会丢失，这样显然是不妥的。<br>我们可以采用ip_hash指令解决这个问题，如果客户已经访问了某个服务器，当用户再次访问时，会将该请求通过哈希算法，自动定位到该服务器。每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</li>
+</ol>
+<h4 id="为什么Nginx性能这么高？"><a href="#为什么Nginx性能这么高？" class="headerlink" title="为什么Nginx性能这么高？"></a>为什么Nginx性能这么高？</h4><p>因为他的事件处理机制：异步非阻塞事件处理机制：运用了epoll模型，提供了一个队列，排队解决</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin<span class="token operator">/</span>
+<span class="token punctuation">.</span>/nginx  启动
+<span class="token punctuation">.</span>/nginx <span class="token operator">-</span>s stop  停止
+<span class="token punctuation">.</span>/nginx <span class="token operator">-</span>s quit  安全退出
+<span class="token punctuation">.</span>/nginx <span class="token operator">-</span>s reload  重新加载配置文件  如果我们修改了配置文件，就需要重新加载。
+ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="Tomcat的缺省端口是多少，怎么修改？"><a href="#Tomcat的缺省端口是多少，怎么修改？" class="headerlink" title="Tomcat的缺省端口是多少，怎么修改？"></a>Tomcat的缺省端口是多少，怎么修改？</h4><p>默认端口为 8080，可以通过在 tomcat 安装包 conf 目录下，service.xml 中的 Connector 元素的 port 属性来修改端口。</p>
 <h4 id="tomacat有哪几种Connector运行模式"><a href="#tomacat有哪几种Connector运行模式" class="headerlink" title="tomacat有哪几种Connector运行模式"></a>tomacat有哪几种Connector运行模式</h4><p>BIO：一个线程处理一个请求。缺点：并发量高时，线程数较多，浪费资源。</p>
 <p>NIO：利用 Java 的异步 IO 处理，可以通过少量的线程处理大量的请求。</p>
