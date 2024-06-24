@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    44.5k
+                    47k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    155 分
+                    164 分
                 </div>
                 
 
@@ -705,6 +705,11 @@
 <h4 id="什么是AIO、BIO和NIO？"><a href="#什么是AIO、BIO和NIO？" class="headerlink" title="什么是AIO、BIO和NIO？"></a>什么是AIO、BIO和NIO？</h4><p><strong>BIO (Blocking I/O)</strong> :同步阻塞I/O, DK1.4之前的传统IO模型。线程发起IO请求后,一直塞, 直到缓冲区数据就绪后，再进入下一步操作。</p>
 <p><strong>NIO (Non-Blocking I/O)</strong> :同步非阻塞IO,线程发起IO请求后,不要阻塞,立即返回。用户线程不原地等待IO缓冲区，可以先做一其他操作,只需要定时轮询检查I0缓冲区数据是否就绪即可。</p>
 <p><strong>AIO ( Asynchronous I/O)</strong> :异步非阻塞I/O模型。线程发起IO请求后,不需要阻塞，立即返回，也不需要定时轮询检查结果，异步IO操作之后会回调通知调用方。</p>
+<h4 id="NIO的核心组件？"><a href="#NIO的核心组件？" class="headerlink" title="NIO的核心组件？"></a>NIO的核心组件？</h4><ol>
+<li><strong>Channels（通道）</strong>：NIO中的所有I/O操作都是基于Channel的，它是双向的，可以进行读写操作。Channel是对传统IO中流(Stream)概念的升级，提供了更高效的数据传输方式。</li>
+<li><strong>Buffers（缓冲区）</strong>：Buffer是一个可以读写数据的容器，所有数据都通过Buffer进行操作。数据从Channel读入Buffer，或从Buffer写入Channel，支持数据的高效移动和处理。</li>
+<li><strong>Selectors（选择器）</strong>：Selector是NIO中关键的多路复用器，它能够监控多个通道的事件（如连接就绪、读就绪、写就绪等），允许一个线程管理多个Channel，显著提高了并发处理能力。</li>
+</ol>
 <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><h4 id="submit-和execute-方法有什么区别"><a href="#submit-和execute-方法有什么区别" class="headerlink" title="submit()和execute()方法有什么区别"></a>submit()和execute()方法有什么区别</h4><p>两个方法都可以向线程池提交任务, <strong>execute()方法</strong>的返回类型是void ,它定义在Executor接口中。</p>
 <p>而<strong>submit()方法</strong>可以返回持有计算结果的Future 对象，它定义在ExecutorService接口中，它扩展了Executor接口，其它线程池类像 Thread Pool Executor和ScheduledThread PoolExecutor都有这些方法。</p>
 <h4 id="在Java中Executor和Executors的区别"><a href="#在Java中Executor和Executors的区别" class="headerlink" title="在Java中Executor和Executors的区别?"></a>在Java中Executor和Executors的区别?</h4><p><strong>Executors工具类</strong>的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。ExecutorService接口继承了Executor接口并进行了扩展，提供了更多的方法我们能获得任务执行的状态并且可以获取任务的返回值。</p>
@@ -972,6 +977,14 @@
 <p>FullGC触发条件：老年代的空间不足。永久代空间不足。代码中执行System.gc()。</p>
 <h4 id="什么是Class常量池，和运行时常量池关系是什么？"><a href="#什么是Class常量池，和运行时常量池关系是什么？" class="headerlink" title="什么是Class常量池，和运行时常量池关系是什么？"></a>什么是Class常量池，和运行时常量池关系是什么？</h4><p>Class常量池可以理解为是Class文件中的资源仓库。Class文件中除了包含类的版本、字段、方法、接口等描述信外，还有一项信息就是常量地(constant pool table)，用于存放编译器生成的各种字面量(Literal)和符号引用(Symbolic References)。</p>
 <p>Class用来保存常量的一个媒介场所，是一个中间场所。 Class文件中的常量池部分的内容，会在运行期被运行时常量池加载进去。</p>
+<h4 id="gc什么时候停止时间影响主业务"><a href="#gc什么时候停止时间影响主业务" class="headerlink" title="gc什么时候停止时间影响主业务"></a>gc什么时候停止时间影响主业务</h4><ol>
+<li><strong>年轻代GC（Minor GC）</strong>：虽然年轻代GC通常较快，但如果年轻代分配速率高或存活对象多，导致Minor GC频繁发生，累积的停顿时间可能会对需要低延迟响应的业务造成影响。</li>
+<li><strong>老年代GC（Major GC/Full GC）</strong>：Full GC通常比Minor GC耗时更长，因为它涉及整个堆的回收，包括老年代和有时还包括年轻代。Full GC期间的STW时间可能达到数百毫秒甚至秒级。</li>
+<li><strong>内存压力大</strong>：当应用内存使用接近或达到极限，JVM需要更频繁地进行GC来释放空间，这不仅增加STW的频率，也会延长每次GC的停顿时间，直接影响业务连续性和用户体验。</li>
+<li><strong>不良的内存管理</strong>：例如，大量创建大对象或长时间存活的对象被错误地分配到年轻代，可能导致频繁的内存晋升至老年代，引发更多的Major GC。</li>
+<li><strong>垃圾回收算法与参数配置不当</strong>：不恰当的垃圾回收器选择或JVM调优参数设置，可能导致STW时间过长，影响业务运行效率。</li>
+<li><strong>缓存策略问题</strong>：如前所述，不当的缓存管理，如过大或长期不清理的缓存，会占用大量内存，触发更频繁和更长时间的GC事件。</li>
+</ol>
 <h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><ol>
 <li><strong>Jconsole</strong>：查看java进程中线程的运行状态</li>
 <li><strong>查看堆内存</strong>：1.jps查看所有java进程；2.找到某个进程的pid，使用jstat -gc pid 查看堆内存分布</li>
@@ -1073,6 +1086,13 @@
 <li>通过 MVCC 可以解决读写并发阻塞问题从而提升数据并发处理能力</li>
 <li>MVCC 采用了乐观锁的方式实现，降低了死锁的概率</li>
 <li>解决了一致性读的问题也就是事务启动时根据某个条件读取到的数据，直到事务结束时，再次执行相同条件，还是读到同一份数据，不会发生变化。</li>
+</ol>
+<h4 id="项目中解决幻读的方法"><a href="#项目中解决幻读的方法" class="headerlink" title="项目中解决幻读的方法"></a>项目中解决幻读的方法</h4><ol>
+<li><strong>使用MVCC（多版本并发控制）</strong>：通过MVCC机制可以在可重复读（Repeatable Read, RR）隔离级别下有效避免幻读。但需要注意的是，MySQL默认的RR隔离级别通过Next-Key Locks（包括行锁和间隙锁）来防止幻读，这在某些场景下可能会影响并发性能。</li>
+<li><strong>调整事务隔离级别</strong>：将事务的隔离级别设置为SERIALIZABLE，这是最高的隔离级别，可以完全避免脏读、不可重复读和幻读问题。会降低系统的并发能力。</li>
+<li><strong>使用悲观锁</strong>：在查询时使用<code>SELECT ... FOR UPDATE</code>语句，这样可以在读取数据前对其加锁，阻止其他事务在此期间对该数据的修改或插入，从而避免幻读。但这种方法也降低了并发性，并且需要谨慎使用，以免引发死锁。</li>
+<li><strong>间隙锁（Gap Locks）和Next-Key Locks</strong>：InnoDB自动在RR隔离级别下使用间隙锁和Next-Key Locks来阻止其他事务在当前事务查询的范围内插入新记录，这是InnoDB解决幻读的一种内部机制。</li>
+<li><strong>乐观锁</strong>：在应用程序层面实现乐观锁，通过在表中增加一个版本字段，每次更新时版本号加一。</li>
 </ol>
 <h4 id="什么是索引覆盖、索引下推？"><a href="#什么是索引覆盖、索引下推？" class="headerlink" title="什么是索引覆盖、索引下推？"></a>什么是索引覆盖、索引下推？</h4><p>索引(covering index)指一个查询语句的执行只用从索引中就能够取得，不必从数据表中读取。可以称之为实现了索引覆盖。当一查询语询符合覆盖条件时，MySQL只需要通过索引就可以返回查询所需要的数据，这样避免了查到索引后再返回表操作，减少I/O提高效率。</p>
 <p>索引下推：如果符合条件，则根据该索引来定位对应的数据，如果不符合，则直接reject掉。 有了索引下推优化，可以在有like条件查询的情况下，减少回表次数。</p>
@@ -1585,6 +1605,12 @@
 <li><strong>weight权重模式（加权轮询）</strong>：<br>指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。<br>这种方式比较灵活，当后端服务器性能存在差异的时候，通过配置权重，可以让服务器的性能得到充分发挥，有效利用资源。weight和访问比率成正比，用于后端服务器性能不均的情况。权重越高，在被访问的概率越大。</li>
 <li><strong>ip_hash</strong>：<br>上述方式存在一个问题就是说，在负载均衡系统中，假如用户在某台服务器上登录了，那么该用户第二次请求的时候，因为我们是负载均衡系统，每次请求都会重新定位到服务器集群中的某一个，那么已经登录某一个服务器的用户再重新定位到另一个服务器，其登录信息将会丢失，这样显然是不妥的。<br>我们可以采用ip_hash指令解决这个问题，如果客户已经访问了某个服务器，当用户再次访问时，会将该请求通过哈希算法，自动定位到该服务器。每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</li>
 </ol>
+<h4 id="为什么使用Nginx？"><a href="#为什么使用Nginx？" class="headerlink" title="为什么使用Nginx？"></a>为什么使用Nginx？</h4><ol>
+<li><strong>高性能和高并发能力</strong>：Nginx 采用了事件驱动、异步非阻塞 I/O 模型，能以少量的系统资源处理大量并发连接，特别适合高流量的网站和应用。</li>
+<li><strong>反向代理和负载均衡</strong>：Nginx 可作为反向代理服务器，隐藏后端服务器的结构，同时提供智能的负载均衡策略，确保请求被合理分配到各个服务器，提高了系统的可靠性和响应速度。</li>
+<li><strong>安全性</strong>：通过作为前端代理，Nginx 可以屏蔽后端服务器的直接暴露，有效防御DDoS攻击和其他网络攻击。此外，它还可以过滤恶意请求，增强应用的安全性。</li>
+<li><strong>HTTP/HTTPS 支持</strong>：全面支持HTTP和HTTPS协议，包括SSL/TLS加密，保障数据传输安全。</li>
+</ol>
 <h4 id="为什么Nginx性能这么高？"><a href="#为什么Nginx性能这么高？" class="headerlink" title="为什么Nginx性能这么高？"></a>为什么Nginx性能这么高？</h4><p>因为他的事件处理机制：异步非阻塞事件处理机制：运用了epoll模型，提供了一个队列，排队解决</p>
 <h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java">cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>nginx<span class="token operator">/</span>sbin<span class="token operator">/</span>
 <span class="token punctuation">.</span>/nginx  启动
@@ -1593,6 +1619,16 @@
 <span class="token punctuation">.</span>/nginx <span class="token operator">-</span>s reload  重新加载配置文件  如果我们修改了配置文件，就需要重新加载。
 ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h4 id="使用Nginx需要配置什么？"><a href="#使用Nginx需要配置什么？" class="headerlink" title="使用Nginx需要配置什么？"></a>使用Nginx需要配置什么？</h4><ol>
+<li><strong>全局配置（main context）</strong>：（1）<code>user</code>：指定运行 Nginx 工作进程的用户和组。（2）<code>worker_processes</code>：定义 Nginx 应该启动的工作进程数量，通常设置为服务器的 CPU 核心数。（3）<code>error_log</code>：设置错误日志文件的位置和级别。（4）<code>events</code>：配置事件处理模型，包括使用哪种多路复用技术（如epoll或kqueue）以及最大连接数等。</li>
+<li><strong>HTTP 块（http context）</strong>：包含了所有与HTTP协议相关的全局配置，如日志格式定义、MIME类型映射、连接超时设置等。</li>
+<li><strong>服务器块（server context）</strong>：（1）<code>listen</code>：指定服务器监听的端口或地址。（2）<code>server_name</code>：定义服务器名称，用于虚拟主机配置，即基于域名的主机名。（3）<code>root</code> 或 <code>alias</code>：指定网站根目录或别名，用于静态内容服务。（4）<code>index</code>：定义默认首页文件。</li>
+<li><strong>位置块（location context）</strong>：（1）通过 URL 路径匹配来定义请求的处理逻辑。（2）可以配置重定向、代理传递、静态文件服务等。（3）<code>proxy_pass</code>：用于反向代理配置，指定后端服务器的地址。（4）<code>rewrite</code>：用于URL重写规则。</li>
+<li><strong>Upstream 块</strong>（用于负载均衡）：（1）定义一组后端服务器，用于负载均衡配置。（2）可以设置负载均衡策略，如轮询（round-robin）、最少连接（least_conn）等。</li>
+<li><strong>SSL/TLS 配置</strong>：在 http 或 server 块中，配置 HTTPS 证书和私钥，启用加密连接。</li>
+<li><strong>日志配置</strong>：配置访问日志，如定义日志格式和输出路径。</li>
+</ol>
+<p>配置完成后，需要测试配置文件的正确性（使用 <code>nginx -t</code> 命令），然后重新加载（<code>nginx -s reload</code>）或重启 Nginx 使配置生效。</p>
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="Tomcat的缺省端口是多少，怎么修改？"><a href="#Tomcat的缺省端口是多少，怎么修改？" class="headerlink" title="Tomcat的缺省端口是多少，怎么修改？"></a>Tomcat的缺省端口是多少，怎么修改？</h4><p>默认端口为 8080，可以通过在 tomcat 安装包 conf 目录下，service.xml 中的 Connector 元素的 port 属性来修改端口。</p>
 <h4 id="tomacat有哪几种Connector运行模式"><a href="#tomacat有哪几种Connector运行模式" class="headerlink" title="tomacat有哪几种Connector运行模式"></a>tomacat有哪几种Connector运行模式</h4><p>BIO：一个线程处理一个请求。缺点：并发量高时，线程数较多，浪费资源。</p>
 <p>NIO：利用 Java 的异步 IO 处理，可以通过少量的线程处理大量的请求。</p>
@@ -1683,6 +1719,20 @@ ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span ar
 <li><strong>基数排序</strong>：将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</li>
 </ul>
 <p>计数排序：每个桶只存储单一键值。桶排序：每个桶存储一定范围的数值。基数排序：依据键值的每位数字来分配桶。</p>
+<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><h4 id="什么是跨域请求？"><a href="#什么是跨域请求？" class="headerlink" title="什么是跨域请求？"></a>什么是跨域请求？</h4><p>指在浏览器环境中，一个网页尝试通过JavaScript向与其不在同一域名下的服务器发出HTTP请求的行为。这里的“域”包括<strong>协议（http或https）、域名以及端口号</strong>，当这三个要素中的任何一个不同时，就会被视为跨域。</p>
+<h4 id="跨域请求获取不到数据的原因"><a href="#跨域请求获取不到数据的原因" class="headerlink" title="跨域请求获取不到数据的原因"></a>跨域请求获取不到数据的原因</h4><p>浏览器正常发送，服务器正常运行，数据从服务器返回浏览器不成功。</p>
+<h4 id="如何处理跨域的请求"><a href="#如何处理跨域的请求" class="headerlink" title="如何处理跨域的请求"></a>如何处理跨域的请求</h4><ol>
+<li><strong>CORS（Cross-Origin Resource Sharing）</strong>：最常用的跨域请求处理方式。服务器需要在响应头中添加 <code>Access-Control-Allow-Origin</code> 字段来指定允许访问的来源。例如，<code>Access-Control-Allow-Origin: *</code> 表示允许任何来源的请求，但出于安全考虑，通常应指定具体的来源域名。此外，可能还需要设置其他CORS相关头部，如 <code>Access-Control-Allow-Methods</code>（允许的HTTP方法）、<code>Access-Control-Allow-Headers</code>（允许的请求头）以及 <code>Access-Control-Allow-Credentials</code>（指示请求是否可以携带凭据）等。</li>
+<li><strong>JSONP（JSON with Padding）</strong>：适用于GET请求，通过动态插入<code>&lt;script&gt;</code>标签来绕过同源策略。服务器需要将响应数据包裹在一个指定的回调函数中返回。但JSONP不支持POST请求，且存在XSS安全风险。</li>
+<li><strong>代理服务器</strong>：在客户端和目标服务器之间设置一个代理服务器，前端的所有请求都发送到代理服务器，代理服务器再转发到实际的目标服务器，并接收响应后再传回前端。这样，从浏览器的角度看，所有的请求都是同源的。</li>
+<li><strong>使用反向代理</strong>：反向代理是服务器端的配置，可以将外部的请求代理到内部服务器的不同服务上，对外呈现的是同一个域名，从而规避了跨域问题。这需要在服务器配置中设置，例如使用<strong>Nginx进行配置</strong>。</li>
+</ol>
+<h4 id="跨域请求和OPTIONS请求的关系"><a href="#跨域请求和OPTIONS请求的关系" class="headerlink" title="跨域请求和OPTIONS请求的关系"></a>跨域请求和OPTIONS请求的关系</h4><p>这种关系主要体现在现代浏览器实施的CORS（跨源资源共享）机制中。当浏览器发起一个跨域的HTTP请求时，为了安全起见，浏览器会遵循一系列步骤来确保请求符合源服务器的访问策略，这一过程可能包括发送一个预检（preflight）请求，而这个预检请求通常就是使用OPTIONS方法的HTTP请求。</p>
+<ul>
+<li><strong>OPTIONS请求的作用</strong>：用于获取服务器对特定资源支持的HTTP方法的信息，而在这其中，它的一个重要应用场景就是在CORS中作为预检请求。预检请求的目的是在实际发送数据之前，先询问服务器是否允许特定类型的跨域请求。浏览器会自动发送一个OPTIONS请求，包含即将发起的实际请求的详细信息，比如请求方法（如PUT或DELETE）、自定义的请求头等。</li>
+<li><strong>预检请求何时发生</strong>：当请求是跨域的并且是“复杂请求”时，浏览器会先发送OPTIONS请求。复杂请求包括但不限于使用非简单方法（GET、POST）的请求、设置了自定义请求头的请求。服务器收到OPTIONS请求后，会检查请求头中的Origin、Access-Control-Request-Method、Access-Control-Request-Headers等信息，然后根据服务器的CORS配置返回响应。</li>
+<li><strong>如果预检请求失败</strong>：如果服务器拒绝了OPTIONS请求，即没有返回正确的CORS头部，浏览器将不会发送实际的跨域请求，从而保护了用户的隐私和数据安全。</li>
+</ul>
 <h3 id="场景设计题"><a href="#场景设计题" class="headerlink" title="场景设计题"></a>场景设计题</h3><h4 id="假设有一个论坛留言，数据量很大，需要用好几个数据库，这个主键怎么设计，必须保证全局唯一和递增。"><a href="#假设有一个论坛留言，数据量很大，需要用好几个数据库，这个主键怎么设计，必须保证全局唯一和递增。" class="headerlink" title="假设有一个论坛留言，数据量很大，需要用好几个数据库，这个主键怎么设计，必须保证全局唯一和递增。"></a>假设有一个论坛留言，数据量很大，需要用好几个数据库，这个主键怎么设计，必须保证全局唯一和递增。</h4><ol>
 <li>使用分布式唯一ID生成器（雪花算法）</li>
 </ol>
