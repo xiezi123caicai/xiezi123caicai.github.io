@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    47k
+                    56.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    164 分
+                    196 分
                 </div>
                 
 
@@ -534,6 +534,7 @@
 <ul>
 <li>接口不能用于实例化对象。接口没有构造方法。接口中所有的方法必须是抽象方法。接口不能包含成员变量，除了 static 和 final 变量。接口不是被类继承了，而是要被类实现。</li>
 </ul>
+<h4 id="什么是自动装箱和自动拆箱"><a href="#什么是自动装箱和自动拆箱" class="headerlink" title="什么是自动装箱和自动拆箱"></a>什么是自动装箱和自动拆箱</h4><p>java5引入的两个特性，使基本类型和它们对应的包装类型之间的转换自动进行，简化 了代码的编写。</p>
 <h4 id="volatile变量和atomic变量有什么不同"><a href="#volatile变量和atomic变量有什么不同" class="headerlink" title="volatile变量和atomic变量有什么不同?"></a>volatile变量和atomic变量有什么不同?</h4><p><strong>volatile变量</strong>可以确保先行关系，即写操作会发生在后续的读操作之前，但它并不能保证原子性。例如用volatile修饰count变量那么count++操作就不是原子性的。<br>而AtomicInteger类提供的<strong>atomic方法</strong>可以让这种操作具有原子性如getAndIncrement()方法会原子性的进行增量操作把当前值加一，其它数据类型和引用变量也可以进行相似操作。</p>
 <h4 id="访问修饰符public，private，protected，以及不写（默认）时的区别？"><a href="#访问修饰符public，private，protected，以及不写（默认）时的区别？" class="headerlink" title="访问修饰符public，private，protected，以及不写（默认）时的区别？"></a>访问修饰符public，private，protected，以及不写（默认）时的区别？</h4><table>
 <thead>
@@ -581,6 +582,7 @@
 <li>Java标准类库本身已经提供了Files.copy 的实现。</li>
 </ol>
 <p>对于Copy的效率，这个其实与操作系统和配置等情况相关，在传统的文件IO操作里面，我们都是调用操作系统提供的底层标准IO系统调用函数read()、write()，由于内核指令的调用会<strong>使当前用户线程切换到内核态，然后内核线程负责把相应的文件数据读取到内核的IO缓冲区，再把数据从内核I0缓冲区拷贝到进程的私有地址空间中去，这样便完成了一次IO操作。</strong><br>而NIO里面提供的<strong>NIO transferTo和transfFrom方法，也就是常说的零拷贝实现</strong>。它能够利用现代操作系统底层机制，避免不必要拷贝和上下文切换，因此在性能上表现比较好。</p>
+<h4 id="为什么java只有值传递？"><a href="#为什么java只有值传递？" class="headerlink" title="为什么java只有值传递？"></a>为什么java只有值传递？</h4><p>对于基本类型，传递的是值的副本；对于引用类型，传递的是引用的副本。虽然对于引用类型的参数，通过这个副本可以修改引用对象的状态，但本质上依然是值传递。</p>
 <h4 id="深拷贝和浅拷贝的区别是什么？"><a href="#深拷贝和浅拷贝的区别是什么？" class="headerlink" title="深拷贝和浅拷贝的区别是什么？"></a>深拷贝和浅拷贝的区别是什么？</h4><ul>
 <li>浅拷贝：被复制对象的所有变量都含有与原来的对象相同的值，而所有的对其他对象的引用仍然指向原来的对象。换言之，浅拷贝仅仅复制所考虑的对象，而不复制它所引用的对象。</li>
 <li>深拷贝：被复制对象的所有变量都含有与原来的对象相同的值。而那些引用其他对象的变量将指向被复制过的新对象。而不再是原有的那些被引用的对象。换言之，深拷贝把要复制的对象所引用的对象都复制了一遍。</li>
@@ -710,6 +712,12 @@
 <li><strong>Buffers（缓冲区）</strong>：Buffer是一个可以读写数据的容器，所有数据都通过Buffer进行操作。数据从Channel读入Buffer，或从Buffer写入Channel，支持数据的高效移动和处理。</li>
 <li><strong>Selectors（选择器）</strong>：Selector是NIO中关键的多路复用器，它能够监控多个通道的事件（如连接就绪、读就绪、写就绪等），允许一个线程管理多个Channel，显著提高了并发处理能力。</li>
 </ol>
+<h4 id="有IO和线程池，为什么还要编程更复杂的NIO？"><a href="#有IO和线程池，为什么还要编程更复杂的NIO？" class="headerlink" title="有IO和线程池，为什么还要编程更复杂的NIO？"></a>有IO和线程池，为什么还要编程更复杂的NIO？</h4><p>传统IO在处理大量并发连接存在性能上的瓶颈。（1）<strong>高并发连接</strong>：NIO采用非堵塞的方式，一个线程同时管理多个连接。（2）<strong>资源利用率</strong>：NIO的非堵塞模型允许一个线程同时处理多个通道的IO操作。（3）<strong>选择器</strong>：NIO引用选择器，可以允许一个线程监控多个通道的IO事件。（4）<strong>内存映射文件</strong>：NIO支持内存映射文件的操作，可以将文件直接映射到内存中。（5）<strong>异步操作</strong>。</p>
+<h4 id="缓冲区和缓存有什么不同？"><a href="#缓冲区和缓存有什么不同？" class="headerlink" title="缓冲区和缓存有什么不同？"></a>缓冲区和缓存有什么不同？</h4><ul>
+<li>概念不同：缓冲区是一种用于临时存储数据的区域，通常在内存中或其他存储介质上。<br>缓存是一种高速临时存储，用于存储经常访问的数据，通常位于内存中。</li>
+<li>用途不同：缓冲区用于提高对数据的访问效率，<strong>减少对底层数据源的直接访问次数</strong>，提高读写性能。<br>缓存<strong>用于存储经常访问的数据</strong>，以提高数据的访问速度。</li>
+<li>例子不同：缓冲区的例子包括内存中的字节数组、字符数组，以及文件IO中的缓冲流。<br>缓存的例子包括Web浏览器缓存、CPU缓存等。</li>
+</ul>
 <h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><h4 id="submit-和execute-方法有什么区别"><a href="#submit-和execute-方法有什么区别" class="headerlink" title="submit()和execute()方法有什么区别"></a>submit()和execute()方法有什么区别</h4><p>两个方法都可以向线程池提交任务, <strong>execute()方法</strong>的返回类型是void ,它定义在Executor接口中。</p>
 <p>而<strong>submit()方法</strong>可以返回持有计算结果的Future 对象，它定义在ExecutorService接口中，它扩展了Executor接口，其它线程池类像 Thread Pool Executor和ScheduledThread PoolExecutor都有这些方法。</p>
 <h4 id="在Java中Executor和Executors的区别"><a href="#在Java中Executor和Executors的区别" class="headerlink" title="在Java中Executor和Executors的区别?"></a>在Java中Executor和Executors的区别?</h4><p><strong>Executors工具类</strong>的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。ExecutorService接口继承了Executor接口并进行了扩展，提供了更多的方法我们能获得任务执行的状态并且可以获取任务的返回值。</p>
@@ -761,6 +769,17 @@
 <li>套接字Socket：进程可以在不同主机或同一主机上的不同进程之间通信。</li>
 <li>文件映射：进程可以通过将文件映射到它们的地址空间来共享数据。</li>
 </ul>
+<h4 id="线程间通信方式有哪些？"><a href="#线程间通信方式有哪些？" class="headerlink" title="线程间通信方式有哪些？"></a>线程间通信方式有哪些？</h4><ul>
+<li>共享对象：多个线程可以共享同一个对象的实例变量。</li>
+<li>等待/通知机制：通过Object类中的wait()和notify()方法，线程可以等待某个条件的发生，并在条件满足时通知其他线程。</li>
+<li>阻塞队列：是一种线程安全的队列，其中的元素插入和删除操作可以是阻塞的。通过使用阻塞队列，可以实现生产者-消费者模型，其中一个线程负责生产数据，另一个线程负责消费数据。</li>
+<li>CountDownLatch：是一种同步工具类，用于使一个或多个线程等待一组事件发生。线程通过await()等待事件，而其他线程通过countDown()通知事件的发生。</li>
+</ul>
+<h4 id="如何让线程按顺序执行？"><a href="#如何让线程按顺序执行？" class="headerlink" title="如何让线程按顺序执行？"></a>如何让线程按顺序执行？</h4><ol>
+<li><strong>使用join方法</strong>：join方法允许一个线程等待另一个线程完成。通过在一个线程上调用另一个线程的join方法，可以确保调用线程在目标线程完成之前等待。</li>
+<li><strong>使用wait和notify和notifyAll</strong>：可以实现线程之间的协作。通过在不同线程中的任务中调用wait和notify，可以控制线程的执行顺序。</li>
+<li><strong>使用ExecutorService的submit和Future</strong>：使用ExecutorService的submit方法提交任务，并通过Future的get方法获取线程执行的结果，可以实现线程的有序执行。</li>
+</ol>
 <h4 id="什么是自旋？"><a href="#什么是自旋？" class="headerlink" title="什么是自旋？"></a>什么是自旋？</h4><p>很多synchronized里面的代码只是一些很简单的代码， 执行时间非常快，此时等待的线程都加锁可能是一种不太值得的操作，因为<strong>线程阻塞涉及用户态和内核态切换的问题。</strong>既然synchronized里面的代码执行得非常快，不妨让等待锁的线程不要被阻塞，而是在synchronized的边界做忙循环，这就是自旋。如果做了多次循环发现还没有获得锁，再阻塞，这样可能是一种更好的策略。</p>
 <h4 id="线程类的构造方法、静态块是被哪个线程调用的？"><a href="#线程类的构造方法、静态块是被哪个线程调用的？" class="headerlink" title="线程类的构造方法、静态块是被哪个线程调用的？"></a>线程类的构造方法、静态块是被哪个线程调用的？</h4><p>请记住：<strong>线程类的构造方法、 静态块是被new这个线程类所在的线程所调用的，而run方法里面的代码才是被线程自身所调用的</strong>。<br>如果说上面的说法让你感到困惑，那么我举个例子，假设Thread2中new了Thread1,<br>main函数中new了Thread2，那么：</p>
 <ol>
@@ -883,7 +902,31 @@
 <p>出队时机：执行signal、signalAll方法时，节点会从条件队列中移到同步队列。</p>
 <h4 id="什么是可重入锁，怎么实现可重入锁？"><a href="#什么是可重入锁，怎么实现可重入锁？" class="headerlink" title="什么是可重入锁，怎么实现可重入锁？"></a>什么是可重入锁，怎么实现可重入锁？</h4><p>可重入锁是一种多线程同步机制，允许同一线程多次获取同一个锁而不会导致死锁。这意味着一个线程可以在持有锁的情况下再次请求并获得相同的锁，不会被自己阻塞。可重入锁有助于避免死锁和提高代码的可维护性,因为允许在一个线程中嵌套地调用锁定的方法。</p>
 <p>如我们常用的synchronized和reentrantLock都是比较典型的可重入锁。也就是说，在一个线程调用synchronized方法的同时，可以在方法体内部调用该对象另一个synchronized方法， 也就是说一个线程得到一个对象锁后再次请求该对象锁。</p>
-<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="解释内存中的栈-stack-、-堆-heap-和方法区-method-area-的用法"><a href="#解释内存中的栈-stack-、-堆-heap-和方法区-method-area-的用法" class="headerlink" title="解释内存中的栈(stack)、 堆(heap) 和方法区(method area)的用法"></a>解释内存中的栈(stack)、 堆(heap) 和方法区(method area)的用法</h4><ul>
+<h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><h4 id="java是如何实现一次编写，处处运行的？"><a href="#java是如何实现一次编写，处处运行的？" class="headerlink" title="java是如何实现一次编写，处处运行的？"></a>java是如何实现一次编写，处处运行的？</h4><ol>
+<li><strong>字节码</strong>：java源代码首先被编译成字节码，而不是直接编译成本地机器代码。</li>
+<li><strong>java虚拟机（JVM）</strong>：JVM充当了字节码和底层硬件之间的桥梁，使得java程序在不同平台上运行。</li>
+<li><strong>平台无关的java标准库</strong>：提供了一系列与底层硬件和操作系统无关的API，可供程序员在不同平台运行程序。</li>
+<li><strong>Write Once，Run Anywhere</strong>（一次编写，处处运行）的理念：可以在任何支持java虚拟机的平台上运行。</li>
+</ol>
+<h4 id="JVM由哪些组件组成？"><a href="#JVM由哪些组件组成？" class="headerlink" title="JVM由哪些组件组成？"></a>JVM由哪些组件组成？</h4><ol>
+<li>**类加载器(ClassLoader)**：将java类的字节码加载到内存中，并在运行时动态创建类的对象。有引导类加载器、扩展类加载器和应用程序类加载器等。</li>
+<li><strong>运行时数据区域</strong>：包括方法区，堆，虚拟机栈、本地方法栈等。存储了程序运行时所需的数据和信息。</li>
+<li><strong>执行引擎</strong>：负责执行字节码，可以使用解释器、即时编译器或两种结合的方式执行java程序。</li>
+<li><strong>垃圾回收期GC</strong>。</li>
+<li><strong>即时编译器JIT</strong>：负责将字节码编译成本地机器代码，以提高程序的执行效率。</li>
+<li><strong>本地接口</strong>：允许java代码调用和被调用C、C++等本地语言编写的代码。</li>
+</ol>
+<h4 id="java内存模型JMM是怎么样的？"><a href="#java内存模型JMM是怎么样的？" class="headerlink" title="java内存模型JMM是怎么样的？"></a>java内存模型JMM是怎么样的？</h4><p>JMM定义了java程序中多线程之间共享数据的访问规则和内存操作的行为。JMM规定了线程如何与主内存和工作内存交互，以及如何确保多线程程序在不同的硬件平台保持一致的行为。</p>
+<ol>
+<li>主内存：所有线程共享的内存区域。</li>
+<li>工作内存：每个线程私有的内存区域，包括该线程独占的变量副本。</li>
+<li>原子性。</li>
+<li>可见性</li>
+<li>有序性</li>
+<li>volatile关键字：确保变量的读取和修改操作是原子的，并且对其他线程是可见的。不会被线程本地缓存，每次读取都会从主内存中获取最新的值。</li>
+<li>happens-before：定义了操作的执行顺序，确保前一个操作的结果对后一个操作是可见的。</li>
+</ol>
+<h4 id="解释内存中的栈-stack-、-堆-heap-和方法区-method-area-的用法"><a href="#解释内存中的栈-stack-、-堆-heap-和方法区-method-area-的用法" class="headerlink" title="解释内存中的栈(stack)、 堆(heap) 和方法区(method area)的用法"></a>解释内存中的栈(stack)、 堆(heap) 和方法区(method area)的用法</h4><ul>
 <li>一个基本数据类型的变量，一个对象的引用，还有就是函数调用的现场保存都使用JVM中的<strong>栈空间</strong>；</li>
 <li>而通过new关键字和构造器创建的对象则放在<strong>堆空间</strong>，堆是垃圾收集器管理的主要区域，由于现在的垃圾收集器都采用分代收集算法，所以堆空间还可以细分为新生代和老生代，再具体一点可以分为Eden、Survivor( 又可分为 From Survivor和To Survivor ). </li>
 <li><strong>方法区和堆</strong>都是各个线程共享的内存区域 ，用于存储已经被JVM加载的类信息、常量、静态变量、JIT 编译器编译后的代码等数据；</li>
@@ -1211,6 +1254,22 @@
 <li>调整缓存的存储数据类型；</li>
 <li>提升缓存的更新频率。</li>
 </ul>
+<h4 id="Redis如何提高多核CPU利用率？"><a href="#Redis如何提高多核CPU利用率？" class="headerlink" title="Redis如何提高多核CPU利用率？"></a>Redis如何提高多核CPU利用率？</h4><p>Redis是一个单线程应用程序，这意味着在任何给定的时刻，Redis 只会执行一个操作，不会并行处理多个请求。然而，即使Redis是单线程的，它仍然可以通过一些方法来提高多核CPU的利用率，以更好地处理并发请求和提高性能。</p>
+<ol>
+<li><strong>使用多个实例</strong>：运行多个独立的Redis实例，每个实例独占一个CPU核心。</li>
+<li><strong>使用集群模式</strong>：一种分布式解决方案，可以将数据分布在多个节点上。</li>
+<li><strong>使用线程池或者多进程</strong>：使用线程池或者多进程来并行处理一些任务。</li>
+<li><strong>优化命令和数据模型</strong>：使用适当的命令和数据结构减少Redis主线程的负担。</li>
+<li><strong>使用异步操作</strong>：利用Redis的异步操作，例如使用Lua脚本和一些异步命令。</li>
+<li><strong>使用合适的持久化方式</strong>：RDB持久化在后台保存快照，可以减少对主线程的阻塞。</li>
+</ol>
+<h4 id="Redis的管道是什么？"><a href="#Redis的管道是什么？" class="headerlink" title="Redis的管道是什么？"></a>Redis的管道是什么？</h4><p>Redis管道是一种用于在客户端和服务器之间批量执行多个命令的机制。通过使用管道，可以在一次网络往返中发送多个命令，从而提高性能并减少通信开销。以下是Redis管道的一些主要用途和优势：（1）减少网络延迟。（2）提高性能。（3）原子性操作。（4）事务操作。（5）减少服务器压力。</p>
+<h4 id="Redis如何实现大量数据插入？"><a href="#Redis如何实现大量数据插入？" class="headerlink" title="Redis如何实现大量数据插入？"></a>Redis如何实现大量数据插入？</h4><ol>
+<li><strong>使用管道（Pipeline）</strong>：通过一次性发送多个插入命令，可以减少通信开销。</li>
+<li><strong>使用MEST或MSETNX命令</strong>：MSET命令可以一次性设置多个键值对，适用于批量插入。希望只在键不存在的情况下才进行插入，使用MSETNX命令。</li>
+<li><strong>使用Redis批量插入命令</strong>：如RPUSH、SADD、ZADD等。</li>
+<li><strong>使用数据导入工具</strong>：使用Redis的数据导入工具，例如redis-cli的pipe参数</li>
+</ol>
 <h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><h4 id="介绍下-Spring-IoC-的工作流程"><a href="#介绍下-Spring-IoC-的工作流程" class="headerlink" title="介绍下 Spring IoC 的工作流程"></a>介绍下 Spring IoC 的工作流程</h4><p>IOC 的全称是 Inversion Of Control，也就是控制反转，它的核心思想是把对象的管理权限交给容器。应用程序如果需要使用到某个对象实例，直接从 IOC 容器中去获取就行，这样设计的好处是降低了程序里面对象与对象之间的耦合性。</p>
 <p>Spring 里面很多方式去定义 Bean，（如图）比如 XML 里面的〈bean〉标签、@Service、@Component、 @Repository、@Configuration 配置类中的@Bean 注解等等。Spring 在启动的时候，会去解析这些 Bean 然后保存到 IOC 容器里面。</p>
 <p>Spring IOC 的工作流程大致可以分为两个阶段。</p>
@@ -1293,7 +1352,15 @@
 <p><strong>@Controller</strong>：这将一个类标记为 Spring Web MVC 控制器。标有它的Bean会自动导入到 IoC 容 器中 。</p>
 <p> <strong>@Service</strong>：此注解是组件注解的特化 。 它不会对 @Component 注解提供任何其他行为。可以在服务层类中使用@Service 而不是@Component，因为它以更好的方式指定了意图。 </p>
 <p><strong>@ Repository</strong>：这个注解是具有类似用途和功能的@Component注解的特化。它为 DAO 提供了额外的好处。它将 DAO 导入 IoC 容器，并使未经检查的异常有资格转换为Spring DataAccess Exception。</p>
-<h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><h4 id="Spring-Boot中自动装配机制的原理"><a href="#Spring-Boot中自动装配机制的原理" class="headerlink" title="Spring Boot中自动装配机制的原理"></a>Spring Boot中自动装配机制的原理</h4><p>自动装配，简单来说就是自动把第三方组件的 Bean 装载到 Spring IOC 器里面，不需要开发人员再去写 Bean 的装配配置。在 Spring Boot 应用里面，只需要<strong>在启动类加上@SpringBootApplication 注解就可以实现自动装配。</strong> @SpringBootApplication 是一个复合注解，真正实现自动装配的注解是@EnableAutoConfiguration。<br>SpringBoot 是约定优于配置这一理念下的产物，所以在很多的地方，都会看到这类的思想。它的出现，让开发人员更加聚焦在了业务代码的编写上，而不需要去关心和业务无关的配置。</p>
+<h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><h4 id="为什么使用Spring-Boot？"><a href="#为什么使用Spring-Boot？" class="headerlink" title="为什么使用Spring Boot？"></a>为什么使用Spring Boot？</h4><ol>
+<li><strong>快速启动和开发</strong>：提供了大量的起步依赖项，这些依赖项简化了配置和项目设置。</li>
+<li><strong>约定优于配置</strong>：减少了开发者需要手动配置的数量。</li>
+<li><strong>内嵌服务器支持</strong>：内嵌了Tomcat、jetty或Undertow服务器，简化了Web应用程序的部署过程。</li>
+<li><strong>简化数据访问</strong>：提供与JPA、JDBC等数据访问技术的集成。</li>
+<li><strong>微服务架构支持</strong>：Spring Boot与Spring Cloud紧密结合。</li>
+<li>丰富的运行时监控。</li>
+</ol>
+<h4 id="Spring-Boot中自动装配机制的原理"><a href="#Spring-Boot中自动装配机制的原理" class="headerlink" title="Spring Boot中自动装配机制的原理"></a>Spring Boot中自动装配机制的原理</h4><p>自动装配，简单来说就是自动把第三方组件的 Bean 装载到 Spring IOC 器里面，不需要开发人员再去写 Bean 的装配配置。在 Spring Boot 应用里面，只需要<strong>在启动类加上@SpringBootApplication 注解就可以实现自动装配。</strong> @SpringBootApplication 是一个复合注解，真正实现自动装配的注解是@EnableAutoConfiguration。<br>SpringBoot 是约定优于配置这一理念下的产物，所以在很多的地方，都会看到这类的思想。它的出现，让开发人员更加聚焦在了业务代码的编写上，而不需要去关心和业务无关的配置。</p>
 <h4 id="spring-boot的核心注解是哪个？它主要由哪几个注解组成的？"><a href="#spring-boot的核心注解是哪个？它主要由哪几个注解组成的？" class="headerlink" title="spring boot的核心注解是哪个？它主要由哪几个注解组成的？"></a>spring boot的核心注解是哪个？它主要由哪几个注解组成的？</h4><p>启动类上面的注解是**@SpringBootApplication**，它也是 Spring Boot 的核心注解，主要组合包含了以下3个注解：</p>
 <ol>
 <li>@SpringBootConfiguration：组合了 @Configuration 注解，实现配置文件的功能。</li>
@@ -1313,7 +1380,7 @@
 </ul>
 <p>SpringBoot的启动流程主要包括加载启动类、加载配置文件和创建Spring容器三个步骤。这个流程使得SpringBoot能够快速地启动并运行应用程序，同时提供了灵活的配置和自动装配功能，使得开发者可以更加高效地开发Spring应用程序。</p>
 <h4 id="SpringBoot和Spring的区别是什么？"><a href="#SpringBoot和Spring的区别是什么？" class="headerlink" title="SpringBoot和Spring的区别是什么？"></a>SpringBoot和Spring的区别是什么？</h4><p>Spring是一个非常强大的企业级Java开发框架 ，提供了一系列模块来支持不同的应用需求，如依赖注入、面向切面编程、事务管理、Web应用程序研发等。而SpringBoot的出现， 主要是起到了简化Spring应用程序的开发和部署，特别是用于构建微服务和快速开发的应用程序。</p>
-<p>SpringBoot在以下方面提升了Spring的效率：1.自动配置。2.内嵌Web服务器。3.约定大于配置。</p>
+<p>SpringBoot在以下方面提升了Spring的效率：1.自动配置。2.内嵌Web服务器（Tomcat）。3.约定大于配置。</p>
 <h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="简述你对-Spring-MVC-的理解"><a href="#简述你对-Spring-MVC-的理解" class="headerlink" title="简述你对 Spring MVC 的理解"></a>简述你对 Spring MVC 的理解</h4><p>实现了 Web MVC 设计模式，<strong>请求驱动类型的轻量级 Web框架</strong>。采用了 MVC 架构模式的思想，通过把 Model，View，Controller 分离，将 Web 层进行职责解耦，从而把复杂的 Web 应用分成逻辑清晰的几个组件，共有九大组件。涉及请求处理响应的核心组件分别是：（1）HandlerMapping；（2）HandlerAdapter；（3）ViewResolver</p>
 <ol>
 <li>HandlerMapping 回到调用 HandlerAdapter</li>
@@ -1359,13 +1426,21 @@
 <li>SpringBoot 专注于快速、方便地开发单个微服务个体，SpringCloud 关注全局的服务治理框架。</li>
 </ul>
 <h3 id="MyBatis面试题"><a href="#MyBatis面试题" class="headerlink" title="MyBatis面试题"></a>MyBatis面试题</h3><h4 id="什么是Mybatis"><a href="#什么是Mybatis" class="headerlink" title="什么是Mybatis ?"></a>什么是Mybatis ?</h4><ol>
-<li>Mybatis 是一个半ORM (对象关系映射) 框架，它内部封装了JDBC ，开发时只需<br>要关注SQL语句本身， 不需要花费精力去处理加载驱动、创建连接、创建<br>statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。</li>
-<li>MyBatis 可以使用XML或注解来配置和映射原生信息，将POJO 映射成数据库中的<br>记录，避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。</li>
-<li>通过xml文件或注解的方式将要执行的各种statement配置起来，并通过java对象和<br>statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。(从执行sql到返回result的过程)。</li>
+<li>Mybatis 是一个半ORM (对象关系映射) 框架，它内部封装了JDBC ，开发时只需要关注SQL语句本身， 不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。程序员直接编写原生态sql，可以严格控制sql执行性能，灵活度高。</li>
+<li>MyBatis 可以使用XML或注解来配置和映射原生信息，将POJO 映射成数据库中的记录，避免了几乎所有的JDBC代码和手动设置参数以及获取结果集。</li>
+<li>通过xml文件或注解的方式将要执行的各种statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。(从执行sql到返回result的过程)。</li>
 </ol>
 <p><strong>优点</strong>：基于SQL语句编程，灵活。能够与Spring很好的集成。提供映射标签，支持对象与数据库的ORM字段关系映射。提供XML标签，支持编写动态SQL语句，并可重用。</p>
 <p><strong>缺点</strong>：SQL语句的编写工作量大。依赖于数据库，导致数据库移植性差，不能随意更改数据库。</p>
 <p><strong>适用场景</strong>：MyBatis专注于SQL本身，是一个足够灵活的DAO层解决方案。对性能要求高，或者需求变化较多的项目。</p>
+<h4 id="ORM是什么？"><a href="#ORM是什么？" class="headerlink" title="ORM是什么？"></a>ORM是什么？</h4><p>ORM (Object-Relational Mapping，对象关系映射)是一种程序设计技术，用于实现不同类型系统间的数据转换。在应用程序开发中，ORM主要指的是将<strong>面向对象的语言与关系数据库管理系统</strong>(RDBMS)之间的数据转换。通过ORM，可以使用高级语言中的对象来代表和操作数据库中的数据，而不需要直接编写SQL语句。</p>
+<h4 id="MyBatis有哪些常见的结果映射？"><a href="#MyBatis有哪些常见的结果映射？" class="headerlink" title="MyBatis有哪些常见的结果映射？"></a>MyBatis有哪些常见的结果映射？</h4><ol>
+<li><strong>简单映射关系</strong>：当查询的是一个简单类型（如String，Integer等），可以直接在<select>标签中使用resultType属性返回指定类型。</select></li>
+<li><strong>javaBean映射</strong>：即一个包含属性和对应getter和setter方法的java类时，可以通过resultType或resultMap来实现。</li>
+<li><strong>高级结构映射</strong>：对于复杂映射关系，如一对多、多对多、或当数据库列名与java对象属性名不直接对应时，可以使用<resultmap>来定义映射关系。</resultmap></li>
+<li><strong>关联映射（一对一）</strong>：使用<association>标签定义一对一的关系，如用户和用户详细。</association></li>
+<li><strong>集合映射（一对多）</strong>：使用<collection>标签定义一对多的关系，如用户和他们的订单。</collection></li>
+</ol>
 <h4 id="Mybatis-是如何进行分页的"><a href="#Mybatis-是如何进行分页的" class="headerlink" title="Mybatis 是如何进行分页的"></a>Mybatis 是如何进行分页的</h4><p>数据进行分页是最基础的功能，一般可以把分页分成两类：</p>
 <ol>
 <li>逻辑分页，先查询出所有的数据缓存到内存，再根据业务相关需求，从内存数据中筛选出合适的数据进行分页。</li>
@@ -1446,7 +1521,37 @@
 </ol>
 <p>客户端的请求先通过匹配规则找到合适的路由，就能映射到具体的服务。然后请求经过过滤器处理后转发给具体的服务，服务处理后，再次经过过滤器处理，最后返回给客户端。</p>
 <h4 id="Spring-Cloud-Gateway限流原理"><a href="#Spring-Cloud-Gateway限流原理" class="headerlink" title="Spring Cloud Gateway限流原理"></a>Spring Cloud Gateway限流原理</h4><p><img src="/2024/05/20/mian-shi-zheng-li/20240531102632.png"></p>
-<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="请说一下网络四元组"><a href="#请说一下网络四元组" class="headerlink" title="请说一下网络四元组"></a>请说一下网络四元组</h4><p>四元组，简单理解就是在 TCP 协议中，去确定一个客户端连接的组成要素，它包括<strong>源 IP 地址、目标 IP地址、源端口号、目标端口号</strong>。<br>一个 Server 端可以接收多个客户端的连接，TCP 是全双工协议，也就是说数据允许在连接的两个方向上同时传输，因此这里的客户端，如果是反向通信，它又变成了服务端。当一个客户端和服务端建立一个 TCP 连接的时候，通过源 IP 地址、目标 IP 地址、源端口号、目标端口号来确定一个唯一的 TCP 连接。因为服务器的 IP 和端口是不变的，只要客户端的 IP 和端口彼此不同就 OK 了。</p>
+<h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><h4 id="HTTP有哪些常见请求方法？"><a href="#HTTP有哪些常见请求方法？" class="headerlink" title="HTTP有哪些常见请求方法？"></a>HTTP有哪些常见请求方法？</h4><ol>
+<li><strong>GET</strong>：从服务器获取指定资源的表达形式。只用于获取数据，不会被服务器产生其他影响。get是幂等的。</li>
+<li><strong>POST</strong>：向服务器提交数据，用于创建新资源或执行其他可能会修改服务器状态的操作。</li>
+<li><strong>PUT</strong>：用于请求中的有效载荷替代服务器上的指定资源。用于创建或更新资源，幂等。</li>
+<li><strong>DELETE</strong>：从服务器删除指定资源。请求成功后，服务器返回204（No Content）状态码。</li>
+<li><strong>PATCH</strong>：对服务器上的资源进行部分更新。一部分资源更新。</li>
+<li><strong>HEAD</strong>：与get方法类似，但服务器只返回响应头部，不返回响应主体。通常获取资源的元数据，例如资源大小、最后修改时间等。</li>
+<li><strong>OPTIONS</strong>：获取目标资源支持的通信选项。用于获取服务器支持的HTTP方法、跨域资源共享（CORS）策略等信息。</li>
+<li><strong>TRACE</strong>：用于调试，向目标服务器发送一个测试请求。用于诊断代理或网关是否正确处理请求。</li>
+<li><strong>CONNECT</strong>：建立与目标服务器TCP/IP隧道。与代理服务器建立安全的TLS连接，通常用于HTTPS代理。</li>
+</ol>
+<h4 id="HTTP状态码？"><a href="#HTTP状态码？" class="headerlink" title="HTTP状态码？"></a>HTTP状态码？</h4><ol>
+<li>1xx：信息性状态码</li>
+<li>2xx：成功状态码</li>
+<li>3xx：重定向状态码</li>
+<li>4xx：客户端错误状态码</li>
+<li>5xx：服务器错误状态码</li>
+</ol>
+<h4 id="HTTP请求报文包含哪些内容"><a href="#HTTP请求报文包含哪些内容" class="headerlink" title="HTTP请求报文包含哪些内容?"></a>HTTP请求报文包含哪些内容?</h4><ol>
+<li><strong>请求行</strong>：请求方法、请求URI、协议版本号。</li>
+<li><strong>请求头部</strong>：包含请求的附加信息，如请求的主机、客户端的身份认证信息等</li>
+<li><strong>空行</strong>：请求头部和请求体之间必须有一个空行来分隔。</li>
+<li><strong>请求体</strong>：对于一些请求（如POST、PUT等），请求报文可能包含请求体，用于向服务器传递数据。</li>
+</ol>
+<h4 id="HTTP响应报文包含哪些内容？"><a href="#HTTP响应报文包含哪些内容？" class="headerlink" title="HTTP响应报文包含哪些内容？"></a>HTTP响应报文包含哪些内容？</h4><ol>
+<li><strong>状态行</strong>：协议版本号、状态码、状态消息。</li>
+<li><strong>响应头部</strong>：包含了关于响应的附加信息，如响应的内容类型、长度、服务器信息等。</li>
+<li><strong>空行</strong>：响应头部和响应体之间必须有一个空行来分隔。</li>
+<li><strong>响应体</strong>：包含了实际的响应数据，如HTML页面、JSON数据等。</li>
+</ol>
+<h4 id="请说一下网络四元组"><a href="#请说一下网络四元组" class="headerlink" title="请说一下网络四元组"></a>请说一下网络四元组</h4><p>四元组，简单理解就是在 TCP 协议中，去确定一个客户端连接的组成要素，它包括<strong>源 IP 地址、目标 IP地址、源端口号、目标端口号</strong>。<br>一个 Server 端可以接收多个客户端的连接，TCP 是全双工协议，也就是说数据允许在连接的两个方向上同时传输，因此这里的客户端，如果是反向通信，它又变成了服务端。当一个客户端和服务端建立一个 TCP 连接的时候，通过源 IP 地址、目标 IP 地址、源端口号、目标端口号来确定一个唯一的 TCP 连接。因为服务器的 IP 和端口是不变的，只要客户端的 IP 和端口彼此不同就 OK 了。</p>
 <h4 id="什么是RPC"><a href="#什么是RPC" class="headerlink" title="什么是RPC"></a>什么是RPC</h4><p>常见的远程通信方式，有基于 REST 架构的 HTTP 协议，以及 RPC 框架。</p>
 <p><strong>远程调用是指跨进程的功能调用</strong>，跨进程可以理解成一个计算机节点的多个进程，或者多个计算机节点的多个进程。</p>
 <p>Remote Procedure Call，翻译过来就是远程过程调用，它是<strong>一种通过网络从远程计算机程序上请求服务</strong>，而不需要了解底层网络技术的协议，凡是符合该协议的框架，我们都可以称它为 RPC 框架。<strong>要实现 RPC，需要通过网络传输数据，并对调用的过程进行封装。</strong></p>
@@ -1462,6 +1567,13 @@
 <h4 id="Cookie-和-Session-的区别"><a href="#Cookie-和-Session-的区别" class="headerlink" title="Cookie 和 Session 的区别"></a>Cookie 和 Session 的区别</h4><p><strong>Cookie，它是客户端浏览器用来保存服务端数据的一种机制</strong>。当通过浏览器进行网页访问的时候，服务器可以把某一些状态数据以 key-value 的方式写入到 Cookie 里面存储到客户端浏览器。然后客户端下一次再访问服务器的时候，就可以携带这些状态数据发送到服务器端，服务端可以根据 Cookie 里面携带的内容来识别使用者。</p>
 <p>Session 表示一个会话，它是属于服务器端的容器对象，默认情况下，针对每一个浏览器的请求。Servlet 容器都会分配一个 Session。Session 本质上是一个 ConcurrentHashMap，可以存储当前会话产生的一些状态数据。</p>
 <p>Http 协议本身是一个无状态协议，也就是服务器并不知道客户端发送过来的多次请求是属于同一个用户。所以 Session 是用来弥补 Http 无状态的不足，简单来说，服务器端可以利用 session 来存储客户端在同一个会话里面的多次请求记录。<strong>基于服务端的 session 存储机制，再结合客户端的 Cookie 机制，就可以实现有状态的 Http 协议。</strong></p>
+<h4 id="如果Cookie被禁用了，怎么保存用户状态？"><a href="#如果Cookie被禁用了，怎么保存用户状态？" class="headerlink" title="如果Cookie被禁用了，怎么保存用户状态？"></a>如果Cookie被禁用了，怎么保存用户状态？</h4><ol>
+<li><strong>URL重写</strong>：将会话标识信息（Session ID）添加到URL中，以便在客户端和服务器之间传递会话信息。但不依赖于Cookie，适用于不支持Cookie的情况。</li>
+<li><strong>隐藏字段</strong>：在HTML表单中可以使用隐藏字段（input type = “hidden”）来保存会话标识信息，以便在提交表单时传递给服务器。</li>
+<li><strong>客户端存储</strong>：HTML5引入了一些客户端存储技术。</li>
+<li><strong>HTTP头部</strong>：在HTTP请求和响应的头部中传递用户状态信息，例如自定义的头部字段或标准的HTTP头部字段来传递身份认证信息。</li>
+<li><strong>IP地址跟踪</strong>：在某些情况下，可以通过客户端的IP地址来识别用户，保存用户状态。但不可靠，IP地址会被共享或者动态分配。</li>
+</ol>
 <h4 id="Http-协议和-RPC-协议有什么区别？"><a href="#Http-协议和-RPC-协议有什么区别？" class="headerlink" title="Http 协议和 RPC 协议有什么区别？"></a>Http 协议和 RPC 协议有什么区别？</h4><ul>
 <li>从功能特性来说：http 是一个属于<strong>应用层的超文本传输协议</strong>，是万维网数据通信的基础，主要服务在网页端和服务端的数据传输上。RPC 是一个远程过程调用协议，它的定位是实现不同计算机应用之间的数据通信。</li>
 <li>从实现原理来说：http 协议是一个已经实现并且成熟的应用层协议，它定义了通信的报文格式 Request Body和 Request Header，以及 Response Body 和 Response Header。RPC 只是一种协议的规范，它并没有具体实现，只有<strong>按照 RPC 通信协议规范实现的通信框架，也就是 RPC 框架</strong>，才是协议的具体实现，比如 Dubbo、gRPC 等。</li>
@@ -1488,6 +1600,18 @@
 </ul>
 <h4 id="HTTP的长连接与短连接的区别"><a href="#HTTP的长连接与短连接的区别" class="headerlink" title="HTTP的长连接与短连接的区别"></a>HTTP的长连接与短连接的区别</h4><p><strong>短链接</strong>：在 HTTP/1.0 中默认使用短链接，也就是说，浏览器和服务器每进行一次 HTTP 操作，就建立一次连接，但任务结束就中断连接。如果客户端访问的某个 HTML 或其他类型的 Web 资源，如CSS 文件等。当浏览器每遇到这样一个 Web 资源，就会建立一个 HTTP 会话.</p>
 <p><strong>长链接</strong>：从 HTTP/1.1 起，默认使用长连接，用以保持连接特性。在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输 HTTP 数据的 TCP 连接不会关闭。如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。</p>
+<h4 id="HTTP长连接和TCP长连接有什么区别？"><a href="#HTTP长连接和TCP长连接有什么区别？" class="headerlink" title="HTTP长连接和TCP长连接有什么区别？"></a>HTTP长连接和TCP长连接有什么区别？</h4><p>该问题其实是在问HTTP的Keep-Alive和TCP的Keeplive有什么区别？</p>
+<ul>
+<li>HTTP的Keep-Alive，该功能是由【应用程序】实现的，可以使同一TCP连接来发送和接收多个HTTP请求/应答，减少HTTP短链接带来的多次TCP连接建立和释放的开销。（只要任意一端没有明确提出断开连接，则保存TCP连接状态）</li>
+<li>TCP的Keeplive，该功能是由【内核】实现的，当客户端和服务端长达一定时间没有数据进行交互时，内核为了确保连接是否还有效，就会发送探测报文，来检测对方是否在线，进而决定是否要关闭该连接。</li>
+</ul>
+<h4 id="什么场景下服务端会主动断开连接呢？"><a href="#什么场景下服务端会主动断开连接呢？" class="headerlink" title="什么场景下服务端会主动断开连接呢？"></a>什么场景下服务端会主动断开连接呢？</h4><ol>
+<li>HTTP没有使用长连接</li>
+<li>HTTP长连接超时</li>
+<li>HTTP长连接的请求数量达到上限</li>
+</ol>
+<h4 id="HTTPS一定安全可靠么？"><a href="#HTTPS一定安全可靠么？" class="headerlink" title="HTTPS一定安全可靠么？"></a>HTTPS一定安全可靠么？</h4><p>如果发生有假基站起了转发全部信息的作用，这样是不是假基站就获取到全部信息了，从而造成信息泄露？发生前提：<strong>用户点击了中间人服务器的证书</strong>。</p>
+<p>HTTPS协议本身是没有任何漏洞的，即使你成功进行中间人攻击，本质上是利用了客户端的漏洞（用户点击继续访问或者被恶意导入伪造的根目录），并不是HTTPS不够安全。</p>
 <h4 id="Cookie，Session，Token的区别是什么？"><a href="#Cookie，Session，Token的区别是什么？" class="headerlink" title="Cookie，Session，Token的区别是什么？"></a><strong>Cookie，Session，Token的区别是什么？</strong></h4><p>Cookie、Session和Token是用于在Web应用程序中管理用户状态和身份验证的技术。因为在Web应用中，HTTP的通信是无状态的，每个请求都是完全独立的，所以服务端无法确认当前访问者的身份信息，无法分辨上一次的请求发送者和这一次的发送者是不是同一个人。</p>
 <p>Cookie，是由服务器发送给用户浏览器的小型文本文件，存储在<strong>客户端</strong>的浏览器中。它会在浏览器下次向同一服务器再发起请求时被携带并发送到服务器上。服务器可以读取Cookie并使其中的信息来进行识别和个性化处理。</p>
 <p>Session是在<strong>服务器</strong>端创建和管理的一种会话机制。当户首次访问网站时，服务器会为该用户创建一个唯一的Session ID，通常通过Cookie在客户端进行存储。会话标识符在后续的请求中用于标识具体是哪个用户。</p>
@@ -1507,6 +1631,11 @@
 <li>一段时间后，你的朋友处理完了他的事情，这时他打电话告诉你他也准备好挂电话了。这是服务器端发送第二个FIN信号，表明他现在也准备好结束这次连接。(等server传输数据完毕后，向client发送fin。 server置为LAST_ACK)</li>
 <li>最后，你回复说你收到了他的消息，现在可以挂电话了。这就是发送最后一个ACK号，确认收到服务器端的结束请求。(client向server发送ack。 client置 为TIME_WAIT。之后等待2MSL，client关闭。server接收到后置为CLOSED)</li>
 </ol>
+<h4 id="为什么是三次握手？不是两次、四次？"><a href="#为什么是三次握手？不是两次、四次？" class="headerlink" title="为什么是三次握手？不是两次、四次？"></a>为什么是三次握手？不是两次、四次？</h4><ul>
+<li>三次握手才可以阻止重复历史连接的初始化（主要原因）</li>
+<li>三次握手才可以同步双方的初始序列号</li>
+<li>三次握手才可以避免资源浪费</li>
+</ul>
 <h4 id="TCP是如何保证可靠传输的？"><a href="#TCP是如何保证可靠传输的？" class="headerlink" title="TCP是如何保证可靠传输的？"></a>TCP是如何保证可靠传输的？</h4><ul>
 <li><strong>校验和</strong>：TCP 将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP将丢弃这个报文段和不确认收到此报文段。</li>
 <li><strong>三次握手和四次挥手</strong></li>
@@ -1516,12 +1645,17 @@
 <li>超时重传：当TCP发出一个后，它启动一个定时器，等待目的端确认收到这个报文段。如果不能及时收到一个确认，将重发这个报文段。</li>
 </ul>
 <h4 id="HTTPS和HTTP的区别是什么？"><a href="#HTTPS和HTTP的区别是什么？" class="headerlink" title="HTTPS和HTTP的区别是什么？"></a>HTTPS和HTTP的区别是什么？</h4><ol>
-<li>安全性：HTTP是明文传输的，不加密。HTTPS是加密传输。</li>
+<li>安全性：HTTP是明文传输的，不加密。HTTPS是加密传输（header+body都加密了）。</li>
 <li>URL：HTTP以http://开头。HTTPS以https://开头</li>
 <li>证书：HTTP不需要使用数字证书。HTTPS需要使用数字证书。</li>
 <li>默认端口：HTTP默认端口80。HTTPS默认端口为443.</li>
 </ol>
 <h4 id="简单介绍一下DNS？"><a href="#简单介绍一下DNS？" class="headerlink" title="简单介绍一下DNS？"></a>简单介绍一下DNS？</h4><p>DNS，是Domain Name System的缩写，翻译成域名系统。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS最主要的作用就是将域名翻译成ip地址。</p>
+<h4 id="客户端连接一个不存在的IP地址，会发生什么？"><a href="#客户端连接一个不存在的IP地址，会发生什么？" class="headerlink" title="客户端连接一个不存在的IP地址，会发生什么？"></a>客户端连接一个不存在的IP地址，会发生什么？</h4><ol>
+<li>目标IP地址和客户端的IP地址是同一个局域网（网络号相同）：客户端无法发出SYN报文，主要卡在数据链路层。由于客户端无法拿到目标设备的MAC，这样就无法组成MAC头的信息，所以SYN报文无法发送出去。</li>
+<li>目标IP地址和客户端的IP地址不在通一个局域网（网络号不同）：客户端会将SYN报文发给路由器，然后路由器会继续转发。由于IP不存在，SYN报文会在网络中消亡，客户端会触发超时重传机制。</li>
+</ol>
+<h4 id="客户端连接一个存在的IP地址但是端口不存在，会发生什么？"><a href="#客户端连接一个存在的IP地址但是端口不存在，会发生什么？" class="headerlink" title="客户端连接一个存在的IP地址但是端口不存在，会发生什么？"></a>客户端连接一个存在的IP地址但是端口不存在，会发生什么？</h4><p>客户端连接的目标IT地址是存在的，那么SYN报文就能正确的抵达到目标设备。目标设备收到SYN报文后，发现端口号并没有被进程监听，这时候目标设备的内核就会回RST报文。客户端收到RST报文后，就会释放连接。</p>
 <h4 id="ping的原理是什么？"><a href="#ping的原理是什么？" class="headerlink" title="ping的原理是什么？"></a>ping的原理是什么？</h4><p>ping命令利用了ICMP两种类型的控制消息：**”echo request” (回显请求)<strong>、</strong>“echo reply””(回显应答)** 。在主机A上执行ping命令，目标主机是B。在A主机上就会发送”echo request” (回显请求) 控制消息，主机B正确接收后即发回”echo reply”(回显应答) 控制消息，通过对方向复的数据包来确定两台网络机器是否连接相通，时延是多少。</p>
 <p>ping命令本身处于应用层，相当于一个应用程序。 它使用的ICMP协议是一个网络层协议，也就是说，ping是一个应用层直接使用网络层协议的例子。</p>
 <h4 id="从输入URL到页面展示发生了什么？"><a href="#从输入URL到页面展示发生了什么？" class="headerlink" title="从输入URL到页面展示发生了什么？"></a>从输入URL到页面展示发生了什么？</h4><ol>
@@ -1533,7 +1667,16 @@
 <li>接收到HTTP响应报文以后，解析响应体中HTML代码，渲染网页结构和样式，依据HTML中其他资源的URL，再次发送HTTP请求，获取这些资源。</li>
 <li>浏览器不再和服务器通信时，主动关闭TCP连接，或等待服务器的关闭请求。</li>
 </ol>
+<h4 id="在浏览器输入URL并回车后，如果页面迟迟没有出现，怎么去排查问题？"><a href="#在浏览器输入URL并回车后，如果页面迟迟没有出现，怎么去排查问题？" class="headerlink" title="在浏览器输入URL并回车后，如果页面迟迟没有出现，怎么去排查问题？"></a>在浏览器输入URL并回车后，如果页面迟迟没有出现，怎么去排查问题？</h4><ol>
+<li>先确定是服务端问题还是客户端问题。</li>
+<li>客户端网络没有问题，就<strong>抓包</strong>确认DNS是否解析出IP地址，如果没有解析出来，说明域名写错，解析出来，抓包确认有没有和服务器建立三次握手，能确定三次握手的话，并且发出HTTP请求，但是没有显示页面，可以查看服务端返回的响应码：<br>（1）如果404，检查输入的url是否正确<br>（2）如果500，说明服务器此时有问题<br>（3）如果200，F12看看前端代码有问题导致浏览器没有渲染出页面。</li>
+<li>如果客户端网络正常，但访问速度慢，导致很久加载出来。就要看客户端的网口流量是否太大，导致tcp发生丢包之类的问题。</li>
+</ol>
 <h4 id="UDP和TCP的区别？"><a href="#UDP和TCP的区别？" class="headerlink" title="UDP和TCP的区别？"></a>UDP和TCP的区别？</h4><p><img src="/2024/05/20/mian-shi-zheng-li/1717058511036-7.png"></p>
+<h4 id="如何用UDP实现可靠传输？"><a href="#如何用UDP实现可靠传输？" class="headerlink" title="如何用UDP实现可靠传输？"></a>如何用UDP实现可靠传输？</h4><p>TCP缺陷：1.升级TCP的工作很困难。2.TCP建立连接的延迟。3.TCP存在队头堵塞问题。4.网络迁移需要重新建立TCP连接。</p>
+<p>目前基于UDP协议实现的可靠传输协议的方案是<strong>QUIC协议</strong>，部署在HTTP/3。<strong>QUIC通过单向递增的Packet Number，配合Stream ID与Offset字段信息，可以支持乱序确认而不影响数据包的正确组装</strong>，摆脱了TCP必须顺序确认应答ACK的限制，解决了TCP因某个数据包重传而阻塞后续所有待发送数据包的问题。</p>
+<h4 id="什么是CDN，为什么他可以做缓存？"><a href="#什么是CDN，为什么他可以做缓存？" class="headerlink" title="什么是CDN，为什么他可以做缓存？"></a>什么是CDN，为什么他可以做缓存？</h4><p>CDN是Content Delivery Network缩写，内容分发网络，它主要通过将内容存储在全国各地的边缘节点上，以就近原则向用户提供内容。</p>
+<p><strong>CDN做缓存是因为它在全国范围内部署了多个边缘节点，这些节点分布在不同的地理位置，靠近用户所在的区域</strong>。当用户请求某个资源，CDN会依据用户的位置，将资源从最近的边缘节点提供给用户。</p>
 <h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h4 id="计算机打开电源操作系统做了什么"><a href="#计算机打开电源操作系统做了什么" class="headerlink" title="计算机打开电源操作系统做了什么?"></a>计算机打开电源操作系统做了什么?</h4><ol>
 <li>加载BIOS：计算机主板的BIOS开始工作，开始检测计算机的硬件是否正常</li>
 <li>加载引导程序：自检完成后，BIOS会从启动设备(如硬盘、光盘)中加载操作系统的引导程序</li>
@@ -1541,6 +1684,12 @@
 <li>加载设备驱动程序：使计算机中的各种硬件设备，如硬盘、显卡、网卡等正常工作</li>
 <li>启动服务系统：如网络服务、远程登陆，防火墙服务等</li>
 </ol>
+<h4 id="CPU执行程序的过程："><a href="#CPU执行程序的过程：" class="headerlink" title="CPU执行程序的过程："></a>CPU执行程序的过程：</h4><ol>
+<li>CPU 读取<strong>程序计数器</strong>的值，这个值是指令的内存地址，然后 CPU 的<strong>控制单元</strong>操作<strong>地址总线</strong>指定需要访问的内存地址，接着通知内存设备准备数据，数据准备好后通过<strong>数据总线</strong>将指令数据传给 CPU，CPU 收到内存传来的数据后，将这个指令数据存⼊到<strong>指令寄存器</strong>。</li>
+<li>CPU 分析<strong>指令寄存器</strong>中的指令，确定指令的类型和参数，如果是计算类型的指令，就把指令交给<strong>逻辑运算单元</strong>运算；如果是存储类型的指令，则交由<strong>控制单元</strong>执⾏；</li>
+<li>CPU 执⾏完指令后，<strong>程序计数器</strong>的值⾃增，表示指向下⼀条指令。这个⾃增的大小，由 CPU 的位宽决定，⽐如 32 位的 CPU，指令是 4 个字节，需要 4 个内存地址存放，因此「程序计数器」的值会⾃增 4。</li>
+</ol>
+<p>⼀个程序执⾏的时候，CPU 会根据程序计数器⾥的内存地址，从内存⾥⾯把需要执⾏的指令读取到指令寄存器⾥⾯执⾏，然后根据指令⻓度⾃增，开始顺序读取下⼀条指令。</p>
 <h4 id="操作系统的IO模型有哪些？"><a href="#操作系统的IO模型有哪些？" class="headerlink" title="操作系统的IO模型有哪些？"></a>操作系统的IO模型有哪些？</h4><p>为了保护操作系统的安全，通过缓存加快系统读写，会将内存分为用户空间和内核空间两个部分。如果用户想要操作内核空间的数据，则需要把数据从内核空间拷贝到用户空间(数据会放到内核空间的page cache中，这种也叫缓存IO)。</p>
 <ul>
 <li>同步堵塞IO模型：从系统调用recv到将数据从内核复制到用户空间并返回，在这段时间内进程始终堵塞。</li>
@@ -1782,6 +1931,120 @@ ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span ar
 <p>首先，B+树的叶子节点形成有序链表，可以方便地进行范围查询操作。对于磁盘存储来说，顺序读取的效率要高于随机读取，因为它可以分利用磁盘预读和缓存机制，减少磁盘I/O的次数。</p>
 <p>其次，由于B+树的节点大小是固定的，因此可以很好地利用磁盘预读特性，一次性读取多个节点到内存中，这样可以减少I0操作次数，提高查询效率。</p>
 <p>而跳表就不一样了，跳表的索引节点通过跳跃指针连接，形成多级索引结构。这导致了跳表的索引节点在磁盘上存储时会出现数据分散的情况，即索引节点之间的物理距离可能较远。对于磁盘存储来说，随机访问分散的数据会增加磁头的寻道时间，导致磁盘I/O的性能下降。</p>
+<h4 id="订单到期关闭如何实现？"><a href="#订单到期关闭如何实现？" class="headerlink" title="订单到期关闭如何实现？"></a>订单到期关闭如何实现？</h4><ol>
+<li><strong>定时任务</strong>：通过调度平台来实现定时执行任务，去扫描所有到期任务。（实现简单，但时间不准确，无法处理大订单量，对数据库造成压力，分库分表问题）</li>
+<li><strong>JDK自带的DelayQueue</strong>：DelayQueue是一个无界的BlockingQueue。用户创建订单时，把订单加入DelayQueue中，还需要一个常驻任务不断从队列中取出超时时间的订单，再删除。（订单量大。导致OOM问题；只适合在单机场景中，不适合分布式场景）</li>
+<li><strong>Netty的时间轮或Kafka的时间轮</strong>：一种环形结构，分成多个slot，每个slot代表一个时间段，其中存放多个任务。时间轮通过一个指针随着时间一个个slot转动。（Netty适合单机场景，Kafka适合分布式场景）</li>
+<li><strong>RocketMQ延迟消息</strong>：当消息写入Broker后，不会立刻被消费者消费，需要等待指定的时长后才可以被消费处理的消息。</li>
+<li><strong>Redis的Zset</strong>：将订单超时时间的时间戳（下单时间+超时时长）与订单号分别设置为score和member。这样redis会对zset按照score延时时间排序。（借助redis持久化、高可用机制；在高并发场景下，有可能多个消费者同时获取同一订单，采取分布式锁解决，但降低吞吐量）</li>
+<li><strong>Redisson+Redis</strong>：Redisson定义了分布式延迟队列RDelayedQueue，基于zset结构的延时队列，添加了基于内存的延迟队列。（可有效解决zset中并发重复问题，实现简单，性能高）</li>
+</ol>
+<h4 id="每天100w次登陆请求，4C8G机器如何做JVM调优？"><a href="#每天100w次登陆请求，4C8G机器如何做JVM调优？" class="headerlink" title="每天100w次登陆请求，4C8G机器如何做JVM调优？"></a>每天100w次登陆请求，4C8G机器如何做JVM调优？</h4><p>大致上峰值大概持续1h，QPS可以达到200。优化如下：</p>
+<ul>
+<li><strong>堆内存</strong>设置：一般JVM的堆内存设置成操作系统内存的一半，也就是4G。</li>
+<li><strong>垃圾收集器</strong>选择：新生代GC比较频繁，所以需要一种GC过程中STW时间短，而且年轻代回收中能发挥效果。G1为JDK9默认垃圾回收器，具有低暂停时间和高吞吐量的优点，对内存有要求，最小为4G。</li>
+<li>添加必要的<strong>日志</strong></li>
+</ul>
+<h4 id="不用redis分布式锁，如何防止用户重复点击？"><a href="#不用redis分布式锁，如何防止用户重复点击？" class="headerlink" title="不用redis分布式锁，如何防止用户重复点击？"></a>不用redis分布式锁，如何防止用户重复点击？</h4><ol>
+<li>前端做一些按钮<strong>置灰动作</strong>，用户点击一次，按钮直接禁止调用。（但某些情况下没来得及置灰就重复点击了）</li>
+<li>通过<strong>token的机制避免重复提交</strong>。当用户访问页面时，请求后端服务拿到一个token，然后下一次接口点击的时候把token带过来，服务端对token进行验证，验证该token是否被使用过。</li>
+<li><strong>滑动窗口限流</strong>：用于控制在一定时间内允许执行的操作数量或请求频率，限制1分钟内或1秒钟内用户只能发起一次请求来防止重复点击。</li>
+<li><strong>布隆过滤器</strong>。</li>
+</ol>
+<h4 id="设计一个秒杀系统，会考虑哪些问题？"><a href="#设计一个秒杀系统，会考虑哪些问题？" class="headerlink" title="设计一个秒杀系统，会考虑哪些问题？"></a>设计一个秒杀系统，会考虑哪些问题？</h4><ol>
+<li><strong>高并发瞬间流量</strong>：一般来说，在整体构架上，会做逐层的流量过滤，一次用户的秒杀请求会经过客户端、CDN、Nginx、Web应用、缓存、数据库等等。</li>
+<li><strong>热点数据</strong>：不仅需要高频的查询请求，还要有高频的写请求，解决方案为<strong>拆分+缓存</strong>。不仅需要在Redis中做预热，还需要在本地缓存也做预热，可避免Redis的热key问题。</li>
+<li><strong>数据量大</strong>：加缓存、加ES、做分库分表、做数据归档（把历史数据归档掉）</li>
+<li><strong>库存的正确扣减</strong>：数据库：乐观锁；Redis：Lua脚本。</li>
+<li><strong>风控</strong>：防止非法用户，借助算法模型，依据用户的IP、设备信息、网络信息、行为数据等进行分析。</li>
+<li><strong>重复下单</strong>：token做重复下单的检测或引入锁机制保证下单操作的幂等。</li>
+<li>前后端分离，微服务。</li>
+</ol>
+<h4 id="如何用Redis实现朋友圈点赞功能？-1"><a href="#如何用Redis实现朋友圈点赞功能？-1" class="headerlink" title="如何用Redis实现朋友圈点赞功能？"></a>如何用Redis实现朋友圈点赞功能？</h4><p>可以采用Zset来实现，KEY是这个具体朋友圈的ID，Zset的value表示点赞用户的ID，score表示点赞时间的时间戳。</p>
+<ol>
+<li>使用字符串存储每篇朋友圈的ID，作为有序集合的KEY。</li>
+<li>使用Zset存储每篇朋友圈的点赞信息，value表示点赞用户的ID，score表示点赞时间的时间戳</li>
+<li>点赞功能：将用户的ID添加到zset中，score为当前时间戳。如果用户已经点赞了，则更新其点赞时间戳。</li>
+<li>取消点赞信息：将用户的ID从有序集合中删除</li>
+<li>查询点赞信息：使用有序集合的ZREVRANGEBYSCORE命令，按照score（时间戳）逆序返回zset的value，即为点赞用户的ID。</li>
+</ol>
+<h4 id="消息队列使用拉模式还是推模式好？为什么？"><a href="#消息队列使用拉模式还是推模式好？为什么？" class="headerlink" title="消息队列使用拉模式还是推模式好？为什么？"></a>消息队列使用拉模式还是推模式好？为什么？</h4><p><strong>推的模式</strong>就消费者端和消息中间件建立TCP长链接或者注册一个回调，当服务端数据发生变化，立即通过这个已经建立好的长连接（或者注册好的回调）将数据推送到客户端。</p>
+<p><strong>拉的模式</strong>就是消费者轮询，通过不断轮询的方式检查数据是否发生变化，变化的话就把数据拉回来。</p>
+<p>一般来说，推的模式适合<strong>实时性要求比较高</strong>的场景。而拉的模式适合<strong>实时性要求没那么高</strong>的场景。</p>
+<p>许多中间件，采取<strong>长轮询</strong>：就是消费者向消息中间件发起一个长轮询请求，消息中间件如果有消息就直接返回，如果没有也不会立即断开连接，而是等待一会， 等待过程中如果有新消息到达，再把消息返回。如果超时还没有消息，那就结束了，等下次长轮询。</p>
+<h4 id="一个订单，超时关闭但同时支付成功，怎么办？"><a href="#一个订单，超时关闭但同时支付成功，怎么办？" class="headerlink" title="一个订单，超时关闭但同时支付成功，怎么办？"></a>一个订单，超时关闭但同时支付成功，怎么办？</h4><ol>
+<li>明确终态：支付成功和已取消，都应该是终态，是不能再变化的。</li>
+<li>原路退回：在支付成功的处理过程中，如果发现支付单被关闭，那么触发原路退回的流程，把钱再给用户退回去。</li>
+<li>资金恒等式：在支付单上多记录一些金额，比如支付金额、冲退金额。引入对账机制，不断的做资金恒等式的校验，发现不一致的时候，需要进行对齐操作，即退款重试，直到成功。</li>
+<li>分布式锁</li>
+</ol>
+<h4 id="不使用synchronized和lock如何设计一个线程安全的单例？"><a href="#不使用synchronized和lock如何设计一个线程安全的单例？" class="headerlink" title="不使用synchronized和lock如何设计一个线程安全的单例？"></a>不使用synchronized和lock如何设计一个线程安全的单例？</h4><ul>
+<li><strong>饿汉</strong>：定义静态的成员变量，以保证instance可以在类初始化的时候被实例化。</li>
+<li><strong>静态内部类</strong>：这种方式是Singleton类被装载了，instance不一定被初始化。因为SingletonHolder类没有被主动使用，只有显示通过调用getInstance方法时，才会显示装载SingletonHolder类，从而实例化instance。</li>
+<li><strong>枚举</strong>：如果把枚举类进行反编译， 你会发现他也是使用了static final来修饰每一个枚举项。</li>
+</ul>
+<h4 id="说一说多级缓存是如何应用的？-1"><a href="#说一说多级缓存是如何应用的？-1" class="headerlink" title="说一说多级缓存是如何应用的？"></a>说一说多级缓存是如何应用的？</h4><p>一个真实的秒杀业务，从前到后，可能涉及到5层缓存。</p>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240719094935868.png"></p>
+<ul>
+<li><strong>客户端缓存</strong>：每一秒都需要通过向后端发送请求，那请求量太大，使用通过客户端缓存的方式，可以大大降低后端服务器的压力。</li>
+<li><strong>CDN缓存</strong>：秒杀活动中，有很多商品相关的信息，比如商品的图片信息，这些前端的静态资源其实变化的频率并不是很高，那么其实就可以通过CDN来做缓存。</li>
+<li><strong>Nginx缓存</strong>：在请求到服务器之前，会经过Nginx做负载均衡。缓存上：比如一些静态资源，当没有CDN时，可以优先到Nginx获取。在秒杀场景中，我们需要做一些用户的鉴权，比如用户是否登录，是否是黄牛用户，用户的IP是否被封禁。这些信息一般是放在Nginx中的，可以在这里面做一些前置的校验，把一些非法的请求就直接都给拒绝掉了。</li>
+<li><strong>Web App缓存</strong>：当Nginx请求过滤之后，有些合理请求就需要发送到WebApp当中，这时候就会涉及到很多具体的业务逻辑了<br>但是，应用当中也会经常使用本地缓存来提升查询效率。但是本地缓存我们都知道，可能存在不一致的问题，所以这里面存储的信息一般是变化没那么频繁的。</li>
+<li><strong>分布式缓存</strong>：Redis</li>
+</ul>
+<h4 id="Mysql热点数据更新会带来哪些问题？"><a href="#Mysql热点数据更新会带来哪些问题？" class="headerlink" title="Mysql热点数据更新会带来哪些问题？"></a>Mysql热点数据更新会带来哪些问题？</h4><ol>
+<li><strong>锁竞争</strong>，热点数据的更新是通过update语句进行的，而update是需要给记录增加排他锁的，就会导致大量的请求被堵塞。降低整个系统的吞吐量。</li>
+<li><strong>占有数据库连接</strong>，大量update的时候，修改同一条记录而被堵塞的时候，持有的数据库连接是不会释放的，而数据库的连接是有限的，会导致连接数不够。</li>
+<li><strong>耗尽数据库CPU</strong>，大量锁等待，会导致大量的自旋，多个线程就会不断的尝试获取锁，消耗大量CPU资源。</li>
+<li><strong>死锁</strong>风险，在高并发的情况下。</li>
+<li><strong>索引维护</strong>开销大。</li>
+<li><strong>主从不一致</strong>，在主从复制出现延迟的情况下，就会放大数据不一致的概率。</li>
+</ol>
+<h4 id="如果要存IP地址，用什么数据类型比较好？"><a href="#如果要存IP地址，用什么数据类型比较好？" class="headerlink" title="如果要存IP地址，用什么数据类型比较好？"></a>如果要存IP地址，用什么数据类型比较好？</h4><ul>
+<li>对于IPV4和IPV6来说，<strong>字符串格式</strong>是最直观和灵活的，适合需要展示或直接操作的原始地址的场景。</li>
+<li>对于IPV4和IPV6来说，如果有些场景进行大量的位运算，或者对空间要求更为极致，那么<strong>二进制</strong>是一个好的选择</li>
+<li><strong>对于IPV4，如果考虑性能和空间的权衡，那么建议使用整数格式存储</strong>。因为他是一个折中方案，在效率和空间之间相对平衡。并且不至于很复杂。</li>
+<li><strong>而对于IPV6，如果考虑性能和空间的权衡，那么建议使用二进制格式存储</strong>。因为IPV6的整数存储方案比较复杂，需要分多个段，反而会更加复杂一些，</li>
+</ul>
+<h4 id="一次RPC请求，客户端显示超时，但是服务端不超时，可能是什么原因？"><a href="#一次RPC请求，客户端显示超时，但是服务端不超时，可能是什么原因？" class="headerlink" title="一次RPC请求，客户端显示超时，但是服务端不超时，可能是什么原因？"></a>一次RPC请求，客户端显示超时，但是服务端不超时，可能是什么原因？</h4><p>一次RPC调用是从客户端发起，然后请求到服务端，再响应给客户端的过程。导致原因可能：</p>
+<ul>
+<li>**网络延迟或丢包(主要)**：如果服务端在处理请求之前或处理过程中遇到网络延迟，可能会导致实际处理时间超出预期，从而触发客户端的超时机制。</li>
+<li>**服务端和客户端超时配置不一致(主要)**：RPC调用通常既有客户端的超时设置，也有服务端的超时设置。如果客户端的超时阈值设置得比服务端的超时值更低(即客户端配置2000ms超时，但是服务端配置的是3000ms超时)，那么即使服务端没有超时，客户端也可能因为超过其自身的超时阈值而报告超时。</li>
+<li>**客户端处理能力(次要)**：如果客户端在处理请求时遇到资源瓶颈(如CPU、内存限制)或者客户端正在处理大量的并发请求，可能会导致某些请求处理时间较长，从而触发出现超时的现象。</li>
+</ul>
+<h4 id="如何实现敏感词过滤？"><a href="#如何实现敏感词过滤？" class="headerlink" title="如何实现敏感词过滤？"></a>如何实现敏感词过滤？</h4><ul>
+<li><strong>字符串匹配</strong>：最简单、直观的方法，直接在文本中查找是否存在敏感词列表中的词汇。如<strong>contains方法或者正则表达式</strong>可以判断。适合小规模文本或者敏感词较少的场合使用，如避免SQL注入的时候。</li>
+<li><strong>前缀树</strong>：用于快速检索字符串数据集中的键的树形数据结构。这种数据结构特别适合解决与一组字符串有关的问题，如自动补全、拼写检查、词频统计、敏感词过滤等。前缀树的核心优势在于，它能够通过共享前缀来最大化地减少查询和存储空间，特别是当处理大量具有共同前缀的字符串时。</li>
+<li>DFA算法：Deterministic Finite Automaton，是一种高效的文本匹配算法，适合敏感词过滤。DFA由一组状态组成，以及在这些状态之间的转换，这些转换由输入字符串驱动。每个状态都知道下一个字符的到来应该转移到哪个状态。如果输入字符串结束时，DFA处于接受状态，则输入字符串被认为是匹配的。</li>
+</ul>
+<h4 id="为什么不直接用原生的BlockinQueue做消息队列？"><a href="#为什么不直接用原生的BlockinQueue做消息队列？" class="headerlink" title="为什么不直接用原生的BlockinQueue做消息队列？"></a>为什么不直接用原生的BlockinQueue做消息队列？</h4><ol>
+<li><strong>缺乏分布式特性</strong>：BlockinQueue是一个本地队列，无法在多个节点之间共享数据。</li>
+<li><strong>无持久化支持</strong>：BlockinQueue中的数据存储在内存。</li>
+<li><strong>无高级特性支持</strong>：不支持消息确认、重试、死信队列、延迟队列、事务消息等高级消息队列功能。</li>
+<li><strong>缺乏管理和监控工具</strong>：BlockinQueue没有内置的管理和监控工具，无法方便的监控队列的状态、消息的积压情况等。</li>
+<li><strong>性能和吞吐量限制</strong>：BlockinQueue之适用于单机环境，处理大量消息时性能可能不足，无法满足高吞吐量的需求。</li>
+</ol>
+<h3 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h3><h4 id="常见的架构设计原则有？"><a href="#常见的架构设计原则有？" class="headerlink" title="常见的架构设计原则有？"></a>常见的架构设计原则有？</h4><ol>
+<li><strong>分离关注点</strong>(Separation ofConcerns)：系统中的不同模块应该专注于自己的职责，并与其他模块进行解耦，避免模块之间的耦合度过高，增加系统的可维护性和可扩展性。</li>
+<li><strong>单一职责原则</strong>(Single Responsibility Principle)：每个模块或者组件应该只负责一个职责或者任务，这样可以减少模块之间的相互影响，提高代码的可读性和可维护性。</li>
+<li><strong>开放封闭原则</strong>(Open-Closed Principle)：系统的设计应该对扩展开放，对修改关闭，通过接口的定义，使得系统能够在不修改原有代码的情况下进行扩展和修改。</li>
+<li><strong>接口隔离原则</strong>(Interface Segregation Principle)：系统中的接口应该只包含必要的方法，避免接口过于庞大，减少系统的复杂度。</li>
+<li><strong>依赖倒置原则</strong>(DependencyInversion Principle)：高层模块不应该依赖于低层模块，而应该依赖于抽象接口，通过接口实现高低层的解耦，提高系统的可维护性和可扩展性。</li>
+<li><strong>最少知识原则</strong>(Least Knowledge Principle)：模块之间的通信应该尽可能少，一个模块只应该了解那些与之直接交互的模块，避免模块之间的耦合度过高，降低系统的复杂度。</li>
+<li><strong>重构</strong>(Refactoring)：系统的设计应该不断进行重构，保持系统的灵活性和可维护性。通过对系统的分层、模块化、组件化等方式，减少代码的冗余和重复提高系统的可读性和可维护性。</li>
+<li><strong>高内聚低耦合原则</strong>：模块内部的元素之间应该紧密关联，而与外部的联系应该尽量松散。</li>
+<li><strong>分层架构原则</strong>：将系统分解成若干个层次，每个层次负责一种特定的功能。</li>
+<li><strong>模块化原则</strong>：将系统分解成若干个模块，每个模块负责一种特定的功能。模块之间应该是松散耦合的。</li>
+</ol>
+<h4 id="什么是技术债务？"><a href="#什么是技术债务？" class="headerlink" title="什么是技术债务？"></a>什么是技术债务？</h4><p>技术债务(Technical Debt)指的是在开发过程中，为了快速交付或避免解决问题所需的高成本和高风险而采取的妥协或折中方案，这些方案所留下的技术上的负担和后续成本即被称为技术债务。</p>
+<p>技术债务的本质是以速度和时间为代价，为了实现某个业务目标而对代码质量、架构设计、设计选型等方面进行妥协，但随着时间的推移，技术债务会越来越多，导致软件系统越来越难以维护和升级，进而影响业务的持续发展和创新。</p>
+<h4 id="什么是单元化架构？"><a href="#什么是单元化架构？" class="headerlink" title="什么是单元化架构？"></a>什么是单元化架构？</h4><p>单元，是指一个能完成所有业务操作的只包含集合，在这个集合中包含了所有业务所需的所有服务，以及分配给这个单元的数据。</p>
+<p>单元化架构就是把单元作为系统部署的基本单位，在全站所有机房中部署数个单元，每个机房里的单元数目不定，任意一个单元都部署了系统所需的所有的应用，数据则是全量数据按照某种维度划分后的一部分。</p>
+<p>所以，在单元化架构中，分成很多个单元和一个中心。每个单元之间都是相互独立的。一个单元中完整的部署了一整套业务，如电商交易，金融支付，一次用户操作可以在一个单元内部完成，不需要跨单元执行。</p>
+<h4 id="MVC和三层架构有什么关系？"><a href="#MVC和三层架构有什么关系？" class="headerlink" title="MVC和三层架构有什么关系？"></a>MVC和三层架构有什么关系？</h4><ul>
+<li><strong>MVC 是一种设计模式</strong>，通常用于用户界面开发，而<strong>三层架构是一种更广泛用于整个应用程序的软件架构</strong>。</li>
+<li>MVC 将应用程序分为模型、视图和控制器，重点在用户界面和用户交互，而三层架构将应用程序分为表示层、业务逻辑层和数据访问层，强调业务逻辑和数据处理。</li>
+</ul>
 
                 
             </div>
