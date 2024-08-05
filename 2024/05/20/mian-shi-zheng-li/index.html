@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    56.2k
+                    56.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    196 分
+                    198 分
                 </div>
                 
 
@@ -1677,6 +1677,25 @@
 <p>目前基于UDP协议实现的可靠传输协议的方案是<strong>QUIC协议</strong>，部署在HTTP/3。<strong>QUIC通过单向递增的Packet Number，配合Stream ID与Offset字段信息，可以支持乱序确认而不影响数据包的正确组装</strong>，摆脱了TCP必须顺序确认应答ACK的限制，解决了TCP因某个数据包重传而阻塞后续所有待发送数据包的问题。</p>
 <h4 id="什么是CDN，为什么他可以做缓存？"><a href="#什么是CDN，为什么他可以做缓存？" class="headerlink" title="什么是CDN，为什么他可以做缓存？"></a>什么是CDN，为什么他可以做缓存？</h4><p>CDN是Content Delivery Network缩写，内容分发网络，它主要通过将内容存储在全国各地的边缘节点上，以就近原则向用户提供内容。</p>
 <p><strong>CDN做缓存是因为它在全国范围内部署了多个边缘节点，这些节点分布在不同的地理位置，靠近用户所在的区域</strong>。当用户请求某个资源，CDN会依据用户的位置，将资源从最近的边缘节点提供给用户。</p>
+<h4 id="WebSocket是什么？"><a href="#WebSocket是什么？" class="headerlink" title="WebSocket是什么？"></a>WebSocket是什么？</h4><p>一种协议，设计用于低延迟、全双工和长期运行的连接（基于tcp协议）。（采用<strong>心跳机制</strong>：一种特殊的数据包，不包含任何实际数据，用来维持链接状态。是一个空数据帧，定期发送，避免长时间没有数据传输而被中断）。没有同源限制，也就是没有跨域问题。</p>
+<p>WebSocket之间的协议：</p>
+<ul>
+<li><strong>轮询</strong>：客户端定期向服务器发送请求。产生大量请求和响应，导致不必要的网络开销和延迟。</li>
+<li><strong>长轮询</strong>：在客户端发出请求，保持连接打开，等待新数据响应后再关闭连接。</li>
+<li><strong>Comet</strong>：和长轮询均基于HTTP，保持长连接，在返回请求后继续保持连接打开，支持流式传输。</li>
+</ul>
+<p>WebSocket的优势：</p>
+<ul>
+<li><strong>双向实时通信</strong>：允许在单个、长时间的连接上进行双向实时通信。在需要快速实时更新的应用程序里，比HTTP更加高效。</li>
+<li><strong>降低延迟</strong>：连接一旦建立就会保持开放，数据可以在客户端和服务器之前比HTTP更低的延迟进行传输。</li>
+<li><strong>更高效的资源利用</strong>：可以减少重复请求和响应的开销，连接只需要建立一次。</li>
+</ul>
+<p>WebSocket的限制：</p>
+<ul>
+<li><strong>不提供加密功能</strong>：如果有安全上的需求，需要采用其他方式来确保安全性，如SSL协议、设置黑白名单。</li>
+<li><strong>不支持古老的浏览器</strong>：不支持IE10以前的版本。需要使用AJAX或者其他方式代替</li>
+<li><strong>性能优化</strong></li>
+</ul>
 <h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h4 id="计算机打开电源操作系统做了什么"><a href="#计算机打开电源操作系统做了什么" class="headerlink" title="计算机打开电源操作系统做了什么?"></a>计算机打开电源操作系统做了什么?</h4><ol>
 <li>加载BIOS：计算机主板的BIOS开始工作，开始检测计算机的硬件是否正常</li>
 <li>加载引导程序：自检完成后，BIOS会从启动设备(如硬盘、光盘)中加载操作系统的引导程序</li>
