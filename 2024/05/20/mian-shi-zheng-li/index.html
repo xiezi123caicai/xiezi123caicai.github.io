@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    56.6k
+                    59.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    198 分
+                    208 分
                 </div>
                 
 
@@ -694,6 +694,20 @@
 <li>如果该位置上的元素不为空，但也与当前键不相等，那么就需要在链表或红黑树中继续查找。</li>
 <li>遍历链表或者红黑树，查找与当前键相等的键值对，找到则将该键值对删除，返回该键值对的值，否则返回null</li>
 </ol>
+<h4 id="Object中有哪些方法？"><a href="#Object中有哪些方法？" class="headerlink" title="Object中有哪些方法？"></a>Object中有哪些方法？</h4><ul>
+<li>protected Object clone()—&gt;创建并返回此对象的一个副本。</li>
+<li>boolean equals(Object obj)—&gt;指示某个其他对象是否与此对象“相等</li>
+<li>protected void finalize()—&gt;当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。</li>
+<li>Class&lt;? extendsObject&gt; getClass()—&gt;返回一个对象的运行时类。</li>
+<li>int hashCode()—&gt;返回该对象的哈希码值。</li>
+<li>void notify()—&gt;唤醒在此对象监视器上等待的单个线程。</li>
+<li>void notifyAll()—&gt;唤醒在此对象监视器上等待的所有线程。</li>
+<li>String toString()—&gt;返回该对象的字符串表示</li>
+</ul>
+<h4 id="Java中有几种类型的流？"><a href="#Java中有几种类型的流？" class="headerlink" title="Java中有几种类型的流？"></a>Java中有几种类型的流？</h4><ul>
+<li>字节流：InputStream输入流，OutputStream输出流</li>
+<li>字符流：Reader输入流，Writer输出流</li>
+</ul>
 <h3 id="I-O多路复用"><a href="#I-O多路复用" class="headerlink" title="I/O多路复用"></a>I/O多路复用</h3><h4 id="select和epoll的区别？"><a href="#select和epoll的区别？" class="headerlink" title="select和epoll的区别？"></a>select和epoll的区别？</h4><p>select和epoll都是I/O多路复用的机制，它们可以让一个进程监听多个文件描述符的 IO事件或者连接事件，只要其中任意一个或多个文件描述符就绪，就会触发阻塞唤醒，使得应用程序可以直接进行数据的读取或者写入。它们的区别主要有几个方面：</p>
 <ol>
 <li><strong>select是基于轮询的机制</strong>，它需要遍历整个监听集合，直到找到就绪的文件描述符。<strong>而epoll是基于事件通知的机制</strong>，它只需要遍历当前就绪的文件描述符集合，大大减少了遍历的次数和开销。</li>
@@ -718,7 +732,8 @@
 <li>用途不同：缓冲区用于提高对数据的访问效率，<strong>减少对底层数据源的直接访问次数</strong>，提高读写性能。<br>缓存<strong>用于存储经常访问的数据</strong>，以提高数据的访问速度。</li>
 <li>例子不同：缓冲区的例子包括内存中的字节数组、字符数组，以及文件IO中的缓冲流。<br>缓存的例子包括Web浏览器缓存、CPU缓存等。</li>
 </ul>
-<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><h4 id="submit-和execute-方法有什么区别"><a href="#submit-和execute-方法有什么区别" class="headerlink" title="submit()和execute()方法有什么区别"></a>submit()和execute()方法有什么区别</h4><p>两个方法都可以向线程池提交任务, <strong>execute()方法</strong>的返回类型是void ,它定义在Executor接口中。</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p><strong>线程池就是事先将多个线程对象放到一个容器中，当使用的时候就不用 new 线程而是直接去池中拿线程即可，节省了开辟子线程的时间，提高的代码执行效率</strong></p>
+<h4 id="submit-和execute-方法有什么区别"><a href="#submit-和execute-方法有什么区别" class="headerlink" title="submit()和execute()方法有什么区别"></a>submit()和execute()方法有什么区别</h4><p>两个方法都可以向线程池提交任务, <strong>execute()方法</strong>的返回类型是void ,它定义在Executor接口中。</p>
 <p>而<strong>submit()方法</strong>可以返回持有计算结果的Future 对象，它定义在ExecutorService接口中，它扩展了Executor接口，其它线程池类像 Thread Pool Executor和ScheduledThread PoolExecutor都有这些方法。</p>
 <h4 id="在Java中Executor和Executors的区别"><a href="#在Java中Executor和Executors的区别" class="headerlink" title="在Java中Executor和Executors的区别?"></a>在Java中Executor和Executors的区别?</h4><p><strong>Executors工具类</strong>的不同方法按照我们的需求创建了不同的线程池，来满足业务的需求。ExecutorService接口继承了Executor接口并进行了扩展，提供了更多的方法我们能获得任务执行的状态并且可以获取任务的返回值。</p>
 <p><strong>Executor接口对象</strong>能执行我们的线程任务。使用Thread Pool Executor可以创建自定义线程池。</p>
@@ -1028,6 +1043,11 @@
 <li><strong>垃圾回收算法与参数配置不当</strong>：不恰当的垃圾回收器选择或JVM调优参数设置，可能导致STW时间过长，影响业务运行效率。</li>
 <li><strong>缓存策略问题</strong>：如前所述，不当的缓存管理，如过大或长期不清理的缓存，会占用大量内存，触发更频繁和更长时间的GC事件。</li>
 </ol>
+<h4 id="什么情况下会产生StackOverflowError（栈溢出）和OutOfMemoryError（堆溢出），怎么排查"><a href="#什么情况下会产生StackOverflowError（栈溢出）和OutOfMemoryError（堆溢出），怎么排查" class="headerlink" title="什么情况下会产生StackOverflowError（栈溢出）和OutOfMemoryError（堆溢出），怎么排查"></a>什么情况下会产生StackOverflowError（栈溢出）和OutOfMemoryError（堆溢出），怎么排查</h4><ul>
+<li>引发 StackOverFlowError 的常见原因有以下几种：1.无限递归循环调用（最常见）。2.执行了大量方法，导致线程栈空间耗尽。3.方法内声明了海量的局部变量。</li>
+<li>引发 OutOfMemoryError 的常见原因有以下几种：1.内存中加载的数据量过于庞大，如一次从数据库取出过多数据。2.集合类中有对对象的引用，使用完后未清空，使得 JVM 不能回收。3.代码中存在死循环或循环产生过多重复的对象实体。4.启动参数内存值设定的过小。</li>
+<li>排查：可以通过 jvisualvm 进行内存快照分析</li>
+</ul>
 <h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><ol>
 <li><strong>Jconsole</strong>：查看java进程中线程的运行状态</li>
 <li><strong>查看堆内存</strong>：1.jps查看所有java进程；2.找到某个进程的pid，使用jstat -gc pid 查看堆内存分布</li>
@@ -1270,6 +1290,15 @@
 <li><strong>使用Redis批量插入命令</strong>：如RPUSH、SADD、ZADD等。</li>
 <li><strong>使用数据导入工具</strong>：使用Redis的数据导入工具，例如redis-cli的pipe参数</li>
 </ol>
+<h4 id="为什么Redis的操作是原子性的，怎么保证原子性操作？"><a href="#为什么Redis的操作是原子性的，怎么保证原子性操作？" class="headerlink" title="为什么Redis的操作是原子性的，怎么保证原子性操作？"></a>为什么Redis的操作是原子性的，怎么保证原子性操作？</h4><p>对于 Redis 而言，命令的原子性指的是：一个操作的不可以再分，操作要么执行，要么不执行。而Redis的操作之所以是原子性，是因为Redis是单线程的。 Redis 中的事务其实是要保证批量操作的原子性。</p>
+<p>多个命令在并发中也是原子性的吗？不一定，可以将get和set改成单命令操作。使用Redis的事务，或者使用Redis+Lua脚本的方式实现。</p>
+<h4 id="Redis数据和MySQL数据库的一致性如何实现？"><a href="#Redis数据和MySQL数据库的一致性如何实现？" class="headerlink" title="Redis数据和MySQL数据库的一致性如何实现？"></a>Redis数据和MySQL数据库的一致性如何实现？</h4><ol>
+<li><strong>延迟双删策略</strong>：（1）先删除缓存。（2）再写数据库。（3）休眠500毫秒。（4）再删除混存。这种策略还要考虑 redis 和数据库主从同步的耗时。最后的写数据的休眠时间：则在读数据业务逻辑的耗时的基础上，加上几百 ms 即可。比如：休眠 1 秒。</li>
+<li><strong>设置缓存的过期时间</strong>：给缓存设置过期时间，是保证最终一致性的解决方案。所有的写操作以数据库为准，只要到达缓存过期时间，则后面的读请求自然会从数据库中读取新值然后回填缓存。结合<strong>双删策略+缓存超时</strong>设置，这样最差的情况就是在超时时间内数据存在不一致，而且又增加了写请求的耗时。</li>
+<li>如果写完数据库，删除缓存失败？怎么办？</li>
+</ol>
+<p>方案一：（1）更新数据库数据。（2）缓存因为种种问题删除失败。（3）将需要删除的 key 发送至消息队列。（4）自己消费消息，获得需要删除的 key。（5）继续重试删除操作，直到成功。缺点：对业务线代码造成大量的侵入。</p>
+<p>方案二：<strong>启动一个订阅程序去订阅数据库的 binlog，获得需要操作的数据</strong>。在应用程序中，另起一段程序，获得这个订阅程序传来的信息，进行删除缓存操作。（1）更新数据库数据。（2）数据库会将操作信息写入 binlog 日志当中。（3）订阅程序提取出所需要的数据以及 key。（4）另起一段非业务代码，获得该信息。（5）尝试删除缓存操作，发现删除失败。（6）将这些信息发送至消息队列。（7）重新从消息队列中获得该数据，重试操作。</p>
 <h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><h4 id="介绍下-Spring-IoC-的工作流程"><a href="#介绍下-Spring-IoC-的工作流程" class="headerlink" title="介绍下 Spring IoC 的工作流程"></a>介绍下 Spring IoC 的工作流程</h4><p>IOC 的全称是 Inversion Of Control，也就是控制反转，它的核心思想是把对象的管理权限交给容器。应用程序如果需要使用到某个对象实例，直接从 IOC 容器中去获取就行，这样设计的好处是降低了程序里面对象与对象之间的耦合性。</p>
 <p>Spring 里面很多方式去定义 Bean，（如图）比如 XML 里面的〈bean〉标签、@Service、@Component、 @Repository、@Configuration 配置类中的@Bean 注解等等。Spring 在启动的时候，会去解析这些 Bean 然后保存到 IOC 容器里面。</p>
 <p>Spring IOC 的工作流程大致可以分为两个阶段。</p>
@@ -1352,6 +1381,11 @@
 <p><strong>@Controller</strong>：这将一个类标记为 Spring Web MVC 控制器。标有它的Bean会自动导入到 IoC 容 器中 。</p>
 <p> <strong>@Service</strong>：此注解是组件注解的特化 。 它不会对 @Component 注解提供任何其他行为。可以在服务层类中使用@Service 而不是@Component，因为它以更好的方式指定了意图。 </p>
 <p><strong>@ Repository</strong>：这个注解是具有类似用途和功能的@Component注解的特化。它为 DAO 提供了额外的好处。它将 DAO 导入 IoC 容器，并使未经检查的异常有资格转换为Spring DataAccess Exception。</p>
+<h4 id="描述一下Spring的事务管理"><a href="#描述一下Spring的事务管理" class="headerlink" title="描述一下Spring的事务管理"></a>描述一下Spring的事务管理</h4><ul>
+<li>声明式事务管理的定义：用在 Spring 配置文件中<strong>声明式的处理事务</strong>来代替代码式的处理事务。好处：事务管理不侵入开发的组件，如果需要改变事务管理策划的话，也只需要在定义文件中重新配置即可，这样维护起来极其方便。</li>
+<li>基于 <strong>@Transactional</strong> 的声明式事务管理：@Transactional 可以浸染于接口、接口方法、类和类方法上。算作用于类上时，该类的一切 public 方法将都具有该类型的事务属性。</li>
+<li><strong>编程式事物管理</strong>的定义：在代码中显式挪用 beginTransaction()、commit()、rollback()等事务治理相关的方法， 这就是编程式事务管理。Spring 对事物的编程式管理有基于底层 API 的编程式管理和基于 TransactionTemplate 的编程式事务管理两种方式。</li>
+</ul>
 <h3 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h3><h4 id="为什么使用Spring-Boot？"><a href="#为什么使用Spring-Boot？" class="headerlink" title="为什么使用Spring Boot？"></a>为什么使用Spring Boot？</h4><ol>
 <li><strong>快速启动和开发</strong>：提供了大量的起步依赖项，这些依赖项简化了配置和项目设置。</li>
 <li><strong>约定优于配置</strong>：减少了开发者需要手动配置的数量。</li>
@@ -1469,6 +1503,18 @@
 <li>HttpSession：工作在Web服务器上，属于表述层。代表浏览器和Web服务器之间的会话。</li>
 <li>SqlSession：不依赖Web服务器，属于持久化层。代表java程序和数据库之间的会话。</li>
 </ul>
+<h4 id="简述Mybatis的动态SQL，列出常用的6-个标签及作用"><a href="#简述Mybatis的动态SQL，列出常用的6-个标签及作用" class="headerlink" title="简述Mybatis的动态SQL，列出常用的6 个标签及作用"></a>简述Mybatis的动态SQL，列出常用的6 个标签及作用</h4><p>动态 SQL 主要是来解决查询条件不确定的情况，在程序运行期间，根据提交的条件动态的完成查询。</p>
+<p>常用的标签：<if> : 进行条件的判断。<where>：在<if>判断后的 SQL 语句前面添加 WHERE 关键字，并处理 SQL 语句开始位置的 AND 或者 OR 的问题。<trim>：可以在 SQL 语句前后进行添加指定字符 或者去掉指定字符。<set>: 主要用于修改操作时出现的逗号问题。<choose> <when> <otherwise>：类似于 java 中的 switch 语句.在所有的条件中选择其一。<foreach>：迭代操作。</foreach></otherwise></when></choose></set></trim></if></where></if></p>
+<h4 id="Mybatis-如何完成-MySQL的批量操作？"><a href="#Mybatis-如何完成-MySQL的批量操作？" class="headerlink" title="Mybatis 如何完成 MySQL的批量操作？"></a>Mybatis 如何完成 MySQL的批量操作？</h4><p>MyBatis 完成 MySQL 的批量操作主要是通过<foreach>标签来拼装相应的 SQL 语句</foreach></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span>insert id <span class="token operator">=</span> <span class="token string">"insertBatch"</span><span class="token operator">&gt;</span>
+	insert into <span class="token function">tbl_employee</span><span class="token punctuation">(</span>last_name<span class="token punctuation">,</span> email<span class="token punctuation">,</span> gender<span class="token punctuation">,</span> d_id<span class="token punctuation">)</span> values
+	<span class="token operator">&lt;</span>foreach collection <span class="token operator">=</span> <span class="token string">"emps"</span> item <span class="token operator">=</span> <span class="token string">"curr_emp"</span> separator <span class="token operator">=</span> <span class="token string">","</span><span class="token operator">&gt;</span>
+	<span class="token punctuation">(</span>#<span class="token punctuation">{</span>curr_emp<span class="token punctuation">.</span>lastName<span class="token punctuation">}</span><span class="token punctuation">,</span> #<span class="token punctuation">{</span>curr_emp<span class="token punctuation">.</span>email<span class="token punctuation">}</span><span class="token punctuation">,</span> #<span class="token punctuation">{</span>curr_emp<span class="token punctuation">.</span>gender<span class="token punctuation">}</span><span class="token punctuation">,</span> #<span class="token punctuation">{</span>curr_emp<span class="token punctuation">.</span>dept<span class="token punctuation">.</span>id<span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token operator">&lt;</span><span class="token operator">/</span>foreach<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>insert<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h3><h4 id="什么是分布式系统？和集群的区别？"><a href="#什么是分布式系统？和集群的区别？" class="headerlink" title="什么是分布式系统？和集群的区别？"></a>什么是分布式系统？和集群的区别？</h4><p>**分布式(distributed)**指在多台不同的服务器中部署不同的服务模块，过远程调用协同工作，对外提供服务。</p>
 <p>**集群(cluster)**指在多台不同的服务器中部署相同应用或服务模块，构成一个集群， 过负载均衡设备对外提供服务。</p>
 <h4 id="什么是分布式系统的一致性？"><a href="#什么是分布式系统的一致性？" class="headerlink" title="什么是分布式系统的一致性？"></a>什么是分布式系统的一致性？</h4><ul>
@@ -1763,6 +1809,9 @@
 <h4 id="微服务中的CI-CD了解吗？"><a href="#微服务中的CI-CD了解吗？" class="headerlink" title="微服务中的CI/CD了解吗？"></a>微服务中的CI/CD了解吗？</h4><p>CI是持续集成，是一种软件开发实践，要求经常集成其变更，方式是变更合并到主干。</p>
 <p>CD是持续交付和持续部署，交付目的是在早期、快速、可靠地发布高质量软件，满足业务要求。部署是定期将新功能部署到生产环境的过程。</p>
 <h4 id="限流、降级、熔断有什么区别？"><a href="#限流、降级、熔断有什么区别？" class="headerlink" title="限流、降级、熔断有什么区别？"></a>限流、降级、熔断有什么区别？</h4><p><img src="/2024/05/20/mian-shi-zheng-li/1716888560856-1.png"></p>
+<h4 id="nacos"><a href="#nacos" class="headerlink" title="nacos"></a>nacos</h4><p>Nacos是一个面向微服务架构的<strong>动态服务发现、配置管理和服务治理平台</strong>。它提供了服务注册与发现、配置管理和动态路由等功能，帮助开发人员更方便地构建和管理微服务应用。</p>
+<p>Nacos 注册中心分为 server 与 client，server 采用 Java 编写，为 client 提供注册发现服务与配置服务。而 client 可以用多语言实现，client 与微服务嵌套在一起，nacos提供 sdk 和openApi。</p>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240812195106222.png"></p>
 <h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><h4 id="Nginx是什么？"><a href="#Nginx是什么？" class="headerlink" title="Nginx是什么？"></a>Nginx是什么？</h4><p>Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是一款<strong>轻量级</strong>的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器，在BSD-like 协议下发行。其特点是<strong>占有内存少，并发能力强</strong></p>
 <h4 id="正向代理和反向代理"><a href="#正向代理和反向代理" class="headerlink" title="正向代理和反向代理"></a>正向代理和反向代理</h4><p><img src="/2024/05/20/mian-shi-zheng-li/image-11111.png"></p>
 <p><strong>正向代理</strong>： 我们平时需要访问国外的浏览器是不是很慢，比如我们要看推特，看GitHub等等。直接用国内的服务器无法访问国外的服务器，或者是访问很慢。所以我们需要在本地搭建一个服务器来帮助我们去访问。那这种就是正向代理。<strong>（浏览器中配置代理服务器）</strong></p>
@@ -1797,6 +1846,61 @@ ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span ar
 <li><strong>日志配置</strong>：配置访问日志，如定义日志格式和输出路径。</li>
 </ol>
 <p>配置完成后，需要测试配置文件的正确性（使用 <code>nginx -t</code> 命令），然后重新加载（<code>nginx -s reload</code>）或重启 Nginx 使配置生效。</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><h4 id="消息队列作用和使用场景"><a href="#消息队列作用和使用场景" class="headerlink" title="消息队列作用和使用场景"></a>消息队列作用和使用场景</h4><p>异步处理，应用解耦，流量削锋和消息通讯。</p>
+<h4 id="如何防止消息队列重复消费？"><a href="#如何防止消息队列重复消费？" class="headerlink" title="如何防止消息队列重复消费？"></a>如何防止消息队列重复消费？</h4><p>保证消息幂等性。幂等性概念：一个请求，不管重复来多少次，结果是不会改变的。</p>
+<p><strong>RabbitMQ、RocketMQ、Kafka 等任何队列不保证消息不重复</strong>，如果业务需要消息不重复消费，则需要消费端处理业务消息要保持幂等性。</p>
+<ol>
+<li>Redis 的 setNX() , 做消息 id 去重</li>
+<li>redis 的 Incr 原子操作：key 自增，大于 0 返回值大于 0 则说明消费过</li>
+<li>数据库去重表：设计一个去重表，某个字段使用 Message 的 key 做唯一索引，因为存在唯一索引，所以重复消费会失败。</li>
+</ol>
+<h4 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h4><p>消息队列的消息为了防止进程崩溃后丢失，一般不会放内存里，而是放磁盘上。那么问题就来了，消息从消息队列的磁盘，发送到消费者，过程是怎么样的呢？</p>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240812092248784.png"></p>
+<p>如果用户想要将数据从磁盘发送到网络。那么就会发生下面这几件事：程序会发起<strong>系统调用</strong><code>read()</code>，尝试读取磁盘数据，</p>
+<ul>
+<li>磁盘数据从设备<strong>拷贝</strong>到内核空间的缓冲区。</li>
+<li>再从内核空间的缓冲区<strong>拷贝</strong>到用户空间。</li>
+</ul>
+<p>程序再发起<strong>系统调用</strong><code>write()</code>，将读到的数据发到网络：</p>
+<ul>
+<li>数据从用户空间<strong>拷贝</strong>到 socket 发送缓冲区</li>
+<li>再从 socket 发送缓冲区<strong>拷贝</strong>到网卡。</li>
+</ul>
+<p>整个过程，本机内发生了 <code>2</code> 次<strong>系统调用</strong>，对应 <code>4</code> 次用户空间和内核空间的<strong>切换</strong>，以及 <code>4</code> 次数据<strong>拷贝</strong>。</p>
+<p>优化方法：<strong>零拷贝技术：mmap或sendfile</strong></p>
+<h4 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h4><p><strong>mmap</strong> 是操作系统内核提供的一个方法，可以将内核空间的缓冲区<strong>映射</strong>到用户空间。</p>
+<p>用了它，整个发送流程就有了一些变化。程序发起<strong>系统调用</strong><code>mmap()</code>，尝试读取磁盘数据，具体情况如下：</p>
+<ul>
+<li>磁盘数据从设备<strong>拷贝</strong>到内核空间的缓冲区。</li>
+<li>内核空间的缓冲区<strong>映射</strong>到用户空间，这里<strong>不需要</strong>拷贝。</li>
+</ul>
+<p>程序再发起<strong>系统调用</strong> <code>write()</code>，将读到的数据发到网络：</p>
+<ul>
+<li>数据从内核空间缓冲区<strong>拷贝</strong>到 socket 发送缓冲区。</li>
+<li>再从 socket 发送缓冲区<strong>拷贝</strong>到网卡。</li>
+</ul>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240812092841040.png"></p>
+<p>整个过程，发生了 <code>2</code> 次系统调用，对应 <code>4</code> 次用户空间和内核空间的切换，以及 <code>3</code> 次数据拷贝，对比之前，省下<strong>一次</strong>内核空间到用户空间的拷贝。</p>
+<p><strong>mmap 作为一种零拷贝技术，指的是用户空间到内核空间这个过程不需要拷贝，而不是指数据从磁盘到发送到网卡这个过程零拷贝。</strong></p>
+<h4 id="sendfile"><a href="#sendfile" class="headerlink" title="sendfile"></a>sendfile</h4><p><code>sendfile</code>，也是内核提供的一个方法，从名字可以看出，就是用来<strong>发送文件数据</strong>的。程序发起<strong>系统调用</strong><code>sendfile()</code>，内核会尝试读取磁盘数据然后发送，具体情况如下：</p>
+<ul>
+<li>磁盘数据从设备<strong>拷贝</strong>到内核空间的缓冲区。</li>
+<li>内核空间缓冲区里的数据<strong>可以</strong>直接<strong>拷贝</strong>到网卡。</li>
+</ul>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240812093209094.png"></p>
+<p>整个过程，发生了 <code>1</code> 次系统调用，对应 <code>2</code> 次用户空间和内核空间的切换，以及 <code>2</code> 次数据拷贝。</p>
+<p>这里的零拷贝指的是<strong>零 CPU</strong>拷贝。也就是说 <strong>sendfile 场景下，需要的两次拷贝，都不是 CPU 直接参与的拷贝，而是其他硬件设备技术做的拷贝，不耽误我们 CPU 跑程序</strong>。</p>
+<h4 id="RocketMQ-为什么性能不如-Kafka？"><a href="#RocketMQ-为什么性能不如-Kafka？" class="headerlink" title="RocketMQ 为什么性能不如 Kafka？"></a>RocketMQ 为什么性能不如 Kafka？</h4><p><strong>RocketMQ 使用的是 mmap 零拷贝技术，而 kafka 使用的是 sendfile</strong>。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">ssize_t <span class="token function">sendfile</span><span class="token punctuation">(</span><span class="token keyword">int</span> out_fd<span class="token punctuation">,</span> <span class="token keyword">int</span> in_fd<span class="token punctuation">,</span> off_t<span class="token operator">*</span> offset<span class="token punctuation">,</span> size_t count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// num = sendfile(xxx);</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">void</span> <span class="token operator">*</span><span class="token function">mmap</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>addr<span class="token punctuation">,</span> size_t length<span class="token punctuation">,</span> <span class="token keyword">int</span> prot<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">,</span>
+           <span class="token keyword">int</span> fd<span class="token punctuation">,</span> off_t offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// buf = mmap(xxx)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><code>mmap</code> 返回的是数据的<strong>具体内容</strong>，应用层能获取到消息内容并进行一些逻辑处理。</p>
+<p>而 <code>sendfile</code> 返回的则是发送成功了几个<strong>字节数</strong>，<strong>具体发了什么内容，应用层根本不知道</strong>。</p>
+<p>而 RocketMQ 的一些功能，却需要了解具体这个消息内容，方便二次投递等，比如将消费失败的消息重新投递到死信队列中，如果 RocketMQ 使用 sendfile，那根本没机会获取到消息内容长什么样子，也就没办法实现一些好用的功能了。而 kafka 却没有这些功能特性，追求极致性能，正好可以使用 sendfile。</p>
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="Tomcat的缺省端口是多少，怎么修改？"><a href="#Tomcat的缺省端口是多少，怎么修改？" class="headerlink" title="Tomcat的缺省端口是多少，怎么修改？"></a>Tomcat的缺省端口是多少，怎么修改？</h4><p>默认端口为 8080，可以通过在 tomcat 安装包 conf 目录下，service.xml 中的 Connector 元素的 port 属性来修改端口。</p>
 <h4 id="tomacat有哪几种Connector运行模式"><a href="#tomacat有哪几种Connector运行模式" class="headerlink" title="tomacat有哪几种Connector运行模式"></a>tomacat有哪几种Connector运行模式</h4><p>BIO：一个线程处理一个请求。缺点：并发量高时，线程数较多，浪费资源。</p>
 <p>NIO：利用 Java 的异步 IO 处理，可以通过少量的线程处理大量的请求。</p>
@@ -2063,6 +2167,12 @@ ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span ar
 <h4 id="MVC和三层架构有什么关系？"><a href="#MVC和三层架构有什么关系？" class="headerlink" title="MVC和三层架构有什么关系？"></a>MVC和三层架构有什么关系？</h4><ul>
 <li><strong>MVC 是一种设计模式</strong>，通常用于用户界面开发，而<strong>三层架构是一种更广泛用于整个应用程序的软件架构</strong>。</li>
 <li>MVC 将应用程序分为模型、视图和控制器，重点在用户界面和用户交互，而三层架构将应用程序分为表示层、业务逻辑层和数据访问层，强调业务逻辑和数据处理。</li>
+</ul>
+<h4 id="如何解决并发问题？"><a href="#如何解决并发问题？" class="headerlink" title="如何解决并发问题？"></a>如何解决并发问题？</h4><ul>
+<li>开发层面：微服务架构、缓存（Redis）、异步（MQ）、队排好（限流和削峰）</li>
+<li>部署层面：集群（高可用）和负载均衡—-Nginx、Gateway、Feign</li>
+<li>硬件层面：CPU 性能、硬盘（SSD）性能、内存大小</li>
+<li>网络层面：增加网络带宽、网络加速器</li>
 </ul>
 
                 
