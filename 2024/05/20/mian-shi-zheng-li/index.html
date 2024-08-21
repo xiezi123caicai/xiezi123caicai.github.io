@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    60.8k
+                    61.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    212 分
+                    215 分
                 </div>
                 
 
@@ -955,7 +955,8 @@
 <li>程序中的字面量(literal) 如直接书写的100、 hello和常量都是放在常量池中 ，<strong>常量池是方法区的一部分</strong>。栈空间操作起来最快但是栈很小， 通常大量的对象都是放在堆空间，栈和堆的大小都可以通过JVM的启动参数来进行调整。</li>
 </ul>
 <h4 id="一个空的Object对象占多大空间？"><a href="#一个空的Object对象占多大空间？" class="headerlink" title="一个空的Object对象占多大空间？"></a>一个空的Object对象占多大空间？</h4><p>在开启了压缩指针的情况下，Object默认会占用12个字节，但是为了<strong>避免伪共享问题</strong>，JVM 会按照8个字节的倍数进行填充，所以会填充4个字节变成16个字节长度。<br>在关闭压缩指针的情况下，Object 默认会占用16个字节，16个字节正好是8的整数倍，因此不需要填充。</p>
-<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240522173220554.png">因此，一个空的对象，在开启压缩指针的情况下，占16个字节。其中Markword占8个字节、类元指针占4个字节，对齐填充占 4个字节。</p>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240522173220554.png"></p>
+<p>因此，一个空的对象，在开启压缩指针的情况下，占16个字节。其中Markword占8个字节、类元指针占4个字节，对齐填充占 4个字节。</p>
 <h4 id="强引用、软引用、弱引用、虚引用"><a href="#强引用、软引用、弱引用、虚引用" class="headerlink" title="强引用、软引用、弱引用、虚引用"></a>强引用、软引用、弱引用、虚引用</h4><ul>
 <li>强引用，就是普通对象的引用，只要还有强引用指向一个对象，就能表示对象还“活着”，垃圾收集器无法回收这一类对象。</li>
 <li>软引用，是一种相对强引用弱化一些的引用，可以让对象豁免一些垃圾收集，只有当 JVM 认为内存不足时，才会去试图回收软引用指向的对象。软引用通常用来实现内存敏感的缓存，如果还有空闲内存，就可以暂时保留缓存，当内存不足时清理掉，这样就保证了使用缓存的同时，不会耗尽内存。</li>
@@ -992,7 +993,7 @@
 <li>首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，检查这个符号引用代表的类是否配被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程</li>
 <li>分配内存。JVM会在堆中为对象分配内存空间。在HotSpot中，对象的内存分配有两种方式，分别是指针碰撞和空闲列表法。<strong>指针碰撞</strong>：当堆中的内存是连续的，JVM使用一个指针来标记当前可用的内存位置，然后将指针向前移动分配对象所需的内存大小。<strong>空闲列表：</strong>当堆中的内存是离散的，JVM会维护一个空闲列表，记录可用的内存块。在分配对象时，JVM会遍历空闲列表，找到足够大小的内存块进行分配。</li>
 <li>内存分配完成后，虚拟机需要将分配到的内存空间都初始化为零值，这一步确保了对象的字段在创建时都有默认值。如int被初始化为0，引用类型被初始化为null</li>
-<li>设置对象头。该实例所对应的类如何才能我到类的元数据信息、对象的哈希码、对象的GC分代年龄,轻量级锁等等信息</li>
+<li>设置对象头。该实例所对应的类如何才能我到类的元数据信息、对象的哈希码、对象的GC分代年龄，轻量级锁等等信息</li>
 <li>调用该类的构造方法，初始化对象。</li>
 <li>返回对象引用，当对象完成创建之后，返回一个该对象的引用，后续Java程序就可以使用这个引用来操作对象了。</li>
 </ol>
@@ -1038,8 +1039,6 @@
 <h4 id="JVM的运行时内存区域是怎样的？"><a href="#JVM的运行时内存区域是怎样的？" class="headerlink" title="JVM的运行时内存区域是怎样的？"></a>JVM的运行时内存区域是怎样的？</h4><p>根据Java虚拟机规范的定义，JVM的运行时内存区域主要由Java堆、虚拟机栈、本地方法栈、方法区和程序计数器以及运行时常量池组成。其中堆、方法区以及运行时常量池是线程之间共享的区域，而栈(本地方法栈+虚拟机栈)、程序计数器都是线程独享的。</p>
 <h4 id="Java的堆是如何分代的？为什么分代？"><a href="#Java的堆是如何分代的？为什么分代？" class="headerlink" title="Java的堆是如何分代的？为什么分代？"></a>Java的堆是如何分代的？为什么分代？</h4><p>Java的堆由新生代和老年代组成。新生代存放新分配的对象，老年代存放长期存在的对象。新生代由年轻代Eden和Survivor区组成。15岁到old（4bit）</p>
 <p>很多对象都会出现在Eden区，当Eden区的内存容用完的时候，GC会发起，非存活对象会被标记为死亡，存活的对象被移动到Survivor区。如果Survivor的内存容量（form区和to区，每次使用年龄+1，到15岁到old）也用完，那么存活对象会被移动到老年代。</p>
-<h4 id="YoungGC和FullGC的触发条件是什么？-1"><a href="#YoungGC和FullGC的触发条件是什么？-1" class="headerlink" title="YoungGC和FullGC的触发条件是什么？"></a>YoungGC和FullGC的触发条件是什么？</h4><p>YoungGC的触发条件非常简单，只是年轻代中Eden区满了就触发。</p>
-<p>FullGC触发条件：老年代的空间不足。永久代空间不足。代码中执行System.gc()。</p>
 <h4 id="什么是Class常量池，和运行时常量池关系是什么？"><a href="#什么是Class常量池，和运行时常量池关系是什么？" class="headerlink" title="什么是Class常量池，和运行时常量池关系是什么？"></a>什么是Class常量池，和运行时常量池关系是什么？</h4><p>Class常量池可以理解为是Class文件中的资源仓库。Class文件中除了包含类的版本、字段、方法、接口等描述信外，还有一项信息就是常量地(constant pool table)，用于存放编译器生成的各种字面量(Literal)和符号引用(Symbolic References)。</p>
 <p>Class用来保存常量的一个媒介场所，是一个中间场所。 Class文件中的常量池部分的内容，会在运行期被运行时常量池加载进去。</p>
 <h4 id="gc什么时候停止时间影响主业务"><a href="#gc什么时候停止时间影响主业务" class="headerlink" title="gc什么时候停止时间影响主业务"></a>gc什么时候停止时间影响主业务</h4><ol>
@@ -1074,7 +1073,7 @@
 </ul>
 <h4 id="说一下对InnoDB索引数据结构的理解？"><a href="#说一下对InnoDB索引数据结构的理解？" class="headerlink" title="说一下对InnoDB索引数据结构的理解？"></a>说一下对InnoDB索引数据结构的理解？</h4><p>在InnoDB中的数据都是以行的形式存储在page页，并且page页跟page页以双向链表进行关联。在去查询数据的时候，如果**基于链表去查询，由于链表的查询性能是O(n)**，数据越大，查询的性能会越来越慢。<br>InnoDB的实现方式采取了跟书目录一样的思想，为每个page页创建一个目录记录，这些目录记录也都会保存到page页，由于page页大小有限，所以就会有多个目录page。当有多个目录 page的时候，再为目录page创建一个目录，直到根节点。最后形成了一个叶子节点是存有真实数据的page页的双向链表，而非叶子节点是存储目录的page页的树形结构。这样的数据结构我们就称为B+树。</p>
 <ul>
-<li>树的查询性能比链表要高很多,查询次数由树的高度来决定，树越矮跟磁盘的IO次数也就越低</li>
+<li>树的查询性能比链表要高很多，查询次数由树的高度来决定，树越矮跟磁盘的IO次数也就越低</li>
 <li>第二，查询相对稳定，因为数据全部在叶子节点，不管查询什么数据，都需要查询到叶子节点。</li>
 </ul>
 <p>和其他数据结构比较：</p>
@@ -1136,7 +1135,7 @@
 <li><strong>内存使用</strong>：执行查询时，数据库可能需要在内存中缓存数据块或索引块，内存的使用情况也会影响查询性能。如果内存资源紧张，可能导致更多的磁盘I/O（如页交换）。</li>
 </ol>
 <p>优化器通常基于统计信息（如表的大小、索引分布等）和预估的行数来计算这些成本，并选择成本最低的执行计划。不同的数据库管理系统（DBMS）可能采用不同的算法和公式来精确计算这些成本，但基本原则和考量因素大体相似。</p>
-<h4 id="在ABC加索引了，都是int，where条件是AA-BB"><a href="#在ABC加索引了，都是int，where条件是AA-BB" class="headerlink" title="在ABC加索引了，都是int，where条件是AA+BB<C*C，它走不走索引，为什么优化器就认为不应该走索引了呢？"></a>在ABC加索引了，都是int，where条件是A<em>A+B</em>B&lt;C*C，它走不走索引，为什么优化器就认为不应该走索引了呢？</h4><ol>
+<h4 id="在ABC加索引了，都是int，where条件是AA-BB"><a href="#在ABC加索引了，都是int，where条件是AA-BB" class="headerlink" title="在ABC加索引了，都是int，where条件是AA+BB<CC，它走不走索引，为什么优化器就认为不应该走索引了呢？"></a>在ABC加索引了，都是int，where条件是AA+BB&lt;CC，它走不走索引，为什么优化器就认为不应该走索引了呢？</h4><ol>
 <li><strong>索引无法直接应用于计算表达式</strong>：数据库索引通常是基于列的值直接比较（如 <code>A = value</code>、<code>B &gt; value</code>）设计的，而对于涉及列值计算的表达式（如 <code>A * A + B * B</code>），索引无法直接应用，因为索引是按照原始列值排序的，而不是按计算结果排序。</li>
 <li><strong>无法预估选择性</strong>：对于复杂的表达式 <code>A*A + B*B &lt; C*C</code>，数据库难以准确预估满足条件的行数，因为这需要对每行数据进行计算，这在查询规划阶段是不可行的，导致优化器难以判断使用索引是否有利。</li>
 <li><strong>无法直接进行索引扫描</strong>：即使A、B、C三列分别有索引，也无法直接通过索引快速定位到满足 <code>A*A + B*B &lt; C*C</code> 条件的记录，因为索引是基于单个列值建立的，不支持跨列的复杂计算条件。</li>
@@ -1158,14 +1157,14 @@
 <li>解决了一致性读的问题也就是事务启动时根据某个条件读取到的数据，直到事务结束时，再次执行相同条件，还是读到同一份数据，不会发生变化。</li>
 </ol>
 <h4 id="项目中解决幻读的方法"><a href="#项目中解决幻读的方法" class="headerlink" title="项目中解决幻读的方法"></a>项目中解决幻读的方法</h4><ol>
-<li><strong>使用MVCC（多版本并发控制）</strong>：通过MVCC机制可以在可重复读（Repeatable Read, RR）隔离级别下有效避免幻读。但需要注意的是，MySQL默认的RR隔离级别通过Next-Key Locks（包括行锁和间隙锁）来防止幻读，这在某些场景下可能会影响并发性能。</li>
+<li><strong>使用MVCC（多版本并发控制）</strong>：通过MVCC机制可以在可重复读（Repeatable Read, RR）隔离级别下有效避免幻读。但需要注意的是，MySQL默认的RR隔离级别通过<strong>Next-Key Locks（包括行锁和间隙锁）来防止幻读</strong>，这在某些场景下可能会影响并发性能。</li>
 <li><strong>调整事务隔离级别</strong>：将事务的隔离级别设置为SERIALIZABLE，这是最高的隔离级别，可以完全避免脏读、不可重复读和幻读问题。会降低系统的并发能力。</li>
 <li><strong>使用悲观锁</strong>：在查询时使用<code>SELECT ... FOR UPDATE</code>语句，这样可以在读取数据前对其加锁，阻止其他事务在此期间对该数据的修改或插入，从而避免幻读。但这种方法也降低了并发性，并且需要谨慎使用，以免引发死锁。</li>
 <li><strong>间隙锁（Gap Locks）和Next-Key Locks</strong>：InnoDB自动在RR隔离级别下使用间隙锁和Next-Key Locks来阻止其他事务在当前事务查询的范围内插入新记录，这是InnoDB解决幻读的一种内部机制。</li>
 <li><strong>乐观锁</strong>：在应用程序层面实现乐观锁，通过在表中增加一个版本字段，每次更新时版本号加一。</li>
 </ol>
 <h4 id="什么是索引覆盖、索引下推？"><a href="#什么是索引覆盖、索引下推？" class="headerlink" title="什么是索引覆盖、索引下推？"></a>什么是索引覆盖、索引下推？</h4><p>索引(covering index)指一个查询语句的执行只用从索引中就能够取得，不必从数据表中读取。可以称之为实现了索引覆盖。当一查询语询符合覆盖条件时，MySQL只需要通过索引就可以返回查询所需要的数据，这样避免了查到索引后再返回表操作，减少I/O提高效率。</p>
-<p>索引下推：如果符合条件，则根据该索引来定位对应的数据，如果不符合，则直接reject掉。 有了索引下推优化，可以在有like条件查询的情况下，减少回表次数。</p>
+<p>索引下推：如果符合条件，则根据该索引来定位对应的数据，如果不符合，则直接reject掉。 有了索引下推优化，可以在有like条件查询的情况下，减少回表次数。在使用索引进行查询时，将查询的过滤条件也应用到索引查找过程中，以减少需要读取和处理的数据量，从而提高查询性能。原理是<strong>尽可能把查寻条件推到索引层面进行过滤</strong>，减少从磁盘读取的数据量。</p>
 <h4 id="binlog-有几种格式？分别有什么区别"><a href="#binlog-有几种格式？分别有什么区别" class="headerlink" title="binlog 有几种格式？分别有什么区别"></a>binlog 有几种格式？分别有什么区别</h4><p>Binlog 有三种格式：statement，row 和 mixed</p>
 <ul>
 <li>statement，记录的是 SQL 的原文。好处是，不需要记录每一行的变化，减少了 binlog 日志量，节约了 IO，提高性能。由于 sql 的执行是有上下文的，因此在保存的时候需要保存相关的信息，同时还有一些使用了函数之类的语句无法被记录复制。</li>
@@ -1234,6 +1233,22 @@
 <li><strong>利用redis生成id</strong>：性能比较好，灵活方便，不依赖于数据库。但是，引入了新的组件造成系 统更加复杂，可用性降低，编码更加复杂，增加了系统成本。</li>
 <li>分布式ID生成器</li>
 </ul>
+<h4 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h4><p><strong>1.什么场景分表？</strong></p>
+<ul>
+<li>单表的<strong>数据量过大</strong>。</li>
+<li>单表存在较高的写入场景，可能引发行锁竞争。</li>
+<li>当表中包含大量的 TEXT、LONGTEXT 或 BLOB 等大字段。</li>
+</ul>
+<p><strong>2.什么场景分库？</strong></p>
+<ul>
+<li>当单个数据库支持的连接数已经不足以满足客户端需求。</li>
+<li>数据量已经超过单个数据库实例的处理能力。</li>
+</ul>
+<p><strong>3.什么场景分库分表？</strong>高并发写入和海量数据</p>
+<ul>
+<li><strong>高并发写入场景</strong>：当应用面临高并发的写入请求时，单一数据库可能无法满足写入压力，此时可以将数据按照一定规则拆分到多个数据库中，每个数据库处理部分数据的写入请求，从而提高写入性能。</li>
+<li><strong>海量数据场景</strong>：随着数据量的不断增加，单一数据库的存储和查询性能可能逐渐下降。此时，可以将数据按照一定的规则拆分到多个表中，每个表存储部分数据，从而分散数据的存储压力，提高查询性能。</li>
+</ul>
 <h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><h4 id="SkipList的索引过程，能否越两级搜索？"><a href="#SkipList的索引过程，能否越两级搜索？" class="headerlink" title="SkipList的索引过程，能否越两级搜索？"></a>SkipList的索引过程，能否越两级搜索？</h4><p>跳跃表主要由以下部分构成: </p>
 <ul>
 <li><p><strong>表头(head)</strong> ：负责维护跳跃表的节点指针。</p>
@@ -1300,7 +1315,7 @@
 <h4 id="为什么Redis的操作是原子性的，怎么保证原子性操作？"><a href="#为什么Redis的操作是原子性的，怎么保证原子性操作？" class="headerlink" title="为什么Redis的操作是原子性的，怎么保证原子性操作？"></a>为什么Redis的操作是原子性的，怎么保证原子性操作？</h4><p>对于 Redis 而言，命令的原子性指的是：一个操作的不可以再分，操作要么执行，要么不执行。而Redis的操作之所以是原子性，是因为Redis是单线程的。 Redis 中的事务其实是要保证批量操作的原子性。</p>
 <p>多个命令在并发中也是原子性的吗？不一定，可以将get和set改成单命令操作。使用Redis的事务，或者使用Redis+Lua脚本的方式实现。</p>
 <h4 id="Redis数据和MySQL数据库的一致性如何实现？"><a href="#Redis数据和MySQL数据库的一致性如何实现？" class="headerlink" title="Redis数据和MySQL数据库的一致性如何实现？"></a>Redis数据和MySQL数据库的一致性如何实现？</h4><ol>
-<li><strong>延迟双删策略</strong>：（1）先删除缓存。（2）再写数据库。（3）休眠500毫秒。（4）再删除混存。这种策略还要考虑 redis 和数据库主从同步的耗时。最后的写数据的休眠时间：则在读数据业务逻辑的耗时的基础上，加上几百 ms 即可。比如：休眠 1 秒。</li>
+<li><strong>延迟双删策略</strong>：（1）先删除缓存。（2）再写数据库。（3）休眠500毫秒。（4）再删除缓存。这种策略还要考虑 redis 和数据库主从同步的耗时。最后的写数据的休眠时间：则在读数据业务逻辑的耗时的基础上，加上几百 ms 即可。比如：休眠 1 秒。</li>
 <li><strong>设置缓存的过期时间</strong>：给缓存设置过期时间，是保证最终一致性的解决方案。所有的写操作以数据库为准，只要到达缓存过期时间，则后面的读请求自然会从数据库中读取新值然后回填缓存。结合<strong>双删策略+缓存超时</strong>设置，这样最差的情况就是在超时时间内数据存在不一致，而且又增加了写请求的耗时。</li>
 <li>如果写完数据库，删除缓存失败？怎么办？</li>
 </ol>
@@ -1378,12 +1393,51 @@
 <li>@Transaction 声明式事务是将事物控制逻辑放在注解中，如果项目的复杂度增加，事务的控制可能会变得更加复杂，导致代码可读性和维护性下降。</li>
 </ol>
 <p>所以，为了避免这类问题，有些公司会推荐使用编程式事务，这样可以更加灵活地控制事务的范围，减少事务的锁定时间，提高系统的性能。</p>
-<h4 id="过滤器和拦截器有什么区别？"><a href="#过滤器和拦截器有什么区别？" class="headerlink" title="过滤器和拦截器有什么区别？"></a>过滤器和拦截器有什么区别？</h4><ol>
-<li>运行顺序不同：过滤器是在 Servlet 容器接收到请求之后，但在 Servlet 被调用之前运行的；而拦截器则是在 Servlet 被调用之后，但在响应被发送到客户端之前运行的。<br>Filter➡️Servlet➡️Interceptor➡️Controller</li>
-<li>配置方式不同：过滤器是在 web.xml 中进行配置；而拦截器的配置则是在 Spring 的配置文件中进行配置，或者使用注解进行配置</li>
-<li>Filter 依赖于 Servlet 容器，而 Interceptor 不依赖于 Servlet 容器</li>
-<li><strong>Filter在过滤时只能对 request 和 response 进行操作</strong>，而 interceptor 可以对 request、response、handler、modelAndView、exception 进行操作。</li>
-</ol>
+<h4 id="过滤器和拦截器"><a href="#过滤器和拦截器" class="headerlink" title="过滤器和拦截器"></a>过滤器和拦截器</h4><p><strong>过滤器（Filter）</strong>是一种用于拦截请求和响应的组件，可以在<strong>请求到达控制器之前或响应发送给客户端之前对它们进行处理</strong>。过滤器主要用于以下目的：（1）日志记录：记录请求和响应的详细信息，用于调试和监控。（2）安全控制：实现认证和授权，确保只有合适的用户可以访问特定的资源。（3）请求修改：在请求到达控制器之前修改请求参数或头信息。（4）响应修改：在响应发送给客户端之前修改响应的内容或状态码。（5）资源压缩：对响应内容进行压缩，减少网络传输的数据量。（6）请求转发：将请求转发到不同的URL或控制器。</p>
+<p>过滤器的生命周期通常与<strong>Web应用程序的生命周期相同</strong>。当Web应用程序启动时，过滤器被初始化；当Web应用程序关闭时，过滤器被销毁。</p>
+<p><strong>拦截器（Interceptor）</strong>是一种用于拦截请求和响应的组件，类似于过滤器，但提供了更多的灵活性和控制能力。拦截器主要用于以下目的：（1,2,3,4）同过滤器。（5）事务管理：管理事务的开始和结束，确保数据的一致性。（6）性能监控：监控请求处理时间，分析性能瓶颈。</p>
+<p>拦截器的生命周期与<strong>请求的生命周期相关</strong>。每个请求都会创建一个新的拦截器实例，请求结束后，拦截器实例会被销毁。</p>
+<h4 id="过滤器与拦截器的区别"><a href="#过滤器与拦截器的区别" class="headerlink" title="过滤器与拦截器的区别"></a>过滤器与拦截器的区别</h4><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">过滤器</th>
+<th align="center">拦截器</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">实现方式</td>
+<td align="center">基于Java Servlet规范，实现javax.servlet.Filter接口。</td>
+<td align="center">基于Spring框架，实现HandlerInterceptor接口。</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">调用时机</td>
+<td align="center">在请求进入后、离开前调用，可以在请求进入控制器之前进行预处理，也可以在响应发送给客户端之前进行后处理。</td>
+<td align="center">在请求处理的不同阶段调用，包括preHandle（请求处理前）、postHandle（请求处理后、视图渲染前）和afterCompletion（请求完成后）。</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">调用顺序</td>
+<td align="center">通常按照在web.xml或Spring配置中定义的顺序执行。</td>
+<td align="center">可以更灵活地控制执行顺序，例如，可以在preHandle方法中决定是否执行后续拦截器或控制器。</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">作用范围</td>
+<td align="center">可以应用于整个Web应用程序，不仅限于Spring MVC。</td>
+<td align="center">专门用于Spring MVC应用程序，可以更精确地控制Spring MVC的请求处理流程。</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">事务管理</td>
+<td align="center">通常不涉及事务管理。</td>
+<td align="center">可以在preHandle方法中开启事务，在afterCompletion方法中关闭事务，从而实现事务的控制。</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p><img src="/2024/05/20/mian-shi-zheng-li/image-20240819160705766.png"></p>
 <h4 id="Component，-Controller，-Repository，-Service-有何区别？"><a href="#Component，-Controller，-Repository，-Service-有何区别？" class="headerlink" title="@Component，@Controller，@Repository，@Service 有何区别？"></a>@Component，@Controller，@Repository，@Service 有何区别？</h4><p><strong>@Component</strong> ：这将 java 类标记为 bean 。 它是任何 Spring 管理组件的通用构造型 。 spring 的 组件 扫 描机 制 现在 可 以将 其 拾取 并 将其 拉 入应 用 程序 环 境 中 。 </p>
 <p><strong>@Controller</strong>：这将一个类标记为 Spring Web MVC 控制器。标有它的Bean会自动导入到 IoC 容 器中 。</p>
 <p> <strong>@Service</strong>：此注解是组件注解的特化 。 它不会对 @Component 注解提供任何其他行为。可以在服务层类中使用@Service 而不是@Component，因为它以更好的方式指定了意图。 </p>
