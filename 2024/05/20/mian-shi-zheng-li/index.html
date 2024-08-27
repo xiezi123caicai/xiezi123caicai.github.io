@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    61.9k
+                    62.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    216 分
+                    220 分
                 </div>
                 
 
@@ -765,6 +765,14 @@
 <li><strong>LinkedBlockingQueue 基于链表的无界阻塞队列</strong>（最大容量为Integer.MAX），按FIFO排序，当线程数达到线程池核心线程数（corePoolSize）时，新的任务会进入队列等待而不会创建新的线程直到队列达到Integer.MAX</li>
 <li><strong>SynchronousQueue 不缓存任务的阻塞队列</strong>，直接执行任务，没有线程可以用时会新建线程，直到线程数达到线程池最大线程数（MaxnumPoolSize）时，执行拒绝策略</li>
 <li><strong>PriorityBlockingQueue 具有优先级的无界阻塞队列</strong>，优先级通过参数Comparator实现</li>
+</ol>
+<h4 id="线程池的执行流程"><a href="#线程池的执行流程" class="headerlink" title="线程池的执行流程"></a>线程池的执行流程</h4><ol>
+<li><strong>创建线程池：</strong>通过调用<code>Executors</code>类的工厂方法（如<code>newFixedThreadPool</code>、<code>newCachedThreadPool</code>等）或通过<code>ThreadPoolExecutor</code>类的构造方法来创建。指定线程池的基本参数，如核心线程数、最大线程数、任务队列、线程工厂和拒绝策略等。</li>
+<li><strong>提交任务：</strong>任务通常是实现了<code>Runnable</code>或<code>Callable</code>接口的对象，可以通过<code>execute()</code>方法或<code>submit()</code>方法将任务提交到线程池中。</li>
+<li><strong>任务队列：</strong>维护一个任务队列（通常是<code>BlockingQueue</code>），用于存放等待执行的任务。</li>
+<li><strong>线程的复用：</strong>线程池中的线程是复用的，即同一个线程可以被多次使用来执行不同的任务。</li>
+<li><strong>线程回收和任务拒绝策略：</strong>当线程池中的线程数超过核心线程数且线程空闲时间超过指定的<code>keepAliveTime</code>就会被回收。任务队列已满且线程池中运行的线程数已经达到最大线程数，那么线程池将执行拒绝策略（<code>RejectedExecutionHandler</code>）。</li>
+<li><strong>关闭线程池：</strong>可以调用<code>shutdown()</code>或<code>shutdownNow()</code>方法来关闭线程池。</li>
 </ol>
 <h3 id="多线程并发和锁"><a href="#多线程并发和锁" class="headerlink" title="多线程并发和锁"></a>多线程并发和锁</h3><h4 id="线程B怎么知道线程A修改了变量"><a href="#线程B怎么知道线程A修改了变量" class="headerlink" title="线程B怎么知道线程A修改了变量"></a>线程B怎么知道线程A修改了变量</h4><ol>
 <li>volatile修饰变量</li>
@@ -1481,6 +1489,18 @@
 <p>SpringBoot的启动流程主要包括<strong>加载启动类、加载配置文件和创建Spring容器</strong>三个步骤。这个流程使得SpringBoot能够快速地启动并运行应用程序，同时提供了灵活的配置和自动装配功能，使得开发者可以更加高效地开发Spring应用程序。</p>
 <h4 id="SpringBoot和Spring的区别是什么？"><a href="#SpringBoot和Spring的区别是什么？" class="headerlink" title="SpringBoot和Spring的区别是什么？"></a>SpringBoot和Spring的区别是什么？</h4><p>Spring是一个非常强大的企业级Java开发框架 ，提供了一系列模块来支持不同的应用需求，如依赖注入、面向切面编程、事务管理、Web应用程序研发等。而SpringBoot的出现， 主要是起到了简化Spring应用程序的开发和部署，特别是用于构建微服务和快速开发的应用程序。</p>
 <p>SpringBoot在以下方面提升了Spring的效率：1.自动配置。2.内嵌Web服务器（Tomcat）。3.约定大于配置。</p>
+<h4 id="SpringBoot常用注解"><a href="#SpringBoot常用注解" class="headerlink" title="SpringBoot常用注解"></a>SpringBoot常用注解</h4><ol>
+<li>@SpringBootApplication：这是 Spring Boot 应用程序的核心注解，通常加在主类上。结合了 <code>@Configuration</code>、<code>@EnableAutoConfiguration</code> 和 <code>@ComponentScan</code> 三个注解的功能</li>
+<li>@RestController：一个组合注解，等同于 <code>@Controller</code> 和 <code>@ResponseBody</code>，用于定义 RESTful 风格的控制器，返回的数据会直接以 JSON 或 XML 的形式输出到 HTTP 响应体中。</li>
+<li>@GetMapping, @PostMapping, @PutMapping, @DeleteMapping：用于简化 HTTP 请求映射，分别对应 GET、POST、PUT、DELETE 请求。</li>
+<li>@RequestMapping：用于定义请求的映射关系，可以作用于类或方法上，支持 GET、POST、PUT、DELETE 等所有 HTTP 请求方式。</li>
+<li>@Autowired：用于自动注入依赖对象，Spring Boot 会自动在容器中查找并注入匹配的 Bean。</li>
+<li>@Component, @Service, @Repository, @Controller：用于定义 Spring 容器中的 Bean，<code>@Component</code> 是通用的组件注解，而 <code>@Service</code>、<code>@Repository</code>、<code>@Controller</code> 分别用于标识服务层、数据访问层和控制器层的组件。</li>
+<li>@Configuration：用于定义配置类，替代传统的 XML 配置文件。<code>@Configuration</code> 类中的 <code>@Bean</code> 方法可以创建并返回 Spring 容器管理的 Bean。</li>
+<li>@Bean：定义一个 Bean，并将其注册到 Spring 容器中。通常在 <code>@Configuration</code> 类中使用。</li>
+<li>@Value：用于注入外部配置文件中的值（如 <code>application.properties</code> 或 <code>application.yml</code>）到类的属性中。</li>
+<li>@Transactional：用于声明事务管理，在方法或类级别添加该注解，Spring 将在该方法或类的所有方法执行时自动启动并管理事务。</li>
+</ol>
 <h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="简述你对-Spring-MVC-的理解"><a href="#简述你对-Spring-MVC-的理解" class="headerlink" title="简述你对 Spring MVC 的理解"></a>简述你对 Spring MVC 的理解</h4><p>实现了 Web MVC 设计模式，<strong>请求驱动类型的轻量级 Web框架</strong>。采用了 MVC 架构模式的思想，通过把 Model，View，Controller 分离，将 Web 层进行职责解耦，从而把复杂的 Web 应用分成逻辑清晰的几个组件，共有九大组件。涉及请求处理响应的核心组件分别是：（1）HandlerMapping；（2）HandlerAdapter；（3）ViewResolver</p>
 <ol>
 <li>HandlerMapping 回到调用 HandlerAdapter</li>
@@ -1807,6 +1827,13 @@
 <li><strong>不提供加密功能</strong>：如果有安全上的需求，需要采用其他方式来确保安全性，如SSL协议、设置黑白名单。</li>
 <li><strong>不支持古老的浏览器</strong>：不支持IE10以前的版本。需要使用AJAX或者其他方式代替</li>
 <li><strong>性能优化</strong></li>
+</ul>
+<h4 id="TCP的拥塞控制"><a href="#TCP的拥塞控制" class="headerlink" title="TCP的拥塞控制"></a>TCP的拥塞控制</h4><p>防止网络中的数据包丢失和延迟增加而设计的机制。其目的是通过调节发送方的数据发送速率，避免网络出现拥塞，从而提高网络的利用率和传输效率。</p>
+<ul>
+<li><strong>慢启动（Slow Start）：</strong>在连接开始时，TCP并不知道网络的可用带宽，因此初始的拥塞窗口设置得非常小，通常是一个MSS（最大报文段大小）。每当收到一个确认ACK时，拥塞窗口就会增大。</li>
+<li><strong>拥塞避免（Congestion Avoidance）</strong>：当拥塞窗口达到一个阈值（通常称为慢启动阈值，ssthresh）后，TCP进入拥塞避免阶段。这个阶段，拥塞窗口速度缓慢。</li>
+<li><strong>快速重传（Fast Retransmit）</strong>：当TCP发送方连续收到三个相同的ACK（称为三次重复ACK）时，说明网络中可能发生了数据包丢失。此时，TCP会立即重传丢失的数据包，而不必等到重传计时器超时。</li>
+<li><strong>快速恢复（Fast Recovery）</strong>：在快速重传后，TCP进入快速恢复阶段。此时，慢启动阈值被设置为当前拥塞窗口的一半，而不像慢启动那样将CWND重置为1。</li>
 </ul>
 <h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h4 id="计算机打开电源操作系统做了什么"><a href="#计算机打开电源操作系统做了什么" class="headerlink" title="计算机打开电源操作系统做了什么?"></a>计算机打开电源操作系统做了什么?</h4><ol>
 <li>加载BIOS：计算机主板的BIOS开始工作，开始检测计算机的硬件是否正常</li>
@@ -2820,7 +2847,7 @@ ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span ar
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Here's something encrypted, password is required to continue reading.
+                            
                         
                     </div>
                     <div class="publish-info">
