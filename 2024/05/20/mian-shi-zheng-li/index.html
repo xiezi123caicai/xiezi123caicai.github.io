@@ -466,14 +466,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    62.9k
+                    64.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    220 分
+                    226 分
                 </div>
                 
 
@@ -774,6 +774,12 @@
 <li><strong>线程回收和任务拒绝策略：</strong>当线程池中的线程数超过核心线程数且线程空闲时间超过指定的<code>keepAliveTime</code>就会被回收。任务队列已满且线程池中运行的线程数已经达到最大线程数，那么线程池将执行拒绝策略（<code>RejectedExecutionHandler</code>）。</li>
 <li><strong>关闭线程池：</strong>可以调用<code>shutdown()</code>或<code>shutdownNow()</code>方法来关闭线程池。</li>
 </ol>
+<h4 id="僵尸进程和孤儿进程"><a href="#僵尸进程和孤儿进程" class="headerlink" title="僵尸进程和孤儿进程"></a>僵尸进程和孤儿进程</h4><p><strong>僵尸进程</strong>：僵尸进程是指一个子进程已经终止（执行完毕或被杀死），但它的父进程还没有读取其终止状态信息（如退出码）。由于进程的终止信息尚未被父进程收集，操作系统仍然保留该进程的条目，这种进程就被称为僵尸进程。</p>
+<p>特点：1.僵尸进程不会占用系统资源（除了少量的进程表项），因为它已经终止。2.如果父进程没有正确处理子进程的终止状态（如父进程死循环、挂起或异常终止），僵尸进程会一直存在，导致系统的进程表被填满，最终影响系统性能。</p>
+<p>解决方法：1.父进程在子进程终止时，应该调用 <code>wait()</code> 或 <code>waitpid()</code> 来回收子进程的资源。2.如果父进程没有正确处理，可以通过终止父进程来解决僵尸进程。</p>
+<p><strong>孤儿进程</strong>：孤儿进程是指一个子进程的父进程已经终止，但子进程仍然在运行。孤儿进程会被系统的 <code>init</code> 进程（PID 1）接管，并由 <code>init</code> 进程充当其新的父进程。</p>
+<p>特点：1.孤儿进程并不会立即被杀死或回收，而是继续执行它的任务，直到自然结束。2.孤儿进程会被 <code>init</code> 进程接管，<code>init</code> 进程会负责监控和回收孤儿进程的资源。3.操作系统会确保所有孤儿进程在其结束时都被正确回收，因此孤儿进程通常不会对系统产生负面影响。</p>
+<p>解决方法：1.通常不需要特别处理孤儿进程，因为它们最终会被 <code>init</code> 进程回收。2.如果孤儿进程的存在是由于应用程序的设计缺陷导致的，可以考虑优化程序逻辑，确保父子进程的正常退出和资源管理。</p>
 <h3 id="多线程并发和锁"><a href="#多线程并发和锁" class="headerlink" title="多线程并发和锁"></a>多线程并发和锁</h3><h4 id="线程B怎么知道线程A修改了变量"><a href="#线程B怎么知道线程A修改了变量" class="headerlink" title="线程B怎么知道线程A修改了变量"></a>线程B怎么知道线程A修改了变量</h4><ol>
 <li>volatile修饰变量</li>
 <li>synchronized修饰修改变量的方法</li>
@@ -1257,6 +1263,26 @@
 <li><strong>高并发写入场景</strong>：当应用面临高并发的写入请求时，单一数据库可能无法满足写入压力，此时可以将数据按照一定规则拆分到多个数据库中，每个数据库处理部分数据的写入请求，从而提高写入性能。</li>
 <li><strong>海量数据场景</strong>：随着数据量的不断增加，单一数据库的存储和查询性能可能逐渐下降。此时，可以将数据按照一定的规则拆分到多个表中，每个表存储部分数据，从而分散数据的存储压力，提高查询性能。</li>
 </ul>
+<h4 id="InnoDB引擎的特性有哪些？"><a href="#InnoDB引擎的特性有哪些？" class="headerlink" title="InnoDB引擎的特性有哪些？"></a>InnoDB引擎的特性有哪些？</h4><ol>
+<li><strong>事务支持</strong>：提供了完整的ACID（原子性、一致性、隔离性、持久性）事务支持。</li>
+<li><strong>行级锁定</strong>：支持更高效的行级锁定和MVCC（多版本并发控制），提高并发访问能力。</li>
+<li><strong>外键约束</strong>：支持外键，自动维护数据的完整性和一致性。</li>
+<li><strong>崩溃恢复</strong>：具备崩溃恢复的能力，通过日志和缓冲池保证数据在系统崩溃后也能安全恢复。</li>
+</ol>
+<h4 id="百万级别或以上的数据如何删除？"><a href="#百万级别或以上的数据如何删除？" class="headerlink" title="百万级别或以上的数据如何删除？"></a>百万级别或以上的数据如何删除？</h4><ol>
+<li><strong>批处理删除</strong>：将删除操作分批次处理，每批次删除一定量的数据。</li>
+<li><strong>分区表</strong>：如果数据是分区存储，可以直接删除整个分区来快速移除大量数据。</li>
+<li><strong>临时表迁移</strong>：对于需要保留部分数据的情况，可以将需要的数据移动到临时表，然后删除原表。</li>
+<li><strong>后台任务</strong>：将删除操作为后台任务执行，以减少对前台业务的影响。</li>
+</ol>
+<h4 id="mysql数据库cpu飙升到300-的话怎么处理？"><a href="#mysql数据库cpu飙升到300-的话怎么处理？" class="headerlink" title="mysql数据库cpu飙升到300%的话怎么处理？"></a>mysql数据库cpu飙升到300%的话怎么处理？</h4><ol>
+<li>监控和识别：使用 show processlist查看当前运行的查询，识别消耗CPU资源的查询。</li>
+<li>分析慢查询日志：检查慢查询日志，找出优化时间长，频繁执行的查询。</li>
+<li>优化查询：对识别出的高负载查询进行优化，如添加缺失的索引、优化查询语句结构。</li>
+<li>限制资源使用：通过设置资源使用限制，如 max_connections，防止过多并发连接消耗资源。</li>
+<li>分布式和分片：对于极高的数据量和查询负载，考虑数据库的分布式或分片策略。</li>
+<li>定期维护。</li>
+</ol>
 <h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><h4 id="SkipList的索引过程，能否越两级搜索？"><a href="#SkipList的索引过程，能否越两级搜索？" class="headerlink" title="SkipList的索引过程，能否越两级搜索？"></a>SkipList的索引过程，能否越两级搜索？</h4><p>跳跃表主要由以下部分构成: </p>
 <ul>
 <li><p><strong>表头(head)</strong> ：负责维护跳跃表的节点指针。</p>
@@ -1329,6 +1355,13 @@
 </ol>
 <p>方案一：（1）更新数据库数据。（2）缓存因为种种问题删除失败。（3）将需要删除的 key 发送至消息队列。（4）自己消费消息，获得需要删除的 key。（5）继续重试删除操作，直到成功。缺点：对业务线代码造成大量的侵入。</p>
 <p>方案二：<strong>启动一个订阅程序去订阅数据库的 binlog，获得需要操作的数据</strong>。在应用程序中，另起一段程序，获得这个订阅程序传来的信息，进行删除缓存操作。（1）更新数据库数据。（2）数据库会将操作信息写入 binlog 日志当中。（3）订阅程序提取出所需要的数据以及 key。（4）另起一段非业务代码，获得该信息。（5）尝试删除缓存操作，发现删除失败。（6）将这些信息发送至消息队列。（7）重新从消息队列中获得该数据，重试操作。</p>
+<h4 id="redis分布式锁的实现"><a href="#redis分布式锁的实现" class="headerlink" title="redis分布式锁的实现"></a>redis分布式锁的实现</h4><p>Redis 分布式锁的实现主要依赖于 Redis 的 <strong>SETNX</strong> 命令（Set if Not Exists）和 <code>EXPIRE</code> 命令，确保在分布式系统中一个资源在同一时间只能被一个客户端占用。</p>
+<ol>
+<li>加锁：使用 <code>SETNX</code> 命令尝试设置一个唯一的锁标识（如随机生成的 UUID）。如果设置成功（返回值为 1），则表示当前客户端成功获取锁。</li>
+<li>解锁：解锁时，需要确保只有持有锁的客户端才能解锁。为此，需要在解锁时进行一个原子操作，这通常通过 Lua 脚本来实现。Lua 脚本会先判断锁的值是否为当前客户端的唯一标识，如果是，则删除该锁。</li>
+<li>超时：为了防止由于某些原因导致锁无法释放（例如客户端崩溃），需要给锁设置一个超时时间。Redis 的 <code>EXPIRE</code> 命令可以为锁设置一个 TTL（Time to Live），超过这个时间后锁将自动失效。</li>
+<li>重试机制：在某些情况下，客户端可能无法在第一次尝试时获取锁。可以通过设置重试次数和间隔时间来实现一种简单的重试机制，确保在锁资源空闲时可以再次尝试获取锁。</li>
+</ol>
 <h3 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h3><h4 id="介绍下-Spring-IoC-的工作流程"><a href="#介绍下-Spring-IoC-的工作流程" class="headerlink" title="介绍下 Spring IoC 的工作流程"></a>介绍下 Spring IoC 的工作流程</h4><p>IOC 的全称是 Inversion Of Control，也就是控制反转，它的核心思想是把对象的管理权限交给容器。应用程序如果需要使用到某个对象实例，直接从 IOC 容器中去获取就行，这样设计的好处是降低了程序里面对象与对象之间的耦合性。</p>
 <p>Spring 里面很多方式去定义 Bean，（如图）比如 XML 里面的〈bean〉标签、@Service、@Component、 @Repository、@Configuration 配置类中的@Bean 注解等等。Spring 在启动的时候，会去解析这些 Bean 然后保存到 IOC 容器里面。</p>
 <p>Spring IOC 的工作流程大致可以分为两个阶段。</p>
@@ -2009,6 +2042,12 @@ ps aux<span class="token operator">|</span>grep nginx  查看nginx进程<span ar
 <p>而 <code>sendfile</code> 返回的则是发送成功了几个<strong>字节数</strong>，<strong>具体发了什么内容，应用层根本不知道</strong>。</p>
 <p>而 RocketMQ 的一些功能，却需要了解具体这个消息内容，方便二次投递等，比如将消费失败的消息重新投递到死信队列中，如果 RocketMQ 使用 sendfile，那根本没机会获取到消息内容长什么样子，也就没办法实现一些好用的功能了。而 kafka 却没有这些功能特性，追求极致性能，正好可以使用 sendfile。</p>
 <h4 id="如果硬盘坏了，RocketMQ会怎么办"><a href="#如果硬盘坏了，RocketMQ会怎么办" class="headerlink" title="如果硬盘坏了，RocketMQ会怎么办"></a>如果硬盘坏了，RocketMQ会怎么办</h4><p>硬盘损坏对RocketMQ而言是一个潜在的严重风险，可能导致数据丢失和服务中断。然而，通过主从复制、磁盘冗余（配置磁盘冗余阵列RAID来提高硬盘的可靠性）、自动备份（定期对RocketMQ的存储数据进行快照和备份）、多副本策略（在分布式RocketMQ集群中，可以配置消息的多副本策略，使得每条消息在多个节点上都有备份）和使用分布式存储系统，可以大大降低这种风险，并在硬盘损坏时迅速恢复服务。</p>
+<h4 id="怎么确保MQ消息发送的可靠性？"><a href="#怎么确保MQ消息发送的可靠性？" class="headerlink" title="怎么确保MQ消息发送的可靠性？"></a>怎么确保MQ消息发送的可靠性？</h4><ol>
+<li>消息的生产者端的可靠性：（1）<strong>事务消息</strong>（事务型消息）：使用事务消息机制可以确保消息在事务提交成功后才被发送。通常的实现方式是在发送消息之前启动一个本地事务，消息发送成功后提交事务，消息发送失败则回滚事务。（2）<strong>重试机制</strong>。（3）<strong>异步发送与回调</strong>：生产者可以采用异步发送的方式，并通过回调函数来确认消息是否成功发送到消息队列。如果发送失败，可以在回调函数中进行补偿措施。</li>
+<li>消息的可靠性：（1）<strong>消息持久化</strong>：在发送消息时，可以将消息设置为持久化（persistent）模式，确保消息在队列中存储是可靠的。（2）<strong>多副本存储</strong>：通过将消息存储在多个副本中，可以防止因为单节点故障而导致消息丢失。（3）<strong>消息队列集群</strong>：使用消息队列集群部署，避免单点故障的风险。通过主从复制、自动故障转移等机制。</li>
+<li>消息消费者端的可靠性：（1）<strong>消费确认机制</strong>：消费者在成功处理消息后，应该发送确认（acknowledge）给消息队列。如果处理失败，可以拒绝确认，消息队列会将消息重新放回队列或发送到死信队列。（2）<strong>幂等性处理</strong>：消费者应该设计成幂等的，即同一消息的重复消费不会导致数据异常。这可以通过使用唯一标识符（如消息ID）来记录处理过的消息，从而避免重复处理。</li>
+<li>其他策略：（1）<strong>消息队列的监控和报警</strong>。（2）<strong>死信队列</strong>（Dead Letter Queue, DLQ）：当消息处理失败达到一定次数后，可以将消息转移到死信队列中，便于后续人工干预或其他自动处理。（3）<strong>消息对账</strong>：定期对消息队列中的消息与业务系统中的消息状态进行对账，确保没有消息丢失或重复。</li>
+</ol>
 <h3 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h3><h4 id="Tomcat的缺省端口是多少，怎么修改？"><a href="#Tomcat的缺省端口是多少，怎么修改？" class="headerlink" title="Tomcat的缺省端口是多少，怎么修改？"></a>Tomcat的缺省端口是多少，怎么修改？</h4><p>默认端口为 8080，可以通过在 tomcat 安装包 conf 目录下，service.xml 中的 Connector 元素的 port 属性来修改端口。</p>
 <h4 id="tomacat有哪几种Connector运行模式"><a href="#tomacat有哪几种Connector运行模式" class="headerlink" title="tomacat有哪几种Connector运行模式"></a>tomacat有哪几种Connector运行模式</h4><p>BIO：一个线程处理一个请求。缺点：并发量高时，线程数较多，浪费资源。</p>
 <p>NIO：利用 Java 的异步 IO 处理，可以通过少量的线程处理大量的请求。</p>
